@@ -1,0 +1,59 @@
+html {
+  overflow-y: scroll;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0px auto;
+  height: 100vh;
+  display: flex;
+  gap: 100px; /* Adjust gap as needed */
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  padding: 0 5vw; /* Add padding to show previous and next panels */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.firstContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: yellow;
+}
+
+.lastContainer {
+  display: flex;
+  height: 100vh;
+  background: yellow;
+}
+
+.panel {
+  width: 80%; /* Adjust as necessary */
+  height: 60%; /* Adjust as necessary */
+  margin: auto; /* Centering the panel vertically */
+  scroll-snap-align: center;
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
+  
+}
+
+.red {
+  background: red;
+}
+.orange {
+  background: orange;
+}
+.purple {
+  background: purple;
+}

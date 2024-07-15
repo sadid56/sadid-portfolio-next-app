@@ -1,0 +1,89 @@
+.nav-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-link::before,
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: rotate(45deg);
+  background-color: transparent;
+  transform: scaleX(0);
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-in-out, background-color 0.4s ease-in-out;
+}
+
+.nav-link::before {
+  top: 0;
+}
+
+.nav-link::after {
+  bottom: 9px;
+}
+
+.nav-link:hover::before {
+  transform: scaleX(1);
+  background-color: #03e9f4;
+}
+
+.nav-link.active {
+  color: #03e9f4;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+  background-color: rgb(239, 13, 13);
+}
+
+/* Sidebar transition styles */
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-closed {
+  transform: translateX(-100%);
+}
+
+.sidebar-open,
+.sidebar-closed {
+  transition: transform 0.5s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  background-color: #0f1926; /* Tailwind color slate-900 */
+  padding-top: 3.5rem; /* Adjust for your header height */
+  z-index: 40; /* Ensure it's above other content */
+}
+
+/* bar */
+
+.bar {
+  width: 32px;
+  height: 3px;
+  background-color: #ffffff;
+  margin: 6px 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.transform.rotate-45 .bar:nth-child(1) {
+  transform: translateY(3px) rotate(90deg);
+  background: #03e9f4;
+  transition: transform 0.5s ease-in-out;
+}
+
+.transform.rotate-45 .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.transform.rotate-45 .bar:nth-child(3) {
+  transform: translateY(-13px) rotate(0deg);
+  background: #03e9f4;
+  transition: transform 0.5s ease-in-out;
+}

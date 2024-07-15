@@ -1,0 +1,128 @@
+[
+  {
+      "id": 1,
+       "name": "JavaScript",
+       "side": "Frontend/backend",
+       "logo": "https://i.ibb.co/s3hStV0/Java-Script-logo.png",
+       "category": "Expertise"
+  },
+  {
+      "id": 2,
+       "name": "React.js",
+       "side": "Frontend",
+       "logo": "https://i.ibb.co/rHV3T7s/React-icon-svg-1.png",
+       "category": "Expertise"
+  },
+  {
+      "id": 3,
+       "name": "HTML5",
+       "side": "Frontend",
+       "logo": "https://i.ibb.co/rkYDGps/logo-2582748-960-720.webp",
+       "category": "Expertise"
+  },
+  {
+      "id": 4,
+       "name": "CSS3",
+       "side": "Frontend",
+       "logo": "https://i.ibb.co/tDB9sPS/logo-2582747-1280.webp",
+       "category": "Expertise"
+  },
+  {
+      "id": 5,
+       "name": "Tailwindcss",
+       "side": "Frontend",
+       "logo": "https://i.ibb.co/hBmwFBs/tailwind-removebg-preview.png",
+       "category": "Expertise"
+  },
+  {
+      "id": 6,
+       "name": "Bootstrap5",
+       "side": "Frontend",
+       "logo": "https://i.ibb.co/4Zk201T/bootstrap-logo.png",
+       "category": "Expertise"
+  },
+  {
+      "id": 7,
+       "name": "Node.js",
+       "side": "Backend",
+       "logo": "https://i.ibb.co/THgqjW5/nodejs-logo-FBE122-E377-seeklogo-com.png",
+       "category": "Familiar"
+  },
+  {
+      "id": 8,
+       "name": "Express.js",
+       "side": "Backend",
+       "logo": "https://i.ibb.co/61gsjw0/express-js.png",
+       "category": "Comfortable"
+  },
+  {
+      "id": 9,
+       "name": "MongoDB",
+       "side": "DataBase",
+       "logo": "https://i.ibb.co/61S3y6y/erkxwhl1gd48xfhe2yld.webp",
+       "category": "Comfortable"
+  },
+  {
+      "id": 10,
+       "name": "Next.js",
+       "side": "Frontend/backend",
+       "logo": "https://i.ibb.co/KLWYXRT/next-js-icon-logo-EE302-D5-DBD-seeklogo-com.png",
+       "category": "Comfortable"
+  },
+  {
+      "id": 11,
+       "name": "JWT",
+       "side": "Backend",
+       "logo": "https://i.ibb.co/2tbNLLp/177059352-fe91dcd5-e17b-4103-88ae-70d6d396cf85.png",
+       "category": "Familiar"
+  },
+  {
+      "id": 12,
+       "name": "GitHub",
+       "side": "Repositories,",
+       "logo": "https://i.ibb.co/VpgW0hn/unnamed.png",
+       "category": "Tools"
+  },
+  {
+      "id": 13,
+       "name": "Vercel",
+       "side": "Deploy",
+       "logo": "https://i.ibb.co/7GzV7cr/vercel.png",
+       "category": "Tools"
+  },
+  {
+      "id": 14,
+       "name": "Firebase",
+       "side": "Authentication",
+       "logo": "https://i.ibb.co/gtHr19h/firebase-removebg-preview.png",
+       "category": "Comfortable"
+  },
+  {
+      "id": 15,
+       "name": "Mongoose",
+       "side": "Backend",
+       "logo": "https://i.ibb.co/W2cVpxd/download.png",
+       "category": "Familiar"
+  },
+  {
+      "id": 16,
+       "name": "Git",
+       "side": "VersionControl ",
+       "logo": "https://i.ibb.co/HVqkNds/code-branch-12221106.png",
+       "category": "Tools"
+  },
+  {
+      "id": 17,
+       "name": "Figma",
+       "side": "Design",
+       "logo": "https://i.ibb.co/2F0tL6Z/figma-5968705.png",
+       "category": "Tools"
+  },
+  {
+      "id": 18,
+       "name": "Canva",
+       "side": "Design",
+       "logo": "https://i.ibb.co/ZNMwt29/download-1.png",
+       "category": "Tools"
+  }
+]
