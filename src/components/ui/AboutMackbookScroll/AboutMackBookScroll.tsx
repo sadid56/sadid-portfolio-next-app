@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
@@ -22,16 +23,12 @@ import { IconWorld } from "@tabler/icons-react";
 import { IconCommand } from "@tabler/icons-react";
 import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
-import Image from "next/image";
 import { cn } from "@/utils/cn";
 
 export const AboutMacbookScroll = ({
-  src,
   showGradient,
   title,
-  badge,
 }: {
-  src?: string;
   showGradient?: boolean;
   title?: string | React.ReactNode;
   badge?: React.ReactNode;
@@ -68,7 +65,7 @@ export const AboutMacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="min-h-[300vh]  flex flex-col items-center py-0 md:py-20 justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
+      className="min-h-[300vh] w-[70%]  flex flex-col items-center  justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
     >
       <motion.h2
         style={{
@@ -85,7 +82,6 @@ export const AboutMacbookScroll = ({
       </motion.h2>
       {/* Lid */}
       <Lid
-        src={src}
         scaleX={scaleX}
         scaleY={scaleY}
         rotate={rotate}
@@ -113,7 +109,7 @@ export const AboutMacbookScroll = ({
         {showGradient && (
           <div className="h-40 w-full absolute bottom-0 inset-x-0 bg-gradient-to-t dark:from-black from-white via-white dark:via-black to-transparent z-50"></div>
         )}
-        {badge && <div className="absolute bottom-4 left-4">{badge}</div>}
+        <div className="absolute bottom-4 left-4 text-white">Victus</div>
       </div>
     </div>
   );
@@ -142,17 +138,19 @@ export const Lid = ({
         }}
         className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl p-2 relative"
       >
+        {/* main laptop desk view */}
         <div
           style={{
             boxShadow: "0px 2px 0px 2px var(--neutral-900) inset",
           }}
-          className="absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
+          className=" absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
         >
           <span className="text-white">
-            <AceternityLogo />
+            <h3>:)</h3>
           </span>
         </div>
       </div>
+      {/* laptop content */}
       <motion.div
         style={{
           scaleX: scaleX,
@@ -162,10 +160,40 @@ export const Lid = ({
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
-        className="h-96 w-[32rem] absolute inset-0 bg-[#010101] rounded-md p-2 border-2 border-slate-800"
+        className="h-96 w-[32rem] absolute inset-0 border-slate-800 backdrop-blur-3xl"
       >
-        {/* <div className="absolute inset-0 bg-[#272729] rounded-lg" /> */}
-        <h4 className="text-white">hello world</h4>
+        {/* <div className="absolute inset-0 backdrop-blur-3xl rounded-lg" /> */}
+        <div className="relative rounded-lg">
+  <div className="mt-5 space-y-1.5 px-5 pb-10">
+    <p className="mt-4 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Card</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">Ticket Sales</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-3 font-mono text-xs font-normal leading-4 tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Metric</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">$ 71,465</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Metric</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Flex</span><span className="ml-2 text-violet-400">className<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">"mt-3"</span></span></span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-6 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="text-slate-500">&lt;</span><span className="text-pink-400">Bold</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">32%</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Bold</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">of annual target</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-6 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">$ 223,328</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;/</span><span className="text-pink-400">Flex</span><span className="text-slate-500">&gt;</span>
+    </p>
+    <p className="ml-3 font-mono text-xs font-normal leading-4 tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;</span><span className="text-pink-400">ProgressBar</span><span className="ml-2 text-violet-400">value<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">{ 32 }</span></span></span><span className="ml-2 text-violet-400">className<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">"mt-3"</span></span></span><span className="text-slate-500">/&gt;</span>
+    </p>
+    <p className="font-mono text-xs font-normal tracking-wide text-violet-400">
+      <span className="text-slate-500">&lt;/</span><span className="text-pink-400">Card</span><span className="text-slate-500">&gt;</span>
+    </p>
+  </div>
+</div>
       </motion.div>
     </div>
   );
@@ -543,6 +571,8 @@ export const Keypad = () => {
     </div>
   );
 };
+
+
 export const KBtn = ({
   className,
   children,
@@ -640,23 +670,4 @@ export const OptionKey = ({ className }: { className: string }) => {
   );
 };
 
-const AceternityLogo = () => {
-  return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3 text-white"
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-};
+

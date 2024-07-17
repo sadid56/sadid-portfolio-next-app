@@ -48,7 +48,7 @@ const Navber = () => {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 z-50 ${scroll ? "md:py-8 py-6 backdrop-blur-3xl" : "py-3 bg-transparent"} transition-all ease-in duration-300 px-3 md:px-0`}
+        className={`w-full fixed top-0 z-50 ${scroll ? "md:py-8 py-5" : "py-3"} transition-all ease-in duration-300 px-3 md:px-0`}
       >
         <div className={`flex justify-between items-center max-w-7xl mx-auto`}>
           <div className="">

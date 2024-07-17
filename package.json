@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.1",
     "@tabler/icons-react": "^3.10.0",
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
@@ -17,7 +18,9 @@
     "file-loader": "^6.2.0",
     "framer-motion": "^11.3.2",
     "gsap": "^3.12.5",
+    "lottie-react": "^2.4.0",
     "next": "14.2.5",
+    "qss": "^3.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.13.0",
