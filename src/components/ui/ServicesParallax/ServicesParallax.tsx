@@ -95,11 +95,10 @@ export const ProductCard = ({
   return (
     <motion.div
       key={product.service_name}
-      className=" h-80  relative bg-red-800"
+      className=" h-80  relative bg-red-800 max-w-7xl mx-auto"
     >
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, rem
-        architecto. Ut deleniti sint ea suscipit ducimus dolore hic facilis.
+        {product?.description}
       </p>
     </motion.div>
   );

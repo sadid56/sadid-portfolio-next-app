@@ -15,7 +15,6 @@ body {
   margin: 0px auto;
   height: 100vh;
   display: flex;
-  gap: 100px; /* Adjust gap as needed */
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -25,10 +24,6 @@ body {
 }
 
 .panel {
-  width: 80%; /* Adjust as necessary */
-  height: 60%; /* Adjust as necessary */
-  margin: auto; /* Centering the panel vertically */
-  scroll-snap-align: center;
   flex: 0 0 auto; /* Prevent flex items from shrinking */
   background: linear-gradient(135deg, #fffffff5, #303d6c, #ffffff98);
   border-radius: 1.2rem;

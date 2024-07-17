@@ -1,0 +1,36 @@
+.hero-text{
+  letter-spacing: 6px;
+  color: transparent;
+  font-weight: 700;
+  font-size: 180px;
+  line-height: 150px;
+  -webkit-text-stroke: 1px white;
+  background-image: url('../../assets/images/back.png');
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  animation: textBg 20s linear infinite;
+}
+
+@keyframes textBg{
+  100%{
+    background-position: 1000px 0;
+  }
+}
+
+.arrow {
+	width: 0px;
+	height: 80px;
+	border: 1px solid #aba5a5;
+	position: relative;
+	&::after {
+		content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: -4.5px;
+    border-top: 10px solid #b1abab;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+	}
+}
+
