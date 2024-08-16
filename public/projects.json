@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "project_name": "DrivePulse",
+    "project_name": "DrivePulse | Team",
     "description": "A TEAM project, this is a online file sharing website user can upload file and share this file in real-time, impliment a real-time chat function because users can callabration in another users.",
     "project_thumnail": "https://i.ibb.co/mFNMhCR/drive-pulse-client-vercel-app-1.png",
     "technology": [

@@ -13,7 +13,21 @@ const config: Config = {
         ubuntu:["Outfit", "sans-serif"]
       },
       colors:{
-        primary: "#03e9f4"
+        primary: "#03e9f4",
+        secondary: "#FFBE7B"
+      },
+      keyframes: {
+        "shine-pulse": {
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+          to: {
+            "background-position": "0% 0%",
+          },
+        },
       },
     },
   },

@@ -25,16 +25,16 @@ body {
 
 .panel {
   flex: 0 0 auto; /* Prevent flex items from shrinking */
-  background: linear-gradient(135deg, #fffffff5, #303d6c, #ffffff98);
+
   border-radius: 1.2rem;
   box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1;
 }
 
-.card{
+/* .card{
   font-size: 1rem;
   color: #bec4cf;
-  background: linear-gradient(135deg, #0d1120 0%, #273155 43%, #0d1120 100%);
+  background: linear-gradient(135deg, #0d1120 0%, #181e37 43%, #0d1120 100%);
   padding: 1.5rem;
   border-radius: 1.2rem;
   backdrop-filter: blur(40px);
-}
+} */

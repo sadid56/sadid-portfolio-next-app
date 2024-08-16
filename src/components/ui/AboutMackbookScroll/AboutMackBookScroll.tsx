@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
@@ -25,7 +26,7 @@ import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
 import { cn } from "@/utils/cn";
 
-export const AboutMacbookScroll = ({
+export const Macbook = ({
   showGradient,
   title,
 }: {
@@ -34,10 +35,6 @@ export const AboutMacbookScroll = ({
   badge?: React.ReactNode;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -47,60 +44,34 @@ export const AboutMacbookScroll = ({
     }
   }, []);
 
-  const scaleX = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5]
-  );
-  const scaleY = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5]
-  );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 2000]);
-  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
-  const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
   return (
     <div
       ref={ref}
-      className="min-h-[300vh] w-full  flex flex-col items-center  justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
+      className="min-h-screen w-full flex flex-col items-center justify-start"
     >
-      <motion.h2
-        style={{
-          translateY: textTransform,
-          opacity: textOpacity,
-        }}
-        className="dark:text-white text-neutral-800 text-3xl font-bold mb-20 text-center"
-      >
+      <h2 className="dark:text-white text-neutral-800 text-3xl font-bold mb-20 text-center">
         {title || (
           <span>
             This Macbook is built with Tailwindcss. <br /> No kidding.
           </span>
         )}
-      </motion.h2>
+      </h2>
       {/* Lid */}
-      <Lid
-        scaleX={scaleX}
-        scaleY={scaleY}
-        rotate={rotate}
-        translate={translate}
-      />
+      <Lid />
       {/* Base area */}
-      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative -z-10">
+      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative">
         {/* above keyboard bar */}
         <div className="h-10 w-full relative">
           <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
         </div>
         <div className="flex relative">
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
+          <div className="mx-auto w-[10%] overflow-hidden h-full">
             <SpeakerGrid />
           </div>
           <div className="mx-auto w-[80%] h-full">
             <Keypad />
           </div>
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
+          <div className="mx-auto w-[10%] overflow-hidden h-full">
             <SpeakerGrid />
           </div>
         </div>
@@ -115,21 +86,9 @@ export const AboutMacbookScroll = ({
   );
 };
 
-export const Lid = ({
-  scaleX,
-  scaleY,
-  rotate,
-  translate,
-  src,
-}: {
-  scaleX: MotionValue<number>;
-  scaleY: MotionValue<number>;
-  rotate: MotionValue<number>;
-  translate: MotionValue<number>;
-  src?: string;
-}) => {
+export const Lid = () => {
   return (
-    <div className="relative [perspective:800px]">
+    <div className="relative">
       <div
         style={{
           transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
@@ -143,7 +102,7 @@ export const Lid = ({
           style={{
             boxShadow: "0px 2px 0px 2px var(--neutral-900) inset",
           }}
-          className=" absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
+          className="absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
         >
           <span className="text-white">
             <h3>:)</h3>
@@ -151,53 +110,15 @@ export const Lid = ({
         </div>
       </div>
       {/* laptop content */}
-      <motion.div
-        style={{
-          scaleX: scaleX,
-          scaleY: scaleY,
-          rotateX: rotate,
-          translateY: translate,
-          transformStyle: "preserve-3d",
-          transformOrigin: "top",
-        }}
-        className="h-96 w-[32rem] absolute inset-0 border-slate-800 backdrop-blur-3xl"
-      >
-        {/* <div className="absolute inset-0 backdrop-blur-3xl rounded-lg" /> */}
+      <div className="h-96 w-[32rem] absolute inset-0 border-slate-800 backdrop-blur-3xl">
         <div className="relative rounded-lg">
-  <div className="mt-5 space-y-1.5 px-5 pb-10">
-    <p className="mt-4 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Card</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">Ticket Sales</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-3 font-mono text-xs font-normal leading-4 tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Metric</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">$ 71,465</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Metric</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Flex</span><span className="ml-2 text-violet-400">className<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">"mt-3"</span></span></span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-6 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="text-slate-500">&lt;</span><span className="text-pink-400">Bold</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">32%</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Bold</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">of annual target</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-6 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">$ 223,328</span></span><span className="text-slate-500">&lt;/</span><span className="text-pink-400">Text</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-3 font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;/</span><span className="text-pink-400">Flex</span><span className="text-slate-500">&gt;</span>
-    </p>
-    <p className="ml-3 font-mono text-xs font-normal leading-4 tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;</span><span className="text-pink-400">ProgressBar</span><span className="ml-2 text-violet-400">value<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">{ 32 }</span></span></span><span className="ml-2 text-violet-400">className<span className="text-slate-500">=</span><span className="relative inline-block px-1 before:absolute before:-inset-0.5 before:block before:rounded before:bg-blue-500/10"><span className="relative text-blue-400">"mt-3"</span></span></span><span className="text-slate-500">/&gt;</span>
-    </p>
-    <p className="font-mono text-xs font-normal tracking-wide text-violet-400">
-      <span className="text-slate-500">&lt;/</span><span className="text-pink-400">Card</span><span className="text-slate-500">&gt;</span>
-    </p>
-  </div>
-</div>
-      </motion.div>
+          <p>content</p>
+        </div>
+      </div>
     </div>
   );
 };
+
 
 export const Trackpad = () => {
   return (
