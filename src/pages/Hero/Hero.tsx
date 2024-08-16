@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import heroVideo from "../../assets/video/Itachi.mp4";
+import heroVideo from "../../assets/video/itachi-uchiha.3840x2160.mp4";
 import useVideoPlayer from "@/hooks/useAutoPlays";
 import "./hero.css"
 import Icon from "@/components/Icon/Icon";
 import { IconBrandDiscord, IconBrandFacebook, IconBrandLinkedin } from "@tabler/icons-react";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
+
 const Hero = () => {
   const videoRef = useVideoPlayer(heroVideo);
 

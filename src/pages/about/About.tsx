@@ -8,15 +8,15 @@ import Lottie from "lottie-react";
 
 const About = () => {
   return (
-    <Container id="about" className="overflow-hidden flex items-center py-0 md:py-20 w-full">
+    <div id="about" className="overflow-hidden flex items-center py-0 md:py-20 w-full">
       <AboutMacbookScroll
-        title={<SectionTitle color="About" text="Me" />}
+        // title={<SectionTitle color="About" text="Me" />}
         showGradient={false}
       />
-      <div className="w-[30%] relative">
+      {/* <div className="w-[30%] relative">
         <Lottie animationData={lottieAnimation}/>
-      </div>
-    </Container>
+      </div> */}
+    </div>
   );
 };
 

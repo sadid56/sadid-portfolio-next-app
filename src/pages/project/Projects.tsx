@@ -21,7 +21,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <Container id="projects" className=" relative">
+    <Container id="projects" className="">
       <SectionTitle color="Projects" text="" />
       <div className="App" ref={componentRef}>
         <div ref={sliderRef} className="container">
@@ -43,13 +43,13 @@ const Projects = () => {
                   {/* view all links */}
                   <div className=" flex gap-5">
                     <LinkPreview url={project?.live_link}>
-                    <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconWorld widht={1}/></div>
+                    <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconWorld /></div>
                     </LinkPreview>{" "}
                     <LinkPreview url={project?.client_github_link}>
-                      <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconBrandGithub widht={1}/></div>
+                      <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconBrandGithub /></div>
                     </LinkPreview>{" "}
                     <LinkPreview url={project?.server_github_link}>
-                      <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconBrandGithub widht={1}/></div>
+                      <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full"><IconBrandGithub /></div>
                     </LinkPreview>{" "}
                   </div>
                 </div>

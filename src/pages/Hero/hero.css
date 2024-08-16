@@ -5,7 +5,7 @@
   font-size: 180px;
   line-height: 150px;
   -webkit-text-stroke: 1px white;
-  background-image: url('../../assets/images/back.png');
+  /* background-image: url('../../assets/images/back.png'); */
   -webkit-background-clip: text;
   background-position: 0 0;
   animation: textBg 20s linear infinite;

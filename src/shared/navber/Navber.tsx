@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import logo from "../../assets/images/logo-name.png";
 import "./navber.css";
@@ -48,34 +48,47 @@ const Navber = () => {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 z-50 ${scroll ? "md:py-8 py-5" : "py-3"} transition-all ease-in duration-300 px-3 md:px-0`}
+        className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 px-3 md:px-0 py-4`}
       >
         <div className={`flex justify-between items-center max-w-7xl mx-auto`}>
           <div className="">
             <Image width={120} height={120} src={logo} alt="" />
           </div>
           {/* item list */}
-          <ul
-            className={`flex flex-col  items-center gap-10 uppercase text-sm cursor-pointer font-italic  text-slate-300  text-[12px] font-medium  ${isToggle ? "sidebar-open w-[50%]" : "sidebar-closed w-[50%]"}`}
+          <div
+            className={` ${
+              isToggle ? "sidebar-open w-[60%]" : "sidebar-closed w-[60%]"
+            } flex justify-center gap-10`}
           >
-            <div className="">
-            <Image width={120} height={120} src={logo} alt="" />
+            {/* navber items */}
+            <ul className="flex flex-col gap-10 uppercase text-sm cursor-pointer  text-slate-300  text-[12px] font-medium ">
+              <div className="-ml-5">
+                <Image width={120} height={120} src={logo} alt="" />
+              </div>
+              {links.map((nav, i) => (
+                <li key={i + 1}>
+                  <span
+                    onClick={() => handleScrollToSection(nav.path)}
+                    className={`nav-link ${
+                      nav.path === "home" && !scroll ? "nav-link active" : ""
+                    }`}
+                  >
+                    {nav.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            {/* contact info */}
+            <div>
+              <h3 className="text-3xl font-semibold text-slate-300">Contact Me</h3>
             </div>
-            {links.map((nav, i) => (
-              <li key={i + 1}>
-                <span
-                  onClick={() => handleScrollToSection(nav.path)}
-                  className={`nav-link ${nav.path === "home" && !scroll ? "nav-link active" : ""}`}
-                >
-                  {nav.label}
-                </span>
-              </li>
-            ))}
-          </ul>
+          </div>
 
           {/* condition bar in mobile device */}
           <button
-            className={` text-3xl transition-transform duration-300 pr-3 ease-in-out ${isToggle ? "transform rotate-45" : ""}`}
+            className={` text-3xl transition-transform duration-300 pr-3 ease-in-out ${
+              isToggle ? "transform rotate-45" : ""
+            }`}
             onClick={() => setIsToggle(!isToggle)}
           >
             <div className="bar"></div>
