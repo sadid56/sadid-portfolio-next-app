@@ -5,6 +5,7 @@ import "./Skills.css";
 import SectionTitle from "../../components/sectionTitle/SectionTitle";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
+import LargeTitle from "@/components/LargeTitle/LargeTitle";
 
 
 const Skills = () => {
@@ -17,8 +18,9 @@ const Skills = () => {
   );
 
   return (
-    <Container id="skills" className=" relative w-full h-[500px] flex flex-col items-center justify-center gap-16">
+    <Container id="skills" className=" w-full h-[500px] flex flex-col items-center justify-center gap-16">
       <SectionTitle color="Skills" text=""/>
+      <LargeTitle/>
       {/* Skills tabs */}
       <div className="tabs flex flex-wrap gap-5 items-center justify-center">
         {tabsArray.map((tab) => (

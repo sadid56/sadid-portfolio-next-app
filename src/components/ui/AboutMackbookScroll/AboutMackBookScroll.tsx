@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
@@ -22,25 +24,17 @@ import { IconWorld } from "@tabler/icons-react";
 import { IconCommand } from "@tabler/icons-react";
 import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
-import Image from "next/image";
 import { cn } from "@/utils/cn";
 
-export const AboutMacbookScroll = ({
-  src,
+export const Macbook = ({
   showGradient,
   title,
-  badge,
 }: {
-  src?: string;
   showGradient?: boolean;
   title?: string | React.ReactNode;
   badge?: React.ReactNode;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -50,61 +44,34 @@ export const AboutMacbookScroll = ({
     }
   }, []);
 
-  const scaleX = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5]
-  );
-  const scaleY = useTransform(
-    scrollYProgress,
-    [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5]
-  );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
-  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
-  const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
   return (
     <div
       ref={ref}
-      className="min-h-[300vh]  flex flex-col items-center py-0 md:py-20 justify-start flex-shrink-0 [perspective:800px] transform md:scale-100  scale-[0.35] sm:scale-50"
+      className="min-h-screen w-full flex flex-col items-center justify-start"
     >
-      <motion.h2
-        style={{
-          translateY: textTransform,
-          opacity: textOpacity,
-        }}
-        className="dark:text-white text-neutral-800 text-3xl font-bold mb-20 text-center"
-      >
+      <h2 className="dark:text-white text-neutral-800 text-3xl font-bold mb-20 text-center">
         {title || (
           <span>
             This Macbook is built with Tailwindcss. <br /> No kidding.
           </span>
         )}
-      </motion.h2>
+      </h2>
       {/* Lid */}
-      <Lid
-        src={src}
-        scaleX={scaleX}
-        scaleY={scaleY}
-        rotate={rotate}
-        translate={translate}
-      />
+      <Lid />
       {/* Base area */}
-      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative -z-10">
+      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative">
         {/* above keyboard bar */}
         <div className="h-10 w-full relative">
           <div className="absolute inset-x-0 mx-auto w-[80%] h-4 bg-[#050505]" />
         </div>
         <div className="flex relative">
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
+          <div className="mx-auto w-[10%] overflow-hidden h-full">
             <SpeakerGrid />
           </div>
           <div className="mx-auto w-[80%] h-full">
             <Keypad />
           </div>
-          <div className="mx-auto w-[10%] overflow-hidden  h-full">
+          <div className="mx-auto w-[10%] overflow-hidden h-full">
             <SpeakerGrid />
           </div>
         </div>
@@ -113,27 +80,15 @@ export const AboutMacbookScroll = ({
         {showGradient && (
           <div className="h-40 w-full absolute bottom-0 inset-x-0 bg-gradient-to-t dark:from-black from-white via-white dark:via-black to-transparent z-50"></div>
         )}
-        {badge && <div className="absolute bottom-4 left-4">{badge}</div>}
+        <div className="absolute bottom-4 left-4 text-white">Victus</div>
       </div>
     </div>
   );
 };
 
-export const Lid = ({
-  scaleX,
-  scaleY,
-  rotate,
-  translate,
-  src,
-}: {
-  scaleX: MotionValue<number>;
-  scaleY: MotionValue<number>;
-  rotate: MotionValue<number>;
-  translate: MotionValue<number>;
-  src?: string;
-}) => {
+export const Lid = () => {
   return (
-    <div className="relative [perspective:800px]">
+    <div className="relative">
       <div
         style={{
           transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
@@ -142,6 +97,7 @@ export const Lid = ({
         }}
         className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl p-2 relative"
       >
+        {/* main laptop desk view */}
         <div
           style={{
             boxShadow: "0px 2px 0px 2px var(--neutral-900) inset",
@@ -149,27 +105,20 @@ export const Lid = ({
           className="absolute inset-0 bg-[#010101] rounded-lg flex items-center justify-center"
         >
           <span className="text-white">
-            <AceternityLogo />
+            <h3>:)</h3>
           </span>
         </div>
       </div>
-      <motion.div
-        style={{
-          scaleX: scaleX,
-          scaleY: scaleY,
-          rotateX: rotate,
-          translateY: translate,
-          transformStyle: "preserve-3d",
-          transformOrigin: "top",
-        }}
-        className="h-96 w-[32rem] absolute inset-0 bg-[#010101] rounded-md p-2 border-2 border-slate-800"
-      >
-        {/* <div className="absolute inset-0 bg-[#272729] rounded-lg" /> */}
-        <h4 className="text-white">hello world</h4>
-      </motion.div>
+      {/* laptop content */}
+      <div className="h-96 w-[32rem] absolute inset-0 border-slate-800 backdrop-blur-3xl">
+        <div className="relative rounded-lg">
+          <p>content</p>
+        </div>
+      </div>
     </div>
   );
 };
+
 
 export const Trackpad = () => {
   return (
@@ -543,6 +492,8 @@ export const Keypad = () => {
     </div>
   );
 };
+
+
 export const KBtn = ({
   className,
   children,
@@ -640,23 +591,4 @@ export const OptionKey = ({ className }: { className: string }) => {
   );
 };
 
-const AceternityLogo = () => {
-  return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3 text-white"
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-};
+

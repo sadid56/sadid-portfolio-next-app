@@ -65,8 +65,8 @@
 /* bar */
 
 .bar {
-  width: 32px;
-  height: 3px;
+  width: 30px;
+  height: 2px;
   background-color: #ffffff;
   margin: 6px 0;
   transition: transform 0.5s ease-in-out;

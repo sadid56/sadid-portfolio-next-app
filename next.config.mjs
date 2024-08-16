@@ -29,8 +29,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'wembleypark.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.microlink.io',
+      },
     ],
-  },
+  }
 };
 
 export default nextConfig;

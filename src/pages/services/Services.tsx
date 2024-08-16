@@ -4,7 +4,7 @@ import servicesArray from "../../../public/services.json"
 
 const Services = () => {
   return (
-    <Container id="services" className="relative">
+    <Container id="services" className="">
       <ServicesParallax products={servicesArray}/>
     </Container>
   );

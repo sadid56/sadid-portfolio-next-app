@@ -15,45 +15,26 @@ body {
   margin: 0px auto;
   height: 100vh;
   display: flex;
-  gap: 100px; /* Adjust gap as needed */
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  padding: 0 5vw; /* Add padding to show previous and next panels */
+  padding: 0 10vw; /* Add padding to show previous and next panels */
   box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
-.firstContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: yellow;
-}
-
-.lastContainer {
-  display: flex;
-  height: 100vh;
-  background: yellow;
-}
-
 .panel {
-  width: 80%; /* Adjust as necessary */
-  height: 60%; /* Adjust as necessary */
-  margin: auto; /* Centering the panel vertically */
-  scroll-snap-align: center;
   flex: 0 0 auto; /* Prevent flex items from shrinking */
-  
+
+  border-radius: 1.2rem;
+  box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1;
 }
 
-.red {
-  background: red;
-}
-.orange {
-  background: orange;
-}
-.purple {
-  background: purple;
-}
+/* .card{
+  font-size: 1rem;
+  color: #bec4cf;
+  background: linear-gradient(135deg, #0d1120 0%, #181e37 43%, #0d1120 100%);
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  backdrop-filter: blur(40px);
+} */
