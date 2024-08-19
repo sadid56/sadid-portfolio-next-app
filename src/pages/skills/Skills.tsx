@@ -18,9 +18,9 @@ const Skills = () => {
   );
 
   return (
-    <Container id="skills" className=" w-full h-[500px] flex flex-col items-center justify-center gap-16">
+    <Container id="skills" className=" w-full h-[500px] flex flex-col items-center justify-center gap-16 overflow-hidden">
       <SectionTitle color="Skills" text=""/>
-      <LargeTitle/>
+      <LargeTitle title="Skills"/>
       {/* Skills tabs */}
       <div className="tabs flex flex-wrap gap-5 items-center justify-center">
         {tabsArray.map((tab) => (
