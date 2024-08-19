@@ -8,7 +8,6 @@ import Skills from "@/pages/skills/Skills";
 import Footer from "@/shared/footer/Footer";
 import Navber from "@/shared/navber/Navber";
 import Head from "next/head";
-import Link from "next/link";
 
 export default function Home() {
   return (

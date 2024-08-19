@@ -1,21 +1,15 @@
-.hero-text{
+.hero-text {
   letter-spacing: 6px;
   color: transparent;
   font-weight: 700;
-  font-size: 180px;
-  line-height: 150px;
-  -webkit-text-stroke: 1px white;
-  /* background-image: url('../../assets/images/back.png'); */
+  -webkit-text-stroke: 1.2px white;
+  background-image: url('../../assets/images/back.png');
   -webkit-background-clip: text;
   background-position: 0 0;
-  animation: textBg 20s linear infinite;
+  background-size: cover;
+
 }
 
-@keyframes textBg{
-  100%{
-    background-position: 1000px 0;
-  }
-}
 
 .arrow {
 	width: 0px;
