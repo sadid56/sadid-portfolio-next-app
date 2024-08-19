@@ -118,7 +118,7 @@ const ParticlesPage = () => {
   if (init) {
     return (
       <Particles
-        id="tsparticles"
+        id="canvas"
         particlesLoaded={particlesLoaded}
         options={options}
       />
