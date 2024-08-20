@@ -34,7 +34,13 @@ const nextConfig = {
         hostname: 'api.microlink.io',
       },
     ],
-  }
+  },
+  ssr: {
+    noExternal: [
+      'gsap',
+      '@gsap/shockingly',
+    ],
+  },
 };
 
 export default nextConfig;
