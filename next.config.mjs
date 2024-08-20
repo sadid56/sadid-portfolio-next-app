@@ -4,11 +4,11 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
       use: {
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          publicPath: '/_next/static/media/',
-          outputPath: 'static/media/',
-          name: '[name].[hash].[ext]',
+          publicPath: "/_next/static/media/",
+          outputPath: "static/media/",
+          name: "[name].[hash].[ext]",
         },
       },
     });
@@ -18,28 +18,28 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'i.ibb.co',
+        protocol: "https",
+        hostname: "i.ibb.co",
       },
       {
-        protocol: 'https',
-        hostname: 'hydeparkwinterwonderland.com',
+        protocol: "https",
+        hostname: "hydeparkwinterwonderland.com",
       },
       {
-        protocol: 'https',
-        hostname: 'wembleypark.com',
+        protocol: "https",
+        hostname: "wembleypark.com",
       },
       {
-        protocol: 'https',
-        hostname: 'api.microlink.io',
+        protocol: "https",
+        hostname: "api.microlink.io",
       },
     ],
   },
   ssr: {
-    noExternal: [
-      'gsap',
-      '@gsap/shockingly',
-    ],
+    noExternal: ["gsap", "@gsap/shockingly"],
+  },
+  build: {
+    transpile: ["gsap"],
   },
 };
 
