@@ -35,12 +35,6 @@ const nextConfig = {
       },
     ],
   },
-  ssr: {
-    noExternal: ["gsap", "@gsap/shockingly"],
-  },
-  build: {
-    transpile: ["gsap"],
-  },
 };
 
 export default nextConfig;
