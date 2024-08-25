@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/images/logo-name.png";
 import "./navber.css";
 import Image from "next/image";
+import AnimatedHamburgerButton from "@/components/ui/AnimatedHumberButton/AnimatedHumberButton";
 
 const Navber = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -48,11 +49,11 @@ const Navber = () => {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 px-3 md:px-0 py-4`}
+        className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 px-3 md:px-0`}
       >
         <div className={`flex justify-between items-center max-w-7xl mx-auto`}>
           <div className="">
-            <Image width={120} height={120} src={logo} alt="" />
+            <Image width={150} height={150} src={logo} alt="" />
           </div>
           {/* item list */}
           <div
@@ -80,21 +81,17 @@ const Navber = () => {
             </ul>
             {/* contact info */}
             <div>
-              <h3 className="text-3xl font-semibold text-slate-300">Contact Me</h3>
+              <h3 className="text-3xl font-semibold text-slate-300">
+                Contact Me
+              </h3>
             </div>
           </div>
 
           {/* condition bar in mobile device */}
-          <button
-            className={` text-3xl transition-transform duration-300 pr-3 ease-in-out ${
-              isToggle ? "transform rotate-45" : ""
-            }`}
-            onClick={() => setIsToggle(!isToggle)}
-          >
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </button>
+          <AnimatedHamburgerButton
+            setIsToggle={setIsToggle}
+            isToggle={isToggle}
+          />
         </div>
       </nav>
     </>

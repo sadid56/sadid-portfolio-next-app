@@ -6,7 +6,7 @@ import SectionTitle from "@/components/sectionTitle/SectionTitle";
 import projects from "../../../public/projects.json";
 import Image from "next/image";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
-import { IconBrandGithub, IconWorld } from "@tabler/icons-react";
+import { IconBrandGithub, IconServer, IconWorld } from "@tabler/icons-react";
 import Icon from "@/components/Icon/Icon";
 import { ProjectCardSpotlight } from "@/components/ui/ProjectCardSpotLigt/ProjectCardSpotLight";
 import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
@@ -91,7 +91,7 @@ const Card: React.FC<Props> = ({ project }) => {
             </LinkPreview>{" "}
             <LinkPreview url={project?.server_github_link}>
               <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full">
-                <IconBrandGithub />
+                <IconServer />
               </div>
             </LinkPreview>{" "}
           </div>

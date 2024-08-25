@@ -30,6 +30,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black bg-opacity-90"></div>{" "}
       {/* hero content */}
       <div className="max-w-7xl mx-auto h-full flex items-end relative z-10 pb-8">
+        {/* my intro */}
         <div className="space-y-5 md:w-1/2 px-3">
           <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
             <h2 className="font-semibold text-slate-300 text-2xl">Hey, I am</h2>
@@ -48,15 +49,16 @@ const Hero = () => {
             </p>
           </BoxReveal>
         </div>
+        {/* social profile */}
         <div className="absolute right-2 md:right-0 flex flex-col items-center gap-10">
           <div className="flex flex-col gap-3 items-center">
             <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
               <Icon Icon={IconBrandFacebook} widht={2} />
             </LinkPreview>
-            <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
+            <LinkPreview url="https://discord.com/users/1151169623149002752/">
               <Icon Icon={IconBrandDiscord} widht={2} />
             </LinkPreview>
-            <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
+            <LinkPreview url="https://www.linkedin.com/in/mr-sadid/">
               <Icon Icon={IconBrandLinkedin} widht={2} />
             </LinkPreview>
           </div>
