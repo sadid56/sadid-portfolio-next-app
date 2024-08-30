@@ -11,12 +11,13 @@ import {
 } from "@tabler/icons-react";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
+import { Element } from "react-scroll";
 
 const Hero = () => {
   const videoRef = useVideoPlayer(heroVideo);
 
   return (
-    <header id="home" className="h-screen w-full">
+    <Element name="home" id="home" className="h-screen w-full px-3 md:px-7 sticky top-0 -z-10">
       <video
         ref={videoRef}
         autoPlay
@@ -27,9 +28,9 @@ const Hero = () => {
         <source src={heroVideo} type="video/mp4" />
       </video>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-90"></div>{" "}
+      <div className="absolute inset-0 bg-black bg-opacity-65"></div>{" "}
       {/* hero content */}
-      <div className="max-w-7xl mx-auto h-full flex items-end relative z-10 pb-8">
+      <div className="w-full mx-auto h-full flex items-end relative z-10 pb-8">
         {/* my intro */}
         <div className="space-y-5 md:w-1/2 px-3">
           <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
@@ -70,7 +71,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </header>
+    </Element>
   );
 };
 

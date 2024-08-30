@@ -4,10 +4,13 @@ import logo from "../../assets/images/logo-name.png";
 import "./navber.css";
 import Image from "next/image";
 import AnimatedHamburgerButton from "@/components/ui/AnimatedHumberButton/AnimatedHumberButton";
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 
 const Navber = () => {
   const [isToggle, setIsToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
+
+
 
   // navs links
   const links = [
@@ -35,16 +38,6 @@ const Navber = () => {
     };
   }, []);
 
-  const handleScrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 50,
-        behavior: "smooth",
-      });
-      setIsToggle(false); // Close the sidebar after clicking
-    }
-  };
 
   return (
     <>
@@ -68,14 +61,21 @@ const Navber = () => {
               </div>
               {links.map((nav, i) => (
                 <li key={i + 1}>
-                  <span
-                    onClick={() => handleScrollToSection(nav.path)}
+                  <Link
+                    // onClick={() => setIsToggle(false)}
+                    activeClass="active" 
+                    to={nav?.path} 
+                    spy={true} 
+                    smooth={true} 
+                    offset={50} 
+                    duration={500} 
+                    // onSetActive={handleSetActive}
                     className={`nav-link ${
                       nav.path === "home" && !scroll ? "nav-link active" : ""
                     }`}
                   >
                     {nav.label}
-                  </span>
+                  </Link>
                 </li>
               ))}
             </ul>

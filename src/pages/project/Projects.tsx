@@ -12,6 +12,7 @@ import { ProjectCardSpotlight } from "@/components/ui/ProjectCardSpotLigt/Projec
 import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Project } from "@/types/ProjectTypes";
+import { Element } from "react-scroll";
 
 interface Props {
   project: Project;
@@ -26,7 +27,7 @@ const Projects = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-90%"]);
 
   return (
-    <Container>
+    <Element name="projects">
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
@@ -40,7 +41,7 @@ const Projects = () => {
           </motion.div>
         </div>
       </section>
-    </Container>
+    </Element>
   );
 };
 
