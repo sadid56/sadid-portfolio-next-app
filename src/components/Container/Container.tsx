@@ -9,7 +9,7 @@ interface Props {
 // reusable container and fixed width
 const Container: React.FC<Props> = ({ children, className = "", id }) => {
   return (
-    <section id={id} className={`${className} max-w-7xl mx-auto`}>
+    <section id={id} className={`${className} container mx-auto`}>
       {children}
     </section>
   );

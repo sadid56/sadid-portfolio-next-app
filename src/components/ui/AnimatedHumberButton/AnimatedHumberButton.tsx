@@ -27,7 +27,7 @@ const handleClick = ()=>{
         initial={false}
         animate={active ? "open" : "closed"}
         onClick={handleClick}
-        className="relative h-20 w-20 rounded-full bg-white/0 transition-colors hover:bg-white/10"
+        className="relative h-20 w-20 rounded-full bg-white/0 transition-colors hover:bg-white/10 z-[999]"
       >
         <motion.span
           variants={VARIANTS.top}
