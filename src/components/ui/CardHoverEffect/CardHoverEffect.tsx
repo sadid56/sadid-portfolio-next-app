@@ -1,4 +1,3 @@
-
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -34,7 +33,8 @@ export const HoverEffect = ({
           <AnimatePresence>
             {hoveredIndex === idx && (
               <motion.span
-                className="absolute inset-0 h-full w-full bg-neutral-200 dark:bg-slate-800/[0.8] block  rounded-3xl"
+              style={{ background: "linear-gradient(#fff2, transparent)"}}
+                className="absolute inset-0 h-full w-full block  rounded-3xl"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{
@@ -49,11 +49,19 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            <Image src={item?.icon} width={50} height={50} alt="" objectFit="cover"/>
+            <Image
+              src={item?.icon}
+              width={50}
+              height={50}
+              alt=""
+              objectFit="cover"
+            />
             <h4 className="text-zinc-100 font-bold tracking-wide mt-4 text-xl">
-            {item?.service_name}
+              {item?.service_name}
             </h4>
-            <p className="mt-6 text-zinc-400 tracking-wide leading-relaxed text-sm">{item.description}</p>
+            <p className="mt-6 text-slate-400 tracking-wide leading-relaxed text-[16px]">
+              {item.description}
+            </p>
           </Card>
         </div>
       ))}
@@ -81,4 +89,3 @@ export const Card = ({
     </div>
   );
 };
-

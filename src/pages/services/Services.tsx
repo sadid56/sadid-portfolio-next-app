@@ -47,7 +47,7 @@ const Services = () => {
           translateY,
           opacity,
         }}
-        className=""
+        className="mt-20"
       >
         <HoverEffect items={servicesArray}/>
       </motion.div>
@@ -62,18 +62,16 @@ export default Services;
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
+    <div className="container flex flex-col relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
       <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-        The Ultimate <br /> Support with me!
-      </h1>
+        <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+          Ultimate Support, <br /> Tailored for You
+        </h1>
       </BoxReveal>
       <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-        We build beautiful products with the latest technologies and frameworks.
-        We are a team of passionate developers and designers that love to build
-        amazing products.
-      </p>
+        <p className="max-w-2xl text-sm md:text-lg  mt-5 text-slate-400">
+          We craft beautiful products using cutting-edge technologies and frameworks. Our team of passionate developers and designers is dedicated to bringing your vision to life with innovative and reliable solutions.
+        </p>
       </BoxReveal>
     </div>
   );

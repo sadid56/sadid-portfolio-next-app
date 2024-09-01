@@ -8,6 +8,7 @@ import SectionTitle from "../../components/sectionTitle/SectionTitle";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import LargeTitle from "@/components/LargeTitle/LargeTitle";
+import { Element } from "react-scroll";
 
 const Skills = () => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
@@ -34,7 +35,8 @@ const Skills = () => {
   };
 
   return (
-    <Container
+    <Element
+     name="skills"
       id="skills"
       className="w-full h-[500px] flex flex-col items-center justify-center gap-16 overflow-hidden"
     >
@@ -107,7 +109,7 @@ const Skills = () => {
           </motion.div>
         ))}
       </motion.div>
-    </Container>
+    </Element>
   );
 };
 
