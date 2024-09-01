@@ -6,12 +6,13 @@ import SectionTitle from "@/components/sectionTitle/SectionTitle";
 import projects from "../../../public/projects.json";
 import Image from "next/image";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
-import { IconBrandGithub, IconWorld } from "@tabler/icons-react";
+import { IconBrandGithub, IconServer, IconWorld } from "@tabler/icons-react";
 import Icon from "@/components/Icon/Icon";
 import { ProjectCardSpotlight } from "@/components/ui/ProjectCardSpotLigt/ProjectCardSpotLight";
 import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Project } from "@/types/ProjectTypes";
+import { Element } from "react-scroll";
 
 interface Props {
   project: Project;
@@ -26,7 +27,7 @@ const Projects = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-90%"]);
 
   return (
-    <Container>
+    <Element name="projects" className="">
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
@@ -40,7 +41,7 @@ const Projects = () => {
           </motion.div>
         </div>
       </section>
-    </Container>
+    </Element>
   );
 };
 
@@ -91,7 +92,7 @@ const Card: React.FC<Props> = ({ project }) => {
             </LinkPreview>{" "}
             <LinkPreview url={project?.server_github_link}>
               <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full">
-                <IconBrandGithub />
+                <IconServer />
               </div>
             </LinkPreview>{" "}
           </div>
