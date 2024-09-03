@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.1",
     "@react-three/fiber": "^8.17.5",
+    "@studio-freight/lenis": "^1.0.42",
     "@tabler/icons-react": "^3.10.0",
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
