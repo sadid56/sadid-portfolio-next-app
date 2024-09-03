@@ -27,7 +27,7 @@ const Projects = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-90%"]);
 
   return (
-    <Element name="projects" className="">
+    <Element name="projects" className="max-w-[1300px] mx-auto">
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
