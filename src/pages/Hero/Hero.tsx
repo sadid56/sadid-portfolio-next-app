@@ -41,7 +41,7 @@ const Hero = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-75"></div>
       {/* Hero content */}
-      <div className="w-full mx-auto h-full flex items-end relative z-[10] pb-8">
+      <div className="w-full container overflow-y-hidden mx-auto h-full flex items-end relative z-[10] pb-8">
         {/* My intro */}
         <div className="space-y-5 md:w-1/2 px-3">
           <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
