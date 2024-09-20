@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BoxReveal from "../BoxReveal/BoxReveal";
 import "./timeline.css"
 import TimelineItem from "./TimeLineItem";
+import DockText from "../TextAnimation/DockText";
 
 interface TimelineEntry {
   service_name: string;
@@ -42,11 +43,9 @@ export const Timeline: React.FC<Props> = ({ data }) => {
   return (
     <div className="w-full font-sans md:px-10 overflow-hidden" ref={containerRef}>
       {/* Header Section */}
-      <div className="container flex flex-col relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
+      <div className=" px-4 md:w-1/2 mx-auto text-center">
         <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
-          <h1 className="text-2xl md:text-6xl font-bold text-slate-300">
-            Ultimate Support, <br /> Tailored for You
-          </h1>
+          <DockText text=" Ultimate Support Tailored for You"/>
         </BoxReveal>
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
           <p className="max-w-2xl text-sm md:text-lg mt-5 text-slate-400">

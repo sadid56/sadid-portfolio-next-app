@@ -44,7 +44,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ color, text }) => {
       <h2
         className={`${
           inView && "section-animation-text"
-        } flex gap-2 text-color-change`}
+        } flex gap-2 text-color-change text-3xl md:text-5xl font-semibold`}
       >
         <span>{color}</span> <span className="text-slate-300">{text}</span>
       </h2>

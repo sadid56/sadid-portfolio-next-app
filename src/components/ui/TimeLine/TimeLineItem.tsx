@@ -59,7 +59,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       animate={controls}
       variants={timelineVariants}
       className={`lg:flex lg:justify-between gap-10 relative pt-20 md:pt-40 ${
-        isEven ? "flex-row lg:mr-28 ml-10" : "flex-row-reverse ml-10 lg:ml-28 "
+        isEven ? "flex-row lg:mr-28 ml-10 lg:ml-0" : "flex-row-reverse ml-10 lg:ml-28 "
       }`}
     >
       {/* card body */}

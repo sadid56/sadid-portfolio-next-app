@@ -4,11 +4,13 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 interface Props{
   setIsToggle: Dispatch<SetStateAction<boolean>>;
-  isToggle: boolean
+  setActive: Dispatch<SetStateAction<boolean>>;
+  isToggle: boolean,
+  active: boolean,
 }
 
-const AnimatedHamburgerButton:React.FC<Props> = ({setIsToggle, isToggle}) => {
-  const [active, setActive] = useState(false);
+const AnimatedHamburgerButton:React.FC<Props> = ({setIsToggle, isToggle, setActive, active}) => {
+  
 
 const handleClick = ()=>{
   setActive((pv) => !pv)
@@ -25,7 +27,7 @@ const handleClick = ()=>{
     >
       <motion.button
         initial={false}
-        animate={active ? "open" : "closed"}
+        animate={active || isToggle ? "open" : "closed"}
         onClick={handleClick}
         className="relative h-20 w-20 rounded-full bg-white/0 transition-colors hover:bg-white/10 z-[999]"
       >

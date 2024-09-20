@@ -1,5 +1,4 @@
 "use client";
-import Container from "@/components/Container/Container";
 import { useLayoutEffect, useRef } from "react";
 import "./Project.css";
 import SectionTitle from "@/components/sectionTitle/SectionTitle";
@@ -7,7 +6,6 @@ import projects from "../../../public/projects.json";
 import Image from "next/image";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
 import { IconBrandGithub, IconServer, IconWorld } from "@tabler/icons-react";
-import Icon from "@/components/Icon/Icon";
 import { ProjectCardSpotlight } from "@/components/ui/ProjectCardSpotLigt/ProjectCardSpotLight";
 import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
 import { useScroll, useTransform, motion } from "framer-motion";
@@ -24,10 +22,13 @@ const Projects = () => {
     target: targetRef,
   });
 
+  // horizental scroll progress
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-90%"]);
 
+  // main content 
   return (
     <Element name="projects" className="max-w-[1300px] mx-auto">
+      <SectionTitle text="Project" color="My"/>
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
@@ -45,6 +46,7 @@ const Projects = () => {
   );
 };
 
+// project card 
 const Card: React.FC<Props> = ({ project }) => {
   return (
     <ShineBorder

@@ -36,9 +36,9 @@ const Skills = () => {
 
   return (
     <Element
-     name="skills"
+      name="skills"
       id="skills"
-      className="w-full h-[500px] flex flex-col items-center justify-center gap-16 overflow-hidden"
+      className="w-full h-screen flex flex-col items-center justify-center gap-16 overflow-hidden"
     >
       <SectionTitle color="Skills" text="" />
       <LargeTitle title="Skills" />
@@ -71,16 +71,20 @@ const Skills = () => {
         ref={skillsRef}
         className="skills-container flex flex-wrap items-center justify-center gap-10"
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={skillsInView || isShowAnimation ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+        animate={
+          skillsInView || isShowAnimation
+            ? { opacity: 1, scale: 1 }
+            : { opacity: 0, scale: 0.8 }
+        }
         transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
       >
         {filteredSkills.map((skill) => (
           <motion.div
             key={skill.id}
             className="tooltip-container"
-            whileHover={{ scale: 1.1}}
+            whileHover={{ scale: 1.1 }}
           >
-            <motion.div className="tooltip">
+            <motion.div transition={{duration: 1, delay: 2}} className="tooltip">
               <div className="side">
                 <div className="about font-Georgian">{skill.side}</div>
               </div>
