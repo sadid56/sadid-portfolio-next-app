@@ -19,8 +19,7 @@ import {
   IconBrandFacebook,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
-
-export const Hero = () => {
+ const Hero = () => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -77,12 +76,14 @@ export const Hero = () => {
   );
 };
 
+export default Hero;
+
 const SECTION_HEIGHT = 1500;
 const CenterVideo = () => {
   const { scrollY } = useScroll();
 
-  const clip1 = useTransform(scrollY, [0, 2000], [25, 0]);
-  const clip2 = useTransform(scrollY, [0, 2000], [75, 100]);
+  const clip1 = useTransform(scrollY, [0,1500], [25, 0]);
+  const clip2 = useTransform(scrollY, [0, 1500], [75, 100]);
 
   const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
