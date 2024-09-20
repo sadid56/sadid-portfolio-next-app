@@ -74,7 +74,7 @@ const Navber = () => {
   return (
     <>
       <nav
-        className={`container transform left-1/2 -translate-x-1/2 fixed top-0 z-50 transition-all ease-in duration-300 md:px-0`}
+        className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 md:px-0`}
       >
         <div className={`flex justify-between items-center md:container mx-auto`} ref={navRef}>
           <div>
