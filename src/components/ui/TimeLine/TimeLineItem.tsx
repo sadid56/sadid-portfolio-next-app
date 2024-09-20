@@ -13,7 +13,7 @@ interface TimelineItemProps {
 
 const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   const controls = useAnimation();
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.2,
@@ -28,20 +28,20 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   }, [inView, controls]);
 
   const isEven = index % 2 === 0;
-  
-  // Define your complex animation variants
+
+  // Define your complex animation variants here where you can access isEven and isMobile
   const timelineVariants = {
     hidden: {
       opacity: 0,
-      x: isEven ? isMobile ? 100 : -100 : 100,  // Move left for even, right for odd
+      x: isEven ? (isMobile ? 100 : -100) : 100,  // Move left for even, right for odd
       scale: 0.8,  // Start smaller
-      rotate: isEven ? isMobile ? 0 : -10 : isMobile ? 0 : 10,  // Slight rotation to add complexity
+      rotate: isEven ? (isMobile ? 0 : -10) : isMobile ? 0 : 10,  // Slight rotation to add complexity
     },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,  // Back to normal size
-      rotate: 0,  // No rotation on visible
+      rotate: 0,  // No rotation when visible
       transition: {
         type: "spring",  // Use a spring animation for a natural feel
         stiffness: 50,
@@ -66,14 +66,16 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       <ProjectCardSpotlight
         className={`relative flex py-6 px-5 items-center w-full lg:w-[50%] ${
           isEven
-            ? `text-left lg:text-right flex-row-reverse lg:flex-row ${isMobile ? "timeline-card-right" : " timeline-card-left"}`
+            ? `text-left lg:text-right flex-row-reverse lg:flex-row ${
+                isMobile ? "timeline-card-right" : "timeline-card-left"
+              }`
             : "text-left flex-row-reverse timeline-card-right"
         }`}
       >
         {/* card arrow icon */}
         <div
           className={`timeline-arrow ${
-            isEven ? `${isMobile ? "timeline-arrow-right": "timeline-arrow-left"}` : "timeline-arrow-right"
+            isEven ? (isMobile ? "timeline-arrow-right" : "timeline-arrow-left") : "timeline-arrow-right"
           }`}
         />
         {/* card content */}
