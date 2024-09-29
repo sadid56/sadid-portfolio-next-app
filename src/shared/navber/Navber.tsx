@@ -3,13 +3,17 @@ import { useEffect, useState, useRef } from "react";
 import logo from "../../assets/images/logo-name.png";
 import "./navber.css";
 import Image from "next/image";
-import AnimatedHamburgerButton from "@/components/ui/AnimatedHumberButton/AnimatedHumberButton";
+import AnimatedHamburgerButton from "@/components/ui/Button/AnimatedHumberButton";
 import { Link } from "react-scroll";
 import { LinkPreview } from "@/components/ui/linkPreview/LinkPreview";
 import Icon from "@/components/Icon/Icon";
-import { IconBrandDiscord, IconBrandFacebook, IconBrandLinkedin } from "@tabler/icons-react";
-import { EncryptButton } from "./EncrpButton";
+import {
+  IconBrandDiscord,
+  IconBrandFacebook,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 import { motion } from "framer-motion";
+import ShineButton from "@/components/ui/Button/ShineButton";
 
 const Navber = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -46,7 +50,7 @@ const Navber = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsToggle(false);
-        setActive(false)
+        setActive(false);
       }
     };
     if (isToggle) {
@@ -76,14 +80,19 @@ const Navber = () => {
       <nav
         className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 md:px-0`}
       >
-        <div className={`flex justify-between items-center md:container mx-auto`} ref={navRef}>
+        <div
+          className={`flex justify-between items-center md:container mx-auto`}
+          ref={navRef}
+        >
           <div>
             <Image width={150} height={150} src={logo} alt="" />
           </div>
           {/* item list */}
           <div
             className={`${
-              isToggle ? "sidebar-open w-[100%] md:w-[60%]" : "sidebar-closed w-[100%] md:w-[60%]"
+              isToggle
+                ? "sidebar-open w-[100%] md:w-[60%]"
+                : "sidebar-closed w-[100%] md:w-[60%]"
             } flex justify-center gap-10 lg:gap-28 pt-20`}
           >
             {/* navbar items */}
@@ -109,7 +118,7 @@ const Navber = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className={`nav-link ${
+                    className={`nav-link font-outfit ${
                       nav.path === "home" && !scroll ? "nav-link active" : ""
                     }`}
                   >
@@ -121,14 +130,18 @@ const Navber = () => {
 
             {/* contact info */}
             <div>
-              <h3 className="text-xl font-semibold text-slate-300 uppercase">
+              <h3 className="text-xl font-semibold text-slate-300 uppercase font-outfit">
                 Contact Me
               </h3>
               <div className="flex flex-col md:flex-row mt-5 gap-2">
-                <button className="inline-flex h-10 md:h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-4 font-medium text-slate-400 transition-colors focus:outline-none uppercase">
-                  Resume
-                </button>
-                <EncryptButton />
+                <ShineButton text="Resume" animation={true} />
+                <ShineButton
+                  onClick={() => {
+                    window.location.href = "mailto:sadidhasan56@gmail.com";
+                  }}
+                  text="Send Message"
+                  animation={false}
+                />
               </div>
               <div className="flex gap-3 items-center mt-5 ml-1">
                 <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
@@ -146,11 +159,12 @@ const Navber = () => {
 
           {/* condition bar in mobile device */}
           <AnimatedHamburgerButton
-          setActive={setActive}
-          active={active}
+            setActive={setActive}
+            active={active}
             setIsToggle={setIsToggle}
             isToggle={isToggle}
           />
+      
         </div>
       </nav>
     </>

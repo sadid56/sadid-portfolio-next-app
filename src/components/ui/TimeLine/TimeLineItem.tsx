@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { ProjectCardSpotlight } from "../ProjectCardSpotLigt/ProjectCardSpotLight";
 import useIsMobile from "@/hooks/useMobile";
 import { TimelineEntry } from "@/types/TimeLIneTypes";
+import { getTimelineVariants } from "@/components/animations/GetTimeLineVeriant";
 
 interface TimelineItemProps {
   item: TimelineEntry;
@@ -29,35 +30,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
 
   const isEven = index % 2 === 0;
 
-  // Define your complex animation variants here where you can access isEven and isMobile
-  const timelineVariants = {
-    hidden: {
-      opacity: 0,
-      x: isEven ? (isMobile ? 100 : -100) : 100,  // Move left for even, right for odd
-      scale: 0.8,  // Start smaller
-      rotate: isEven ? (isMobile ? 0 : -10) : isMobile ? 0 : 10,  // Slight rotation to add complexity
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,  // Back to normal size
-      rotate: 0,  // No rotation when visible
-      transition: {
-        type: "spring",  // Use a spring animation for a natural feel
-        stiffness: 50,
-        damping: 20,
-        duration: 0.8,
-        ease: "easeInOut",
-      },
-    },
-  };
+ 
 
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={timelineVariants}
+      variants={getTimelineVariants(isEven, isMobile)} 
       className={`lg:flex lg:justify-between gap-10 relative pt-20 md:pt-40 ${
         isEven ? "flex-row lg:mr-28 ml-10 lg:ml-0" : "flex-row-reverse ml-10 lg:ml-28 "
       }`}
@@ -85,10 +65,10 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
           >
             <Image width={60} height={60} alt={item.service_name} src={item.icon} />
           </div>
-          <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-300">
+          <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-300 font-outfit">
             {item.service_name}
           </h3>
-          <h3 className="text-[16px] font-medium text-neutral-400">
+          <h3 className="text-[16px] font-medium text-neutral-400 font-poppins">
             {item.description}
           </h3>
         </div>

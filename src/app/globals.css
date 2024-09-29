@@ -13,3 +13,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(transparent, white);
 }
+
+/* styles/global.css or tailwind.config.js */
+.bg-services {
+  background-color: #f4f4f4; /* Example background color */
+}
+

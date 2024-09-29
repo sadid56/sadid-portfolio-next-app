@@ -40,7 +40,7 @@ const Skills = () => {
       id="skills"
       className="w-full h-screen flex flex-col items-center justify-center gap-16 overflow-hidden"
     >
-      <SectionTitle color="Skills" text="" />
+      <SectionTitle color="Skills" text="_" />
       <LargeTitle title="Skills" />
 
       {/* Skills tabs */}
@@ -54,7 +54,7 @@ const Skills = () => {
         {tabsArray.map((tab) => (
           <motion.button
             onClick={() => handleSetTabs(tab)}
-            className={`tab-btn font-Georgian ${
+            className={`tab-btn font-outfit ${
               currentTab === tab ? "tab-active" : ""
             }`}
             key={tab}
@@ -86,7 +86,7 @@ const Skills = () => {
           >
             <motion.div transition={{duration: 1, delay: 2}} className="tooltip">
               <div className="side">
-                <div className="about font-Georgian">{skill.side}</div>
+                <div className="about font-outfit">{skill.side}</div>
               </div>
             </motion.div>
             <motion.div className="text">
@@ -107,7 +107,7 @@ const Skills = () => {
                     />
                   </span>
                 </div>
-                <div className="text font-italic">{skill.name}</div>
+                <div className="text font-poppins font-italic">{skill.name}</div>
               </div>
             </motion.div>
           </motion.div>

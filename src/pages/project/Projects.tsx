@@ -11,6 +11,7 @@ import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Project } from "@/types/ProjectTypes";
 import { Element } from "react-scroll";
+import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 
 interface Props {
   project: Project;
@@ -28,7 +29,7 @@ const Projects = () => {
   // main content 
   return (
     <Element name="projects" className="max-w-[1300px] mx-auto">
-      <SectionTitle text="Project" color="My"/>
+      <SectionTitle text="Project_" color="My"/>
       <section ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
@@ -41,6 +42,7 @@ const Projects = () => {
             })}
           </motion.div>
         </div>
+        
       </section>
     </Element>
   );
@@ -65,15 +67,19 @@ const Card: React.FC<Props> = ({ project }) => {
           />
         </div>
         <div className="md:w-[60%] space-y-4 z-20">
-          <h3 className=" text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1">
-            {project?.project_name}
+     
+         <h3 className=" text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1 font-outfit w-full pl-1">
+            <BoxReveal boxColor={"#108a91"} duration={0.8}>
+              <span>{project?.project_name}</span>
+            </BoxReveal>
           </h3>
-          <p className="text-sm md:text-[16px] text-slate-300 leading-6">
+       
+          <p className="text-sm md:text-[16px] text-slate-300 leading-6 font-poppins">
             {project?.description}
           </p>
 
           {/* technologies */}
-          <h5 className="text-[12px] md:text-sm text-slate-300 font-medium">
+          <h5 className="text-[12px] md:text-sm text-slate-300 font-medium font-poppins">
             Technologies:{" "}
             <span className="text-slate-400">
               {project?.technology?.join(", ")}
