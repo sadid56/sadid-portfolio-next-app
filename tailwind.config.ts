@@ -18,9 +18,6 @@ const config: Config = {
         secondary: "#FFBE7B",
         mainBgColor: "#010610"
       },
-      backgroundColor: {
-        services: "#f0f4f8", // Default background for services
-      },
       "animation": {
             shimmer: "shimmer 5s linear infinite"
           },

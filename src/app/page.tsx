@@ -1,4 +1,4 @@
-import React from "react"; // Ensure you import React
+import React from "react";
 import Hero from "@/pages/Hero/Hero";
 import Projects from "@/pages/project/Projects";
 import Services from "@/pages/services/Services";
@@ -7,20 +7,21 @@ import Footer from "@/shared/footer/Footer";
 import Navber from "@/shared/navber/Navber";
 import TopProgressBar from "@/components/ui/ExternalStyle/TopProgressBar";
 import GlowCursor from "@/components/ui/ExternalStyle/GlowCursor";
+import DynamicBackground from "@/components/layout/DynamicBackgournd";
+import ThanksComponent from "@/pages/ThanksComponent/ThanksComponent";
 
 export default function Home() {
   return (
-    <>
+    <DynamicBackground>
       <TopProgressBar />
       <GlowCursor />
       <Navber />
       <Hero />
-      <main className="bg-mainBgColor">
-        <Skills />
-        <Projects />
-        <Services />
-        <Footer />
-      </main>
-    </>
+      <Skills />
+      <Projects />
+      <Services />
+      <ThanksComponent/>
+      <Footer />
+    </DynamicBackground>
   );
 }

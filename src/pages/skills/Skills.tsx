@@ -13,7 +13,8 @@ import { Element } from "react-scroll";
 const Skills = () => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
   const [currentTab, setCurrentTab] = useState("Expertise");
-  const [isShowAnimation, setIsShowAnimation] = useState(false); // Corrected typo
+  const [isShowAnimation, setIsShowAnimation] = useState(false); // Track animation state
+  const [isLoading, setIsLoading] = useState(true); // Loading state for image skeleton
 
   // Filter skills based on the current tab
   const filteredSkills = skillsArray.filter(
@@ -31,14 +32,14 @@ const Skills = () => {
 
   const handleSetTabs = (tab: string) => {
     setCurrentTab(tab);
-    setIsShowAnimation(!isShowAnimation); // Corrected typo
+    setIsShowAnimation(!isShowAnimation); // Trigger animation on tab change
   };
 
   return (
     <Element
       name="skills"
       id="skills"
-      className="w-full h-screen flex flex-col items-center justify-center gap-16 overflow-hidden"
+      className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-40 relative"
     >
       <SectionTitle color="Skills" text="_" />
       <LargeTitle title="Skills" />
@@ -46,7 +47,7 @@ const Skills = () => {
       {/* Skills tabs */}
       <motion.div
         ref={tabsRef}
-        className="tabs flex flex-wrap gap-5 items-center justify-center"
+        className="tabs flex flex-wrap gap-5 items-center justify-center "
         initial={{ opacity: 0, y: 50 }}
         animate={tabsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -69,7 +70,7 @@ const Skills = () => {
       {/* Skills container */}
       <motion.div
         ref={skillsRef}
-        className="skills-container flex flex-wrap items-center justify-center gap-10"
+        className="skills-container flex flex-wrap items-center justify-center gap-10 mt-12"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={
           skillsInView || isShowAnimation
@@ -84,7 +85,7 @@ const Skills = () => {
             className="tooltip-container"
             whileHover={{ scale: 1.1 }}
           >
-            <motion.div transition={{duration: 1, delay: 2}} className="tooltip">
+            <motion.div transition={{ duration: 1, delay: 2 }} className="tooltip">
               <div className="side">
                 <div className="about font-outfit">{skill.side}</div>
               </div>
@@ -97,14 +98,23 @@ const Skills = () => {
                   <span></span>
                   <span></span>
                   <span className="p-2 md:p-3">
-                    <Image
-                      width={90}
-                      height={90}
-                      src={skill.logo}
-                      objectFit="cover"
-                      className="img object-cover rounded-full border-2 border-[#11c6cf]"
-                      alt={skill.name}
-                    />
+                    {/* Image with Skeleton Loader */}
+                    <div className="w-[53px] h-[53px]  md:w-[75px] md:h-[75px] relative">
+                      {/* Show skeleton when loading */}
+                      {isLoading && (
+                        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-full border-2 border-[#11c6cf]"></div>
+                      )}
+                      <Image
+                        src={skill.logo}
+                        alt={skill.name}
+                        layout="fill"
+                        style={{ objectFit: "cover" }}
+                        className="rounded-full border-2 border-[#11c6cf] transition-opacity duration-500 ease-in-out"
+                        quality={100}
+                        sizes="(max-width: 768px) 128px, 200px"
+                        onLoad={() => setIsLoading(false)} // Trigger when image loads
+                      />
+                    </div>
                   </span>
                 </div>
                 <div className="text font-poppins font-italic">{skill.name}</div>
@@ -113,6 +123,7 @@ const Skills = () => {
           </motion.div>
         ))}
       </motion.div>
+    
     </Element>
   );
 };

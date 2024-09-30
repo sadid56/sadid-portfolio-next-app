@@ -1,19 +1,30 @@
+import Link from "next/link";
+
 interface Props {
   text: string;
-  animation: boolean;
   onClick?: () => void;
+  url?: string;
 }
 
-const ShineButton: React.FC<Props> = ({ text, animation, onClick }) => {
+const ShineButton: React.FC<Props> = ({ text, onClick, url }) => {
   return (
-    <button
+    <Link
+      href={url ? url : ""}
+      target="_blank"
       onClick={onClick}
-      className={`inline-flex h-10 md:h-12 ${
-        animation ? "animate-shimmer" : ""
-      } items-center justify-center rounded-md border-2 border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-4 font-medium text-slate-400 transition-colors focus:outline-none uppercase font-outfit`}
+      className={`
+        inline-flex h-10 md:h-[44px] items-center justify-center rounded-md
+        bg-[linear-gradient(320deg,#55065e,80%,#043d53)]
+        bg-[length:200%_100%]
+        px-4 font-medium text-slate-200 transition-all duration-500
+        focus:outline-none uppercase font-outfit
+        hover:bg-[linear-gradient(320deg,#043d53,50%,#55065e)]
+       hover:shadow-[0_5px_15px_rgba(0,0,0,0.2)]
+
+      `}
     >
       {text}
-    </button>
+    </Link>
   );
 };
 

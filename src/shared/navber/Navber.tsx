@@ -24,7 +24,6 @@ const Navber = () => {
   // nav links
   const links = [
     { path: "home", label: "Home" },
-    { path: "experience", label: "Experience" },
     { path: "skills", label: "Skills" },
     { path: "projects", label: "Projects" },
     { path: "services", label: "Services" },
@@ -101,9 +100,9 @@ const Navber = () => {
               initial="hidden"
               animate={isToggle ? "visible" : "hidden"}
             >
-              <div className="-ml-5">
+              {/* <div className="-ml-5">
                 <Image width={120} height={120} src={logo} alt="" />
-              </div>
+              </div> */}
               {links.map((nav, i) => (
                 <motion.li
                   key={i + 1}
@@ -130,17 +129,42 @@ const Navber = () => {
 
             {/* contact info */}
             <div>
-              <h3 className="text-xl font-semibold text-slate-300 uppercase font-outfit">
+              <h3 className="text-lg md:text-xl font-semibold text-slate-300 uppercase font-outfit">
                 Contact Me
               </h3>
-              <div className="flex flex-col md:flex-row mt-5 gap-2">
-                <ShineButton text="Resume" animation={true} />
+
+              <div className="my-5 md:my-10 space-y-3 md:space-y-5">
+                <div>
+                  <h3 className="text-xl font-outfit font-medium text-slate-300">
+                    Whatsapp
+                  </h3>
+                  <p className="font-sm text-slate-400 font-medium font-poppins">
+                    +880 1739859756
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-outfit font-medium text-slate-300">
+                    Email
+                  </h3>
+                  <p className="font-sm text-slate-400 font-medium font-poppins">
+                    sadidhasan56@gmail.com
+                  </p>
+                </div>
+              </div>
+
+              {/* action message */}
+              <div className="flex flex-col md:flex-row mt-5 gap-3">
+                <ShineButton
+                  url="https://drive.google.com/file/d/16aWRu7etzDn_vWgT879WpZM5yFprVP6F/view?usp=sharing"
+                  text="Resume"
+                 
+                />
                 <ShineButton
                   onClick={() => {
                     window.location.href = "mailto:sadidhasan56@gmail.com";
                   }}
                   text="Send Message"
-                  animation={false}
+              
                 />
               </div>
               <div className="flex gap-3 items-center mt-5 ml-1">
@@ -164,7 +188,6 @@ const Navber = () => {
             setIsToggle={setIsToggle}
             isToggle={isToggle}
           />
-      
         </div>
       </nav>
     </>

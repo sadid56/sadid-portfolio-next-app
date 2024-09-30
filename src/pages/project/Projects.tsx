@@ -28,9 +28,9 @@ const Projects = () => {
 
   // main content 
   return (
-    <Element name="projects" className="max-w-[1300px] mx-auto">
-      <SectionTitle text="Project_" color="My"/>
-      <section ref={targetRef} className="relative h-[300vh]">
+    <Element name="projects" className="max-w-[1300px] mx-auto mt-20 md:mt-40 relative">
+      <SectionTitle text="Projects_" color="My"/>
+      <div ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
             style={{ x }}
@@ -43,7 +43,8 @@ const Projects = () => {
           </motion.div>
         </div>
         
-      </section>
+      </div>
+      <div className="w-48 h-48 bg-[#03e8f488] blur-[180px] absolute -top-24 -left-32"></div>
     </Element>
   );
 };

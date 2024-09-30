@@ -1,8 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
-import Lenis from "@studio-freight/lenis";
-import { useEffect, useRef } from "react";
-
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 import "./hero.css";
 import { FlipWords } from "@/components/ui/FlipWords/FlipWords";
@@ -16,30 +12,11 @@ import {
 import { CenterVideo } from "@/components/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/Hero/HeroParallaxItems";
 const Hero = () => {
-  const lenisRef = useRef<Lenis | null>(null);
 
-  // lenis smoth scroll
-  useEffect(() => {
-    lenisRef.current = new Lenis({
-      lerp: 0.05,
-    });
-
-    const animate = (time: number) => {
-      lenisRef.current?.raf(time);
-      requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-
-    return () => {
-      lenisRef.current?.destroy();
-    };
-  }, []);
-
-  const SECTION_HEIGHT = 1500;
+  const SECTION_HEIGHT = 1600;
 
   return (
-    <div id="home" className="bg-mainBgColor">
+    <header id="home">
       <div
         style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
         className="relative w-full"
@@ -49,7 +26,7 @@ const Hero = () => {
         {/* hero bottom  overlay */}
         <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-zinc-950/0 to-mainBgColor" />
         {/* right side scroll icon */}
-        <div className="fixed top-[65%] right-3 md:right-5 flex-col items-center gap-10 flex">
+        <div className="fixed bottom-5 right-3 md:right-5 flex-col items-center gap-10 flex">
           <div className="flex flex-col gap-3 items-center ">
             <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
               <Icon Icon={IconBrandFacebook} widht={2} />
@@ -70,7 +47,7 @@ const Hero = () => {
         </div>
       </div>
       
-    </div>
+    </header>
   );
 };
 
