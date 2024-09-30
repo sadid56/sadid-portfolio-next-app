@@ -7,10 +7,24 @@
        "category": "Expertise"
   },
   {
+      "id": 134545,
+       "name": "TypeScript",
+       "side": "Frontend/backend",
+       "logo": "https://i.ibb.co/C5bh6Zr/typescript-icon-icon-1024x1024-vh3pfez8.png",
+       "category": "Expertise"
+  },
+  {
       "id": 2,
        "name": "React.js",
        "side": "Frontend",
        "logo": "https://i.ibb.co/rHV3T7s/React-icon-svg-1.png",
+       "category": "Expertise"
+  },
+  {
+      "id": 2,
+       "name": "MUI",
+       "side": "UI",
+       "logo": "https://i.ibb.co/8NjKgpc/bb13aeb51c54421a7a5540a7132895dc.png",
        "category": "Expertise"
   },
   {

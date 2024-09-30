@@ -279,7 +279,8 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [size.width, size.height, source]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size.width, size.height, source,  ]);
 
   return (
     <mesh ref={ref as any}>

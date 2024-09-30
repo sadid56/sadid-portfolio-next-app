@@ -7,7 +7,7 @@ interface Props{
 
 const LargeTitle:React.FC<Props>= ({title}) => {
   return (
-    <h1 className='uppercase text-[100px] md:text-[220px] text-slate-800 font-bold absolute  left-0 md:left-24 opacity-20'>
+    <h1 className='uppercase text-[100px] md:text-[220px] text-slate-800 font-bold absolute  left-0 md:left-24 opacity-20 font-outfit'>
       {title}
     </h1>
   );

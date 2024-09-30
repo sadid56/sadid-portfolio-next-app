@@ -1,78 +1,14 @@
-"use client"
 
 import Container from "@/components/Container/Container";
-import servicesArray from "../../../public/services.json"
-import { useRef } from "react";
-import { useScroll, useSpring, useTransform, motion } from "framer-motion";
-import { HoverEffect } from "@/components/ui/CardHoverEffect/CardHoverEffect";
-import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
+import servicesArray from "../../../public/services.json";
+import { Timeline } from "@/components/ui/TimeLine/TimeLIne";
 
 const Services = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
-
-  const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 1000]),
-    springConfig
-  );
-
-  const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
-    springConfig
-  );
-  const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
-    springConfig
-  );
-  const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-550, -50]),
-    springConfig
-  );
-
   return (
-    <Container id="services" className="mt-20">
-      <div
-      ref={ref}
-      className="overflow-hidden  antialiased relative  self-auto [perspective:1000px] [transform-style:preserve-3d]"
-    >
-      <Header />
-      <motion.div
-        style={{
-          rotateZ,
-          translateY,
-          opacity,
-        }}
-        className="mt-20"
-      >
-        <HoverEffect items={servicesArray}/>
-      </motion.div>
-    </div>
+    <Container id="services" className=" relative">
+      <Timeline data={servicesArray} />
     </Container>
   );
 };
 
 export default Services;
-
-
-
-export const Header = () => {
-  return (
-    <div className="container flex flex-col relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-      <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
-        <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-          Ultimate Support, <br /> Tailored for You
-        </h1>
-      </BoxReveal>
-      <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
-        <p className="max-w-2xl text-sm md:text-lg  mt-5 text-slate-400">
-          We craft beautiful products using cutting-edge technologies and frameworks. Our team of passionate developers and designers is dedicated to bringing your vision to life with innovative and reliable solutions.
-        </p>
-      </BoxReveal>
-    </div>
-  );
-};

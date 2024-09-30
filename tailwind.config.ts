@@ -10,15 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily:{
-        ubuntu:["Outfit", "sans-serif"]
+        outfit:["Outfit", "sans-serif"],
+        poppins:["Poppins", "sans-serif"],
       },
       colors:{
         primary: "#03e9f4",
         secondary: "#FFBE7B",
         mainBgColor: "#010610"
       },
+      backgroundColor: {
+        services: "#f0f4f8", // Default background for services
+      },
       "animation": {
-            shimmer: "shimmer 2s linear infinite"
+            shimmer: "shimmer 5s linear infinite"
           },
           "keyframes": {
             shimmer: {
