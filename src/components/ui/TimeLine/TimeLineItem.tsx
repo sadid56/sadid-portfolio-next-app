@@ -30,16 +30,16 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
 
   const isEven = index % 2 === 0;
 
- 
-
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={getTimelineVariants(isEven, isMobile)} 
+      variants={getTimelineVariants(isEven, isMobile)}
       className={`lg:flex lg:justify-between gap-10 relative pt-20 md:pt-40 ${
-        isEven ? "flex-row lg:mr-28 ml-10 lg:ml-0" : "flex-row-reverse ml-10 lg:ml-28 "
+        isEven
+          ? "flex-row lg:mr-28 ml-10 lg:ml-0"
+          : "flex-row-reverse ml-10 lg:ml-28 "
       }`}
     >
       {/* card body */}
@@ -55,27 +55,42 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
         {/* card arrow icon */}
         <div
           className={`timeline-arrow ${
-            isEven ? (isMobile ? "timeline-arrow-right" : "timeline-arrow-left") : "timeline-arrow-right"
+            isEven
+              ? isMobile
+                ? "timeline-arrow-right"
+                : "timeline-arrow-left"
+              : "timeline-arrow-right"
           }`}
         />
         {/* card content */}
         <div className="space-y-3 z-20">
           <div
-            className={`flex w-full ${isEven ? "justify-start lg:justify-end" : "justify-start"}`}
+            className={`flex w-full ${
+              isEven ? "justify-start lg:justify-end" : "justify-start"
+            }`}
           >
-            <Image width={60} height={60} alt={item.service_name} src={item.icon} />
+            <Image
+              width={60}
+              height={60}
+              alt={item.service_name}
+              src={item.icon}
+            />
           </div>
-          <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-300 font-outfit">
+          <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-200 font-outfit">
             {item.service_name}
           </h3>
-          <h3 className="text-[16px] font-medium text-neutral-400 font-poppins">
+          <h3 className="text-[16px] font-medium text-neutral-300 font-poppins">
             {item.description}
           </h3>
         </div>
 
-        <div className={`hidden lg:block relative ${isEven ? "lg:left-[77px]" : "-left-[117px]"}`}>
+        <div
+          className={`hidden lg:block relative ${
+            isEven ? "lg:left-[77px]" : "-left-[117px]"
+          }`}
+        >
           <div className="absolute z-40 flex items-center justify-center w-10 h-10 bg-[#0b586f3e] rounded-full">
-            <div className="absolute w-4 h-4 rounded-full bg-[#216c83]" />
+            <div className="absolute w-4 h-4 rounded-full bg-[#1f82a0]" />
           </div>
         </div>
       </ProjectCardSpotlight>

@@ -44,7 +44,7 @@ const Projects = () => {
         </div>
         
       </div>
-      <div className="w-48 h-48 bg-[#03e8f488] blur-[180px] absolute -top-24 -left-32"></div>
+      <div className="w-48 h-48 bg-[#03e8f4aa] blur-[180px] absolute -top-24 -left-32"></div>
     </Element>
   );
 };

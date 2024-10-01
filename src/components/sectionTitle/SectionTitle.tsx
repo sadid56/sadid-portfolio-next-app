@@ -8,9 +8,10 @@ import "./SectionTitle.css"
 interface SectionTitleProps {
   color: string;
   text: string;
+  lineBrak?: boolean
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = ({ color, text }) => {
+const SectionTitle: React.FC<SectionTitleProps> = ({ color, text, lineBrak = false }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -44,7 +45,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ color, text }) => {
       <h2
         className={`${
           inView && "section-animation-text"
-        } flex ${color?.length >= 5 ? "flex-col md:flex-row" : ""} gap-2 text-color-change text-3xl md:text-5xl font-semibold font-outfit`}
+        } flex ${lineBrak  ? "flex-col" : ""} gap-2 text-color-change text-3xl md:text-5xl font-semibold font-outfit`}
       >
         <span>{color}</span> <span className="text-slate-300">{text}</span>
       </h2>
