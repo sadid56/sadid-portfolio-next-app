@@ -20,7 +20,7 @@ export default function DynamicBackground({
   // lenis smoth scroll
   useEffect(() => {
     lenisRef.current = new Lenis({
-      lerp: 0.05,
+      lerp: 0.04,
     });
 
     const animate = (time: number) => {
@@ -36,7 +36,7 @@ export default function DynamicBackground({
   }, []);
 
   return (
-    <motion.section style={{ backgroundColor }} className="min-h-screen border-[#070738]">
+    <motion.section style={{ backgroundColor }} className="min-h-screen">
       {children}
     </motion.section>
   );

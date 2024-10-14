@@ -14,6 +14,7 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import ShineButton from "@/components/ui/Button/ShineButton";
+import ContactInfo from "./ContactInfo";
 
 const Navber = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -73,7 +74,6 @@ const Navber = () => {
       },
     }),
   };
-
   return (
     <>
       <nav
@@ -128,57 +128,7 @@ const Navber = () => {
             </motion.ul>
 
             {/* contact info */}
-            <div>
-              <h3 className="text-lg md:text-xl font-semibold text-slate-300 uppercase font-outfit">
-                Contact Me
-              </h3>
-
-              <div className="my-5 md:my-10 space-y-3 md:space-y-5">
-                <div>
-                  <h3 className="text-xl font-outfit font-medium text-slate-300">
-                    Whatsapp
-                  </h3>
-                  <p className="font-sm text-slate-400 font-medium font-poppins">
-                    +880 1739859756
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-outfit font-medium text-slate-300">
-                    Email
-                  </h3>
-                  <p className="font-sm text-slate-400 font-medium font-poppins">
-                    sadidhasan56@gmail.com
-                  </p>
-                </div>
-              </div>
-
-              {/* action message */}
-              <div className="flex flex-col md:flex-row mt-5 gap-3">
-                <ShineButton
-                  url="https://drive.google.com/file/d/16aWRu7etzDn_vWgT879WpZM5yFprVP6F/view?usp=sharing"
-                  text="Resume"
-                 
-                />
-                <ShineButton
-                  onClick={() => {
-                    window.location.href = "mailto:sadidhasan56@gmail.com";
-                  }}
-                  text="Send Message"
-              
-                />
-              </div>
-              <div className="flex gap-3 items-center mt-5 ml-1">
-                <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
-                  <Icon Icon={IconBrandFacebook} widht={2} />
-                </LinkPreview>
-                <LinkPreview url="https://discord.com/users/1151169623149002752/">
-                  <Icon Icon={IconBrandDiscord} widht={2} />
-                </LinkPreview>
-                <LinkPreview url="https://www.linkedin.com/in/mr-sadid/">
-                  <Icon Icon={IconBrandLinkedin} widht={2} />
-                </LinkPreview>
-              </div>
-            </div>
+            <ContactInfo isToggle={isToggle}/>
           </div>
 
           {/* condition bar in mobile device */}

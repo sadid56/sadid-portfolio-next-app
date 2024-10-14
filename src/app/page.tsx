@@ -9,6 +9,7 @@ import TopProgressBar from "@/components/ui/ExternalStyle/TopProgressBar";
 import GlowCursor from "@/components/ui/ExternalStyle/GlowCursor";
 import DynamicBackground from "@/components/layout/DynamicBackgournd";
 import ThanksComponent from "@/pages/ThanksComponent/ThanksComponent";
+import Achivement from "@/pages/Achivement/Achivement";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Navber />
       <Hero />
       <Skills />
+      <Achivement/>
       <Projects />
       <Services />
       <ThanksComponent/>

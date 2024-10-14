@@ -39,7 +39,7 @@ const Skills = () => {
     <Element
       name="skills"
       id="skills"
-      className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-40 relative"
+    className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-20 relative min-h-screen parent-div"
     >
       <SectionTitle color="Skills" text="_" />
       <LargeTitle title="Skills" />
@@ -85,7 +85,10 @@ const Skills = () => {
             className="tooltip-container"
             whileHover={{ scale: 1.1 }}
           >
-            <motion.div transition={{ duration: 1, delay: 2 }} className="tooltip">
+            <motion.div
+              transition={{ duration: 1, delay: 2 }}
+              className="tooltip"
+            >
               <div className="side">
                 <div className="about font-outfit">{skill.side}</div>
               </div>
@@ -117,13 +120,14 @@ const Skills = () => {
                     </div>
                   </span>
                 </div>
-                <div className="text font-poppins font-italic">{skill.name}</div>
+                <div className="text font-poppins font-italic">
+                  {skill.name}
+                </div>
               </div>
             </motion.div>
           </motion.div>
         ))}
       </motion.div>
-    
     </Element>
   );
 };

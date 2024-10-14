@@ -1,4 +1,4 @@
-.text-color-change {
+.textAnimation {
   background: linear-gradient(
     90deg,
     #03e9f4,
@@ -25,7 +25,7 @@
 
 
 
-.section-animation-text {
+.animation {
   --btn-default-bg: rgb(41, 41, 41);
   --btn-padding: 15px 20px;
   --btn-hover-bg: rgb(51, 51, 51);
@@ -43,7 +43,7 @@
 
 /* button settings 👆 */
 
-.section-animation-text {
+.animation {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +51,7 @@
   overflow: hidden;
 }
 
-.section-animation-text span {
+.animation span {
   letter-spacing: var(--btn-letter-spacing);
   transition: var(--btn-transition);
   box-sizing: border-box;
@@ -59,14 +59,14 @@
   background: inherit;
 }
 
-.section-animation-text span::before {
+.animation span::before {
   box-sizing: border-box;
   position: absolute;
   content: "";
   background: inherit;
 }
 
-.section-animation-text span::before, .section-animation-text:focus span::before {
+.animation span::before, .animation:focus span::before {
   animation: chitchat linear both var(--btn-animation-duration);
 }
 
