@@ -1,15 +1,16 @@
 import React from "react";
-import Hero from "@/pages/Hero/Hero";
-import Projects from "@/pages/project/Projects";
-import Services from "@/pages/services/Services";
-import Skills from "@/pages/skills/Skills";
-import Footer from "@/shared/footer/Footer";
-import Navber from "@/shared/navber/Navber";
+import Footer from "@/components/layouts/footer/Footer";
+import Navber from "@/components/layouts/navber/Navber";
 import TopProgressBar from "@/components/ui/ExternalStyle/TopProgressBar";
 import GlowCursor from "@/components/ui/ExternalStyle/GlowCursor";
-import DynamicBackground from "@/components/layout/DynamicBackgournd";
-import ThanksComponent from "@/pages/ThanksComponent/ThanksComponent";
-import Achivement from "@/pages/Achivement/Achivement";
+import DynamicBackground from "@/components/container/DynamicBackgournd";
+import Hero from "@/components/pages/Hero/Hero";
+import Skills from "@/components/pages/skills/Skills";
+import Achievements from "@/components/pages/Achivement/Achivement";
+import Projects from "@/components/pages/project/Projects";
+import Services from "@/components/pages/services/Services";
+import ThanksComponent from "@/components/pages/ThanksComponent/ThanksComponent";
+
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
       <Navber />
       <Hero />
       <Skills />
-      <Achivement/>
+      <Achievements/>
       <Projects />
       <Services />
       <ThanksComponent/>

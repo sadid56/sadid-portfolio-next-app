@@ -1,0 +1,31 @@
+
+.hero-text {
+  letter-spacing: 6px;
+  color: transparent;
+  font-weight: 700;
+  -webkit-text-stroke: 1.2px white;
+  background-image: url('../../../assets/images/back.png');
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  background-size: cover;
+
+}
+
+
+.arrow {
+	width: 0px;
+	height: 80px;
+	border: 1px solid #aba5a5;
+	position: relative;
+	&::after {
+		content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: -4.5px;
+    border-top: 10px solid #b1abab;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+	}
+}
+
