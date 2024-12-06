@@ -11,8 +11,8 @@ import {
 } from "@tabler/icons-react";
 import { CenterVideo } from "@/components/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/Hero/HeroParallaxItems";
-const Hero = () => {
 
+const Hero = () => {
   const SECTION_HEIGHT = 1600;
 
   return (
@@ -46,7 +46,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      
     </header>
   );
 };
@@ -137,5 +136,3 @@ const HeroParallaxItems = () => {
     </div>
   );
 };
-
-
