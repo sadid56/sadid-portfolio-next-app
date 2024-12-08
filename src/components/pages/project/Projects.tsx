@@ -19,6 +19,7 @@ interface Props {
 const Projects = () => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
+    //@ts-ignore
     target: targetRef,
   });
 
@@ -33,6 +34,7 @@ const Projects = () => {
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
             style={{ x }}
+            //@ts-ignore
             className="flex gap-8 snap-mandatory"
             transition={{ type: "spring", stiffness: 80, damping: 15 }}
           >

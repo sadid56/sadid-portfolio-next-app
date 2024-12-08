@@ -1,16 +1,17 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { HTMLAttributes, useState } from "react";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import skillsArray from "../../../../public/skills.json";
 import "./Skills.css";
 import Image from "next/image";
-import Container from "@/components/container/Container";
 import LargeTitle from "@/components/common/LargeTitle/LargeTitle";
 import { Element } from "react-scroll";
 import SectionTitle from "@/components/common/sectionTitle/SectionTitle";
 
-const Skills = () => {
+type MotionDivProps = HTMLMotionProps<"div"> & HTMLAttributes<HTMLDivElement>;
+
+const Skills: React.FC<MotionDivProps> = () => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
   const [currentTab, setCurrentTab] = useState("Expertise");
   const [isShowAnimation, setIsShowAnimation] = useState(false); // Track animation state
@@ -39,7 +40,7 @@ const Skills = () => {
     <Element
       name="skills"
       id="skills"
-    className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-20 relative min-h-screen parent-div"
+      className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-20 relative min-h-screen parent-div"
     >
       <SectionTitle color="Skills" text="_" />
       <LargeTitle title="Skills" />
