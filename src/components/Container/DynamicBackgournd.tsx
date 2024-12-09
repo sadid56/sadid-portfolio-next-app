@@ -14,7 +14,7 @@ export default function DynamicBackground({
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.7, 0.8, 1],
-    ["#010610", "#010610", "#010610", "#010610", "#070738", "#010610"]
+    ["#010610", "#010610", "#010610", "#010610", "#0b0b55", "#010610"]
   );
 
   // lenis smoth scroll
@@ -36,7 +36,7 @@ export default function DynamicBackground({
   }, []);
 
   return (
-    <motion.div style={{ backgroundColor }} className="min-h-screen">
+    <motion.div style={{ backgroundColor }} className="min-h-screen border-[#0b0b55]">
       {children}
     </motion.div>
   );

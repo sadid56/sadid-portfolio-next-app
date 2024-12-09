@@ -18,7 +18,7 @@ export function NumberTicker({
   decimalPlaces?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  
+
   // Initialize motionValue based on the direction (up or down)
   const motionValue = useMotionValue(direction === "down" ? value : 0);
   const springValue = useSpring(motionValue, {
@@ -32,10 +32,9 @@ export function NumberTicker({
   useEffect(() => {
     // Debug: Log when in view is true
     if (isInView) {
-      console.log("Element in view, starting animation...");
+
 
       setTimeout(() => {
-        console.log("Animating to value:", value);
         motionValue.set(direction === "down" ? 0 : value); // Start animation
       }, delay * 1000); // Apply delay if any
     }

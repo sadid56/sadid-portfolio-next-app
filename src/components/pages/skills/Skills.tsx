@@ -1,6 +1,6 @@
 "use client";
-import { HTMLAttributes, useState } from "react";
-import { HTMLMotionProps, motion } from "framer-motion";
+import {useState } from "react";
+import {  motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import skillsArray from "../../../../public/skills.json";
 import "./Skills.css";
@@ -9,13 +9,11 @@ import LargeTitle from "@/components/common/LargeTitle/LargeTitle";
 import { Element } from "react-scroll";
 import SectionTitle from "@/components/common/sectionTitle/SectionTitle";
 
-type MotionDivProps = HTMLMotionProps<"div"> & HTMLAttributes<HTMLDivElement>;
 
-const Skills: React.FC<MotionDivProps> = () => {
+const Skills = () => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
   const [currentTab, setCurrentTab] = useState("Expertise");
   const [isShowAnimation, setIsShowAnimation] = useState(false); // Track animation state
-  const [isLoading, setIsLoading] = useState(true); // Loading state for image skeleton
 
   // Filter skills based on the current tab
   const filteredSkills = skillsArray.filter(
@@ -37,6 +35,7 @@ const Skills: React.FC<MotionDivProps> = () => {
   };
 
   return (
+    // @ts-ignore
     <Element
       name="skills"
       id="skills"
@@ -104,21 +103,18 @@ const Skills: React.FC<MotionDivProps> = () => {
                   <span className="p-2 md:p-3">
                     {/* Image with Skeleton Loader */}
                     <div className="w-[53px] h-[53px]  md:w-[75px] md:h-[75px] relative">
-                      {/* Show skeleton when loading */}
-                      {isLoading && (
-                        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-full border-2 border-[#11c6cf]"></div>
-                      )}
+
                       <Image
                         src={skill.logo}
                         alt={skill.name}
                         width={100}
                         height={100}
+                        priority
                         // layout="fill"
                         style={{ objectFit: "cover" }}
-                        className="rounded-full border-2 border-[#11c6cf] transition-opacity duration-500 ease-in-out"
+                        className="rounded-full border-2 border-[#11c6cf] transition-opacity duration-500 ease-in-out w-[53px] h-[53px]  md:w-[75px] md:h-[75px]"
                         quality={100}
-                        sizes="(max-width: 768px) 128px, 200px"
-                        onLoad={() => setIsLoading(false)} // Trigger when image loads
+
                       />
                     </div>
                   </span>

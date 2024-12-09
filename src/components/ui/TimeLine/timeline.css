@@ -5,7 +5,7 @@
   border-radius: 8px;
   transform-origin: left bottom;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 5px 5px 20px #01252f;
+  box-shadow: 7px 7px 30px #01161c;
 }
 
 .timeline-card-right {
@@ -15,7 +15,7 @@
   border-radius: 8px;
   transform-origin: left bottom;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: -5px 5px 20px #01252f;
+  box-shadow: -7px 7px 30px #01161c;
 }
 
 .timeline-arrow {
@@ -30,11 +30,11 @@
 .timeline-arrow-left {
   right: -25px; /* Adjust based on design */
   border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #0b586f; /* Same as card background */
+  border-color: transparent transparent transparent #0da6d4; /* Same as card background */
 }
 
 .timeline-arrow-right {
   left: -25px; /* Adjust based on design */
   border-width: 10px 10px 10px 0;
-  border-color: transparent #0b586f transparent transparent; /* Same as card background */
+  border-color: transparent #0da6d4 transparent transparent; /* Same as card background */
 }

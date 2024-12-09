@@ -9,7 +9,6 @@ import { ProjectCardSpotlight } from "@/components/ui/ProjectCardSpotLigt/Projec
 import ShineBorder from "@/components/ui/ShinBorder/ShinBorder";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Project } from "@/types/ProjectTypes";
-import { Element } from "react-scroll";
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 
 interface Props {
@@ -28,7 +27,7 @@ const Projects = () => {
 
   // main content
   return (
-    <Element name="projects" className="max-w-[1300px] mx-auto relative">
+    <div id="projects" className="max-w-[1300px] mx-auto relative">
       <SectionTitle text="Projects_" color="My" />
       <div ref={targetRef} className="relative h-[300vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
@@ -45,7 +44,7 @@ const Projects = () => {
         </div>
       </div>
       <div className="w-48 h-48 bg-[#03e8f4aa] blur-[180px] absolute -top-24 -left-32"></div>
-    </Element>
+    </div>
   );
 };
 

@@ -1,12 +1,8 @@
 "use client";
-import {
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import BoxReveal from "../BoxReveal/BoxReveal";
-import "./timeline.css"
+import "./timeline.css";
 import TimelineItem from "./TimeLineItem";
 import DockText from "../TextAnimation/DockText";
 
@@ -45,7 +41,7 @@ export const Timeline: React.FC<Props> = ({ data }) => {
       {/* Header Section */}
       <div className=" px-4 md:w-1/2 mx-auto text-center">
         <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
-          <DockText text=" Ultimate Support Tailored for You"/>
+          <DockText text=" Ultimate Support Tailored for You" />
         </BoxReveal>
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
           <p className="max-w-2xl text-sm md:text-lg mt-5 text-slate-400 font-poppins">
@@ -60,20 +56,24 @@ export const Timeline: React.FC<Props> = ({ data }) => {
       {/* Timeline Section */}
       <div ref={ref} className="relative pb-20">
         {data.map((item: TimelineEntry, index: number) => (
-          <TimelineItem item={item} index={index} key={item.service_name + index} />
+          <TimelineItem
+            item={item}
+            index={index}
+            key={item.service_name + index}
+          />
         ))}
 
         {/* Centered Progress Line */}
         <div
           style={{ height: height + "px" }}
-          className="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-             className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

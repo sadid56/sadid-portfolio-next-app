@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ProjectCardSpotlight } from "../ProjectCardSpotLigt/ProjectCardSpotLight";
 import useIsMobile from "@/hooks/useMobile";
 import { TimelineEntry } from "@/types/TimeLIneTypes";
 import { getTimelineVariants } from "@/components/animations/GetTimeLineVeriant";
@@ -43,8 +42,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       }`}
     >
       {/* card body */}
-      <ProjectCardSpotlight
-        className={`relative flex py-6 px-5 items-center w-full lg:w-[50%] ${
+      <div
+        className={`group/spotlight p-5 md:p-10  relative flex py-6 px-5 items-center w-full lg:w-[50%] ${
           isEven
             ? `text-left lg:text-right flex-row-reverse lg:flex-row ${
                 isMobile ? "timeline-card-right" : "timeline-card-left"
@@ -90,10 +89,10 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
           }`}
         >
           <div className="absolute z-40 flex items-center justify-center w-10 h-10 bg-[#0b586f3e] rounded-full">
-            <div className="absolute w-4 h-4 rounded-full bg-[#1f82a0]" />
+            <div className="absolute w-4 h-4 rounded-full bg-[#0da6d4]" />
           </div>
         </div>
-      </ProjectCardSpotlight>
+      </div>
     </motion.div>
   );
 };

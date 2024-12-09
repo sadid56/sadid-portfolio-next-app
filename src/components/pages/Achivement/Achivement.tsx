@@ -1,12 +1,14 @@
 "use client";
+import { MagicCard } from "@/components/ui/MagicCard/MagicCard";
 import { NumberTicker } from "@/components/ui/TextAnimation/NumberTicker";
+import { cn } from "@/utils/cn";
 import {
   IconAddressBook,
   IconBook2,
   IconCalendarEvent,
 } from "@tabler/icons-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const Achievements = () => {
   const ref = useRef(null);
@@ -26,12 +28,38 @@ const Achievements = () => {
   const scaleCode = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
   const scaleEarn = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
+  // States to toggle margin style
+  const [githubHasMaxRotate, setGithubHasMaxRotate] = useState(false);
+  const [codeHasMaxRotate, setCodeHasMaxRotate] = useState(false);
+  const [earnHasMaxRotate, setEarnHasMaxRotate] = useState(false);
+
+  useEffect(() => {
+    const unsubscribeGithub = rotateGithub.onChange((value) => {
+      setGithubHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
+    });
+
+    const unsubscribeCode = rotateCode.onChange((value) => {
+      setCodeHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
+    });
+
+    const unsubscribeEarn = rotateEarn.onChange((value) => {
+      setEarnHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
+    });
+
+    return () => {
+      unsubscribeGithub();
+      unsubscribeCode();
+      unsubscribeEarn();
+    };
+  }, [rotateGithub, rotateCode, rotateEarn]);
+
   const items = [
     {
       rotate: rotateGithub,
       scale: scaleGithub,
-      title: "Year of Experiance",
+      title: "Year of Experience",
       value: 1,
+      style: githubHasMaxRotate ? "" : "-mr-16 z-10",
       icon: (
         <IconCalendarEvent size={48} strokeWidth={1} className="text-primary" />
       ),
@@ -41,6 +69,7 @@ const Achievements = () => {
       scale: scaleCode,
       title: "Projects Completed",
       value: 10,
+      style: codeHasMaxRotate ? "" : "z-0",
       icon: (
         <IconAddressBook size={48} strokeWidth={1} className="text-primary" />
       ),
@@ -50,32 +79,37 @@ const Achievements = () => {
       scale: scaleEarn,
       title: "Achievement",
       value: 5,
+      style: earnHasMaxRotate ? "" : "-ml-16 z-10",
       icon: <IconBook2 size={48} strokeWidth={1} className="text-primary" />,
     },
   ];
 
   return (
-    <div ref={ref} className="flex justify-center gap-6 items-center flex-col md:flex-row mb-32">
+    <div
+      ref={ref}
+      className="flex justify-center gap-10 items-center flex-col md:flex-row mb-32"
+    >
       {items.map((item, index) => (
-        <motion.div
-          initial={{ opacity: 0, y: 100 }} // Start with opacity 0 and below view
-          whileInView={{ opacity: 1, y: 0 }} // When in view, move it up to y: 0 and make it visible
-          transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
-          viewport={{ once: false }} // Trigger only once when it comes into view
+        <MagicCard
+          rotate={item?.rotate}
+          scale={item?.scale}
           key={index}
-          style={{ rotate: item.rotate, scale: item.scale }} // Apply both rotate and scale
-          className="relative w-44 h-52 bg-gradient-to-b from-white/20 to-transparent border border-white/10 shadow-xl flex justify-center items-center rounded-lg backdrop-blur-lg"
+          className={cn(`w-64 h-80 transition-all duration-150`, item?.style)}
         >
-          <div className="flex flex-col items-center gap-3">
-            <div>{item.icon}</div>
-            <h2 className="text-slate-300 font-bold font-outfit text-4xl">
-              <NumberTicker value={item.value}/>+
-            </h2>
-          </div>
-          <span className="absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins">
-            {item.title}
-          </span>
-        </motion.div>
+          <motion.div
+            className={`relative w-64 h-80 bg-gradient-to-b from-white/20 to-transparent border border-white/10 shadow-xl flex justify-center items-center rounded-lg backdrop-blur-lg`}
+          >
+            <div className="flex flex-col items-center gap-3">
+              <div>{item.icon}</div>
+              <h2 className="text-slate-300 font-bold font-outfit text-4xl">
+                <NumberTicker value={item.value} />+
+              </h2>
+            </div>
+            <span className="absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins">
+              {item.title}
+            </span>
+          </motion.div>
+        </MagicCard>
       ))}
     </div>
   );
