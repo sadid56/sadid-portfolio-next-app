@@ -17,7 +17,29 @@
 
     "client_github_link": "https://github.com/Binary-Masters/DrivePulse-Client",
     "server_github_link": "https://github.com/Binary-Masters/DrivePulse-Server",
-    "live_link": "https://drive-pulse-client.vercel.app/"
+    "live_link": "https://drive-pulse-client.vercel.app/",
+    "contributors":[
+      {
+        "name":"Shahidul Islam",
+        "fb":"https://www.facebook.com/profile.php?id=100007891637711"
+      },
+      {
+        "name":"Md. Morshed Alam",
+        "fb":"https://www.facebook.com/mdmorsed.alam.9809"
+      },
+      {
+        "name":"Zaib Khan",
+        "fb":"https://www.facebook.com/scarcrack"
+      },
+      {
+        "name":"Kamruj Jaman",
+        "fb":"https://www.facebook.com/kj.rahil"
+      },
+      {
+        "name":"Abu Bokor Siddiq",
+        "fb":"https://www.facebook.com/profile.php?id=100024960182776"
+      }
+    ]
   },
   {
     "id": 2,

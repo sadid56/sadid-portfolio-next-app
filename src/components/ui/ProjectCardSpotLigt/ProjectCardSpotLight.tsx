@@ -1,16 +1,16 @@
-
-"use client"
+"use client";
 import { cn } from "@/utils/cn";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
 import React, { MouseEvent as ReactMouseEvent, useState } from "react";
 // import { CanvasRevealEffect } from "./CanvasRevalEffect";
 import dynamic from "next/dynamic";
 
-
-const CanvasRevealEffect = dynamic(() => import("./CanvasRevalEffect").then(mod => mod.CanvasRevealEffect), {
-  ssr: false,
-});
-
+const CanvasRevealEffect = dynamic(
+  () => import("./CanvasRevalEffect").then((mod) => mod.CanvasRevealEffect),
+  {
+    ssr: false,
+  }
+);
 
 export const ProjectCardSpotlight = ({
   children,
@@ -65,7 +65,7 @@ export const ProjectCardSpotlight = ({
       >
         {isHovering && (
           <CanvasRevealEffect
-          // @ts-ignore
+            // @ts-ignore
             animationSpeed={5}
             containerClassName="bg-transparent absolute inset-0 pointer-events-none"
             colors={[

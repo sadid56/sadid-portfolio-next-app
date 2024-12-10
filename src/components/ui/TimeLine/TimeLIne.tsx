@@ -39,16 +39,13 @@ export const Timeline: React.FC<Props> = ({ data }) => {
   return (
     <div className="w-full md:px-10 overflow-hidden z-10" ref={containerRef}>
       {/* Header Section */}
-      <div className=" px-4 md:w-1/2 mx-auto text-center">
+      <div className=" px-4 lg:w-1/2 mx-auto text-center">
         <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
           <DockText text=" Ultimate Support Tailored for You" />
         </BoxReveal>
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
           <p className="max-w-2xl text-sm md:text-lg mt-5 text-slate-400 font-poppins">
-            We craft beautiful products using cutting-edge technologies and
-            frameworks. Our team of passionate developers and designers is
-            dedicated to bringing your vision to life with innovative and
-            reliable solutions.
+          I create beautiful products with full-stack technologies, dedicated to turning your vision into innovative and reliable solutions.
           </p>
         </BoxReveal>
       </div>

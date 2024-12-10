@@ -12,8 +12,8 @@ import {
 } from "@tabler/icons-react";
 import { CenterVideo } from "@/components/pages/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/pages/Hero/HeroParallaxItems";
+import { GradualSpacing } from "@/components/ui/GradualSpacing/GradualSpacing";
 const Hero = () => {
-
   const SECTION_HEIGHT = 1600;
 
   return (
@@ -50,7 +50,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
     </header>
   );
 };
@@ -94,13 +93,12 @@ const HeroParallaxItems = () => {
         className="float-end w-[90%] md:w-2/3"
       >
         <BoxReveal boxColor={"#03e9f4"} duration={0.9}>
-          <div className="text-slate-300 font-poppins font-normal text-end">
-            Passionate
-            <FlipWords words={words} />
-            specializing in React, Next.js, and TypeScript. I craft seamless
-            user experiences with Tailwind CSS and Framer Motion. I love someone
-            who loves programming and is eager to learn.
-          </div>
+          <GradualSpacing className="text-slate-300 font-poppins font-normal text-end">
+            Passionate {<FlipWords words={words} />} specializing in React,
+            Next.js, and TypeScript. I craft seamless user experiences with
+            Tailwind CSS and Framer Motion. I love someone who loves programming
+            and is eager to learn.
+          </GradualSpacing>
         </BoxReveal>
       </HeroParallaxItem>
       {/* about  me name */}
@@ -127,19 +125,13 @@ const HeroParallaxItems = () => {
         className="float-start w-[90%] md:w-2/3"
       >
         <BoxReveal boxColor={"#03e9f4"} duration={0.9}>
-          <p className="text-slate-300 font-poppins font-normal text-start">
-            Hello, I'm Sadid, a skilled MERN stack web developer. With a passion
-            for creating seamless digital experiences, I specialize in crafting
-            efficient and user-friendly applications. My expertise spans
-            MongoDB, Express.js, React, and Node.js, allowing me to deliver
-            end-to-end solutions. I thrive on challenges, continuously learn,
-            and am committed to turning your ideas into powerful online
+          <GradualSpacing className="text-slate-300 font-poppins font-normal text-start">
+          Hello, I'm Sadid, Full stack web developer. I specialize in
+            crafting efficient and user-friendly applications. I thrive on challenges, continuously learn, and am committed to turning your ideas into powerful online
             realities. Let's collaborate and build something extraordinary.
-          </p>
+          </GradualSpacing>
         </BoxReveal>
       </HeroParallaxItem>
     </div>
   );
 };
-
-

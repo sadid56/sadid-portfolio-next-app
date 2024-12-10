@@ -6,7 +6,6 @@ import skillsArray from "../../../../public/skills.json";
 import "./Skills.css";
 import Image from "next/image";
 import LargeTitle from "@/components/common/LargeTitle/LargeTitle";
-import { Element } from "react-scroll";
 import SectionTitle from "@/components/common/sectionTitle/SectionTitle";
 
 
@@ -35,9 +34,7 @@ const Skills = () => {
   };
 
   return (
-    // @ts-ignore
-    <Element
-      name="skills"
+    <div
       id="skills"
       className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-20 relative min-h-screen parent-div"
     >
@@ -127,7 +124,7 @@ const Skills = () => {
           </motion.div>
         ))}
       </motion.div>
-    </Element>
+    </div>
   );
 };
 

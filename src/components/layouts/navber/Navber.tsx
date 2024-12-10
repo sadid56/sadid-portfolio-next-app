@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 import { useEffect, useState, useRef } from "react";
 import logo from "../../../assets/images/logo-name.png";
@@ -102,6 +104,7 @@ const Navber = () => {
                   variants={navItemVariants}
                   onClick={() => setIsToggle(false)}
                 >
+                  {/* */}
                   <Link
                     activeClass="active"
                     to={nav?.path}

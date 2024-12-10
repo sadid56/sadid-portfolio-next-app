@@ -87,16 +87,18 @@ const Achievements = () => {
   return (
     <div
       ref={ref}
-      className="flex justify-center gap-10 items-center flex-col md:flex-row mb-32"
+      className="flex justify-center gap-10 items-center flex-col md:flex-row mb-32 mt-24 lg:mt-5"
     >
       {items.map((item, index) => (
         <MagicCard
           rotate={item?.rotate}
           scale={item?.scale}
+
           key={index}
-          className={cn(`w-64 h-80 transition-all duration-150`, item?.style)}
+          className={cn(`w-64 h-80 transition-all duration-150 ease-out`, item?.style)}
         >
           <motion.div
+
             className={`relative w-64 h-80 bg-gradient-to-b from-white/20 to-transparent border border-white/10 shadow-xl flex justify-center items-center rounded-lg backdrop-blur-lg`}
           >
             <div className="flex flex-col items-center gap-3">
