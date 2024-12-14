@@ -68,6 +68,12 @@ const Navber = () => {
       },
     }),
   };
+
+const handleLinkClick = ()=>{
+  setActive(false)
+  setIsToggle(false)
+}
+
   return (
     <>
       <nav
@@ -102,13 +108,14 @@ const Navber = () => {
                   key={i + 1}
                   custom={i}
                   variants={navItemVariants}
-                  onClick={() => setIsToggle(false)}
+                  // onClick={() => setIsToggle(false)}
                 >
                   {/* */}
                   <Link
                     activeClass="active"
                     to={nav?.path}
                     spy={true}
+                    onClick={handleLinkClick}
                     smooth={true}
                     offset={50}
                     duration={500}

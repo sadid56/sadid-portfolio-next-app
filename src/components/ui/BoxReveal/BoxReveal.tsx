@@ -22,6 +22,7 @@ export const BoxReveal = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
+  //
   useEffect(() => {
     if (isInView) {
       slideControls.start("visible");

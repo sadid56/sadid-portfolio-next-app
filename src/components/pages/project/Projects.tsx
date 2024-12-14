@@ -82,7 +82,7 @@ const Card: React.FC<Props> = ({
       <ShineBorder
         color={["#03e9f4", "#FE8FB5", "#094f52c8"]}
         key={project?.id}
-        className="h-[420px] md:h-[400px] w-[90vw] lg:w-[60vw] snap-center"
+        className="h-[420px] md:h-[400px] w-[90vw] lg:w-[900px] snap-center"
       >
         {/* project main card content with hover effect */}
         <ProjectCardSpotlight className="flex flex-col md:flex-row gap-4 md:gap-7 rounded-sm h-full">

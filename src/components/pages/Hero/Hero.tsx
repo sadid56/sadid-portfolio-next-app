@@ -1,3 +1,4 @@
+"use client"
 /* eslint-disable react/no-unescaped-entities */
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 import "./hero.css";
@@ -13,8 +14,13 @@ import {
 import { CenterVideo } from "@/components/pages/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/pages/Hero/HeroParallaxItems";
 import { GradualSpacing } from "@/components/ui/GradualSpacing/GradualSpacing";
+import { useEffect } from "react";
 const Hero = () => {
   const SECTION_HEIGHT = 1600;
+
+  useEffect(()=>{
+    localStorage.setItem("notification", "true");
+  },[])
 
   return (
     <header id="home">
@@ -29,6 +35,7 @@ const Hero = () => {
         {/* right side scroll icon */}
         <div className="fixed bottom-5 right-3 md:right-5 flex-col items-center gap-10 flex">
           <div className="flex flex-col gap-3 items-center ">
+
             <LinkPreview url="https://github.com/sadid56/">
               <Icon Icon={IconBrandGithub} widht={2} />
             </LinkPreview>
@@ -41,6 +48,7 @@ const Hero = () => {
             <LinkPreview url="https://www.linkedin.com/in/mr-sadid/">
               <Icon Icon={IconBrandLinkedin} widht={2} />
             </LinkPreview>
+
           </div>
           <div className="relative">
             <p className="text-slate-300 text-sm absolute rotate-90 -right-1 top-8 font-poppins">

@@ -10,6 +10,7 @@ import Projects from "@/components/pages/project/Projects";
 import Services from "@/components/pages/services/Services";
 import ThanksComponent from "@/components/pages/ThanksComponent/ThanksComponent";
 import DynamicBackground from "@/components/Container/DynamicBackgournd";
+// import BubbleCursor from "@/components/ui/ExternalStyle/BubbleCurson";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     <DynamicBackground>
       <TopProgressBar />
       <GlowCursor />
+      {/* <BubbleCursor /> */}
       <Navber />
       <Hero />
       <Skills />

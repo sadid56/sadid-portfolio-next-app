@@ -1,4 +1,5 @@
 "use client";
+import useIsMobile from "@/hooks/useMobile";
 import {
   useMotionTemplate,
   useScroll,
@@ -7,9 +8,10 @@ import {
 } from "framer-motion";
 
 export const CenterVideo = () => {
+  const isMobile = useIsMobile()
   const { scrollY } = useScroll();
-  const clip1 = useTransform(scrollY, [0, 1000], [15, 0]);
-  const clip2 = useTransform(scrollY, [0, 1000], [85, 100]);
+  const clip1 = useTransform(scrollY, [0, 1000], [ isMobile ? 0 : 10, 0]);
+  const clip2 = useTransform(scrollY, [0, 1000], [isMobile ?  100 : 90, 100]);
   const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
   return (

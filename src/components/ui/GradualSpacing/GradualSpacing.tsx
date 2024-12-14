@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { AnimatePresence, motion, Variants } from "framer-motion";
-import React, { ReactNode, ReactElement } from "react";
+import { AnimatePresence, motion, useAnimation, useInView, Variants } from "framer-motion";
+import React, { ReactNode, ReactElement, useRef, useEffect } from "react";
 
 interface GradualSpacingProps {
   duration?: number;
@@ -22,13 +22,29 @@ export function GradualSpacing({
   className,
   children,
 }: GradualSpacingProps) {
+  const mainControls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+
+      mainControls.start("visible");
+    } else {
+
+      mainControls.start("hidden");
+    }
+  }, [isInView, mainControls]);
+
+
+
   const renderContent = (node: ReactNode, index: number): ReactNode => {
     if (typeof node === "string") {
       return node.split("").map((char, i) => (
         <motion.span
           key={`${index}-${i}`}
           initial="hidden"
-          animate="visible"
+          animate={mainControls}
           exit="hidden"
           variants={framerProps}
           transition={{ duration, delay: (index + i) * delayMultiple }}
@@ -46,13 +62,14 @@ export function GradualSpacing({
           renderContent(child, index + i)
         ),
       });
+
     }
 
     return node;
   };
 
   return (
-    <div className={cn("flex max-w-4xl flex-wrap", className)}>
+    <div ref={ref} className={cn("flex max-w-4xl flex-wrap", className)}>
       <AnimatePresence>{React.Children.map(children, renderContent)}</AnimatePresence>
     </div>
   );

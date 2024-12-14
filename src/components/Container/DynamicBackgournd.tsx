@@ -1,7 +1,13 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
+import Loading from "../ui/Loading/Loading";
+
+// home page loading
+const LoadingSpinner = () => {
+  return <Loading/>;
+};
 
 export default function DynamicBackground({
   children,
@@ -10,6 +16,7 @@ export default function DynamicBackground({
 }) {
   const { scrollYProgress } = useScroll();
   const lenisRef = useRef<Lenis | null>(null);
+  const [isLoading, setIsloading] = useState(false);
   // Define background color transformation based on scroll position
   const backgroundColor = useTransform(
     scrollYProgress,
@@ -35,9 +42,21 @@ export default function DynamicBackground({
     };
   }, []);
 
+  // auto loading show
+  useEffect(() => {
+    const fetchLoading = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsloading(false);
+    };
+    fetchLoading();
+  }, []);
+
   return (
-    <motion.div style={{ backgroundColor }} className="min-h-screen border-[#040459e2]">
-      {children}
+    <motion.div
+      style={{ backgroundColor }}
+      className="min-h-screen border-[#040459e2]"
+    >
+      <>{isLoading ? <LoadingSpinner /> :  children }</>
     </motion.div>
   );
 }

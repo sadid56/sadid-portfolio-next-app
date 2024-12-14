@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -15,9 +15,13 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   const controls = useAnimation();
   const isMobile = useIsMobile();
   const [ref, inView] = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.2,
   });
+
+  const [droppedItems, setDroppedItems] = useState<TimelineEntry[]>([]);
+
+
 
   useEffect(() => {
     if (inView) {
@@ -29,21 +33,37 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
 
   const isEven = index % 2 === 0;
 
+  // Handle drag end
+  const handleDragEnd = (event: any, info: any) => {
+    const { y } = info.point;
+    const windowHeight = window.innerHeight;
+
+    // Check if dropped near the bottom of the screen
+    if (y > windowHeight - 150) {
+      setDroppedItems((prev) => [...prev, item]);
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
       variants={getTimelineVariants(isEven, isMobile)}
-      className={`lg:flex lg:justify-between gap-10 relative pt-20 md:pt-40 ${
+      className={`lg:flex lg:justify-between cursor-pointer z-20 gap-10 relative pt-20 md:pt-40 ${
         isEven
           ? "flex-row lg:mr-28 ml-10 lg:ml-0"
           : "flex-row-reverse ml-10 lg:ml-28 "
       }`}
     >
       {/* card body */}
-      <div
-        className={`group/spotlight p-5 md:p-10  relative flex py-6 px-5 items-center w-full lg:w-[50%] ${
+      <motion.div
+        drag
+        dragConstraints={{ top: -200, bottom: 800, left: -300, right: 300 }}
+        dragElastic={0.5}
+        onDragEnd={handleDragEnd}
+        whileDrag={{ zIndex: 30 }}
+        className={`group/spotlight p-5 md:p-10 relative flex py-6 px-5 items-center w-full lg:w-[50%] ${
           isEven
             ? `text-left lg:text-right flex-row-reverse lg:flex-row ${
                 isMobile ? "timeline-card-right" : "timeline-card-left"
@@ -92,7 +112,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
             <div className="absolute w-4 h-4 rounded-full bg-[#0da6d4]" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
