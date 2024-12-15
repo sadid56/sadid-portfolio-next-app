@@ -1,4 +1,4 @@
-"use client"
+
 /* eslint-disable react/no-unescaped-entities */
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 import "./hero.css";
@@ -14,13 +14,9 @@ import {
 import { CenterVideo } from "@/components/pages/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/pages/Hero/HeroParallaxItems";
 import { GradualSpacing } from "@/components/ui/GradualSpacing/GradualSpacing";
-import { useEffect } from "react";
+
 const Hero = () => {
   const SECTION_HEIGHT = 1600;
-
-  useEffect(()=>{
-    localStorage.setItem("notification", "true");
-  },[])
 
   return (
     <header id="home">

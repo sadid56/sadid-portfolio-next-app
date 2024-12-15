@@ -54,3 +54,26 @@ a:hover ~ .cursor {
     #e81cff
   ); /* Reverse the gradient */
 }
+
+
+.cursor-default {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
+
+.cursor-child {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: overlay;
+}
