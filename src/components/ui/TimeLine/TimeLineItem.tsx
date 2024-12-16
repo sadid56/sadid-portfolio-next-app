@@ -102,8 +102,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
               </g>
             </svg>
             <p className="text-sm md:text-base">
-              Unleash your creativity! Drag and drop service cards for a dash of
-              fun!
+            You can drag and drop the cards for fun! Try it out.
             </p>
           </div>
           <button
