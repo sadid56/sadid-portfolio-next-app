@@ -12,7 +12,7 @@ const Loading = () => {
         const newPercentage = prevPercentage + 1;
         return newPercentage <= 100 ? newPercentage : prevPercentage;
       });
-    }, 15);
+    }, 10);
 
     return () => clearInterval(intervalId);
   }, []);

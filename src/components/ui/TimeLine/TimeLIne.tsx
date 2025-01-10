@@ -1,10 +1,16 @@
 "use client";
+
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import BoxReveal from "../BoxReveal/BoxReveal";
 import "./timeline.css";
 import TimelineItem from "./TimeLineItem";
 import DockText from "../TextAnimation/DockText";
+import animationRocket from "@/assets/animation/rocket.json";
+import useScrollTrigger from "@/hooks/useScrollTrigger";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 interface TimelineEntry {
   service_name: string;
@@ -20,10 +26,19 @@ export const Timeline: React.FC<Props> = ({ data }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+  const scrollingDown = useScrollTrigger();
+  const [rocketRotation, setRocketRotation] = useState(0);
 
-
+  // Update rocket rotation based on scrolling direction
   useEffect(() => {
-    if (ref.current) {
+    if (typeof window !== "undefined") {
+      setRocketRotation(scrollingDown ? 180 : 0);
+    }
+  }, [scrollingDown]);
+
+  // Set the height of the timeline container
+  useEffect(() => {
+    if (typeof window !== "undefined" && ref.current) {
       const rect = ref.current.getBoundingClientRect();
       setHeight(rect.height);
     }
@@ -40,13 +55,14 @@ export const Timeline: React.FC<Props> = ({ data }) => {
   return (
     <div className="w-full md:px-10 overflow-hidden z-10" ref={containerRef}>
       {/* Header Section */}
-      <div className=" px-4 lg:w-1/2 mx-auto text-center">
+      <div className="px-4 lg:w-1/2 mx-auto text-center">
         <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
           <DockText text=" Ultimate Support Tailored for You" />
         </BoxReveal>
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
           <p className="max-w-2xl text-sm md:text-lg mt-5 text-slate-400 font-poppins">
-          I create beautiful products with full-stack technologies, dedicated to turning your vision into innovative and reliable solutions.
+            I create beautiful products with full-stack technologies, dedicated
+            to turning your vision into innovative and reliable solutions.
           </p>
         </BoxReveal>
       </div>
@@ -64,15 +80,27 @@ export const Timeline: React.FC<Props> = ({ data }) => {
         {/* Centered Progress Line */}
         <div
           style={{ height: height + "px" }}
-          className="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] z-0"
+          className="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0 overflow-hidden w-[30px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-700/20 to-transparent to-[100%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] z-0"
         >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
-          />
+          <motion.div>
+            <motion.div
+              style={{
+                height: heightTransform,
+                opacity: opacityTransform,
+              }}
+              className="absolute inset-x-0 top-0 w-20"
+            >
+              {/* Rocket Animation */}
+              <motion.div
+                style={{
+                  rotate: rocketRotation,
+                }}
+                className="w-14 h-14 absolute bottom-0 right-9"
+              >
+                <Lottie animationData={animationRocket} loop={true} />
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </div>

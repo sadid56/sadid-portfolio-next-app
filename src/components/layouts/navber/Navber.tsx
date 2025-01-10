@@ -84,7 +84,14 @@ const handleLinkClick = ()=>{
           ref={navRef}
         >
           <div>
-            <Image width={150} height={150} src={logo} alt="" />
+          <Image
+          src={logo.src}
+          alt="Logo"
+          width={120}
+          height={120}
+          priority
+          style={{ width: 'auto', height: 'auto' }}
+          />
           </div>
           {/* item list */}
           <div

@@ -34,15 +34,15 @@ const Achievements = () => {
   const [earnHasMaxRotate, setEarnHasMaxRotate] = useState(false);
 
   useEffect(() => {
-    const unsubscribeGithub = rotateGithub.onChange((value) => {
+    const unsubscribeGithub = rotateGithub.on("change", (value) => {
       setGithubHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
     });
 
-    const unsubscribeCode = rotateCode.onChange((value) => {
+    const unsubscribeCode = rotateCode.on("change", (value) => {
       setCodeHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
     });
 
-    const unsubscribeEarn = rotateEarn.onChange((value) => {
+    const unsubscribeEarn = rotateEarn.on("change", (value) => {
       setEarnHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
     });
 
@@ -52,6 +52,7 @@ const Achievements = () => {
       unsubscribeEarn();
     };
   }, [rotateGithub, rotateCode, rotateEarn]);
+
 
   const items = [
     {
