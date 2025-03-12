@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 "use client";
-import { useEffect, useState, useRef } from "react";
+
 import logo from "../../../assets/images/logo-name.png";
 import "./navber.css";
 import Image from "next/image";
@@ -9,53 +9,19 @@ import AnimatedHamburgerButton from "@/components/ui/Button/AnimatedHumberButton
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import ContactInfo from "./ContactInfo";
+import { useNavbar } from "@/hooks/useNavbar";
 
 const Navber = () => {
-  const [isToggle, setIsToggle] = useState(false);
-  const [scroll, setScroll] = useState(false);
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const [active, setActive] = useState(false);
-
-  // nav links
-  const links = [
-    { path: "home", label: "Home" },
-    { path: "skills", label: "Skills" },
-    { path: "projects", label: "Projects" },
-    { path: "services", label: "Services" },
-  ];
-
-  // handle scrolling for navbar style change
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setScroll(true);
-      } else {
-        setScroll(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // close navbar when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setIsToggle(false);
-        setActive(false);
-      }
-    };
-    if (isToggle) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isToggle]);
+  const {
+    isToggle,
+    setIsToggle,
+    scroll,
+    navRef,
+    active,
+    setActive,
+    links,
+    handleLinkClick,
+  } = useNavbar();
 
   // Framer Motion animations for navbar items
   const navItemVariants = {
@@ -69,10 +35,6 @@ const Navber = () => {
     }),
   };
 
-const handleLinkClick = ()=>{
-  setActive(false)
-  setIsToggle(false)
-}
 
   return (
     <>
@@ -84,14 +46,14 @@ const handleLinkClick = ()=>{
           ref={navRef}
         >
           <div>
-          <Image
-          src={logo.src}
-          alt="Logo"
-          width={120}
-          height={120}
-          priority
-          style={{ width: 'auto', height: 'auto' }}
-          />
+            <Image
+              src={logo.src}
+              alt="Logo"
+              width={120}
+              height={120}
+              priority
+              style={{ width: "auto", height: "auto" }}
+            />
           </div>
           {/* item list */}
           <div
@@ -137,7 +99,7 @@ const handleLinkClick = ()=>{
             </motion.ul>
 
             {/* contact info */}
-            <ContactInfo isToggle={isToggle}/>
+            <ContactInfo isToggle={isToggle} />
           </div>
 
           {/* condition bar in mobile device */}

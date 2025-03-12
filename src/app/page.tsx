@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "@/components/layouts/footer/Footer";
-import Navber from "@/components/layouts/navber/Navber";
+import Navber from "@/components/layouts/navber/Navbar";
 import TopProgressBar from "@/components/ui/ExternalStyle/TopProgressBar";
 import GlowCursor from "@/components/ui/ExternalStyle/GlowCursor";
 import Hero from "@/components/pages/Hero/Hero";
@@ -18,7 +18,6 @@ export default function Home() {
     <DynamicBackground>
       <TopProgressBar />
       <GlowCursor />
-      {/* <BubbleCursor /> */}
       <Navber />
       <Hero />
       <Skills />
@@ -30,3 +29,4 @@ export default function Home() {
     </DynamicBackground>
   );
 }
+
