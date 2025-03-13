@@ -22,7 +22,7 @@ const ContactInfo = ({ isToggle }: { isToggle: boolean }) => {
         animate={isToggle ? "visible" : "hidden"}
         transition={{ type: "tween", duration: 0.4, delay: 0.1 }}
         variants={contactVariants}
-        className="text-lg md:text-xl font-semibold text-slate-300 uppercase font-outfit"
+        className="text-lg md:text-xl font-semibold text-slate-300 uppercase font-montserrat"
       >
         Contact Me
       </motion.h3>
@@ -34,7 +34,7 @@ const ContactInfo = ({ isToggle }: { isToggle: boolean }) => {
           transition={{ type: "tween", duration: 0.4, delay: 0.2 }}
           variants={contactVariants}
         >
-          <h3 className="text-xl font-outfit font-medium text-slate-300">
+          <h3 className="text-xl font-montserrat font-medium text-slate-300">
             Whatsapp
           </h3>
           <p className="font-sm text-slate-400 font-medium font-poppins">
@@ -48,7 +48,7 @@ const ContactInfo = ({ isToggle }: { isToggle: boolean }) => {
           transition={{ type: "tween", duration: 0.4, delay: 0.3 }}
           variants={contactVariants}
         >
-          <h3 className="text-xl font-outfit font-medium text-slate-300">
+          <h3 className="text-xl font-montserrat font-medium text-slate-300">
             Email
           </h3>
           <p className="font-sm text-slate-400 font-medium font-poppins">

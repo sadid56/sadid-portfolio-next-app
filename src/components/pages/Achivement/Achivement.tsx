@@ -53,7 +53,6 @@ const Achievements = () => {
     };
   }, [rotateGithub, rotateCode, rotateEarn]);
 
-
   const items = [
     {
       rotate: rotateGithub,
@@ -94,17 +93,18 @@ const Achievements = () => {
         <MagicCard
           rotate={item?.rotate}
           scale={item?.scale}
-
           key={index}
-          className={cn(`w-64 h-80 transition-all duration-150 ease-out`, item?.style)}
+          className={cn(
+            `w-64 h-80 transition-all duration-150 ease-out`,
+            item?.style
+          )}
         >
           <motion.div
-
             className={`relative w-64 h-80 bg-gradient-to-b from-white/20 to-transparent border border-white/10 shadow-xl flex justify-center items-center rounded-lg backdrop-blur-lg`}
           >
             <div className="flex flex-col items-center gap-3">
               <div>{item.icon}</div>
-              <h2 className="text-slate-300 font-bold font-outfit text-4xl">
+              <h2 className="text-slate-300 font-bold font-montserrat text-4xl">
                 <NumberTicker value={item.value} />+
               </h2>
             </div>

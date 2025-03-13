@@ -65,7 +65,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   return (
     <>
       {isNotification && (
-        <div className="fixed flex items-center gap-5 bg-indigo-500 font-outfit px-4 py-3 rounded-md text-white shadow-lg right-1 md:right-5 bottom-5 z-[999]">
+        <div className="hidden fixed md:flex items-center gap-5 bg-indigo-500 font-montserrat px-4 py-3 rounded-md text-white shadow-lg right-1 md:right-5 bottom-5 z-[999]">
           <div className="flex items-center gap-2">
             <Info />
             <p className="text-sm md:text-base">
@@ -86,7 +86,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
         initial="hidden"
         animate={controls}
         whileDrag={{ scale: 1.1 }}
-        drag
+        drag={isMobile ? false : true}
         dragElastic={0.5}
         onDragEnd={handleDragEnd}
         dragSnapToOrigin
@@ -128,7 +128,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
                 src={item.icon}
               />
             </div>
-            <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-200 font-outfit">
+            <h3 className="hidden md:block text-xl md:text-4xl font-bold text-neutral-200 font-montserrat">
               {item.service_name}
             </h3>
             <h3 className="text-[16px] font-medium text-neutral-300 font-poppins">

@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="icon" href="./favicon.png" type="image/png" />
       </head>
       <body>
-        {children}
+        {children} 
       </body>
     </html>
   );

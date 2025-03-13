@@ -104,7 +104,7 @@ const Card: React.FC<Props> = ({
             />
           </div>
           <div className="md:w-[60%] z-20">
-            <h3 className="text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1 font-outfit w-full pl-1">
+            <h3 className="text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1 font-montserrat w-full pl-1">
               <BoxReveal boxColor={"#108a91"} duration={0.8}>
                 <span>{project?.project_name}</span>
               </BoxReveal>
@@ -129,7 +129,7 @@ const Card: React.FC<Props> = ({
 
             {project?.contributors && (
               <div className="mt-2 hidden md:block">
-                <p className="font-medium text-sm font-outfit text-slate-300">
+                <p className="font-medium text-sm font-montserrat text-slate-300">
                   Contributors:
                 </p>
                 <div className="space-x-2">

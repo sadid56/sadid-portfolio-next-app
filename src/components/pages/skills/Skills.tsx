@@ -1,13 +1,12 @@
 "use client";
-import {useState } from "react";
-import {  motion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import skillsArray from "../../../../public/skills.json";
 import "./Skills.css";
 import Image from "next/image";
 import LargeTitle from "@/components/common/LargeTitle/LargeTitle";
 import SectionTitle from "@/components/common/sectionTitle/SectionTitle";
-
 
 const Skills = () => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
@@ -36,7 +35,7 @@ const Skills = () => {
   return (
     <div
       id="skills"
-      className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden mt-20 relative min-h-screen parent-div"
+      className="w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen parent-div"
     >
       <SectionTitle color="Skills" text="_" />
       <LargeTitle title="Skills" />
@@ -52,7 +51,7 @@ const Skills = () => {
         {tabsArray.map((tab) => (
           <motion.button
             onClick={() => handleSetTabs(tab)}
-            className={`tab-btn font-outfit ${
+            className={`tab-btn font-montserrat ${
               currentTab === tab ? "tab-active" : ""
             }`}
             key={tab}
@@ -87,7 +86,7 @@ const Skills = () => {
               className="tooltip"
             >
               <div className="side">
-                <div className="about font-outfit">{skill.side}</div>
+                <div className="about font-montserrat">{skill.side}</div>
               </div>
             </motion.div>
             <motion.div className="text">
@@ -100,7 +99,6 @@ const Skills = () => {
                   <span className="p-2 md:p-3">
                     {/* Image with Skeleton Loader */}
                     <div className="w-[53px] h-[53px]  md:w-[75px] md:h-[75px] relative">
-
                       <Image
                         src={skill.logo}
                         alt={skill.name}
@@ -111,7 +109,6 @@ const Skills = () => {
                         style={{ objectFit: "cover" }}
                         className="rounded-full border-2 border-[#11c6cf] transition-opacity duration-500 ease-in-out w-[53px] h-[53px]  md:w-[75px] md:h-[75px]"
                         quality={100}
-
                       />
                     </div>
                   </span>

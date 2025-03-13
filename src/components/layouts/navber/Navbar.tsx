@@ -35,7 +35,6 @@ const Navber = () => {
     }),
   };
 
-
   return (
     <>
       <nav
@@ -88,7 +87,7 @@ const Navber = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className={`nav-link font-outfit ${
+                    className={`nav-link font-montserrat ${
                       nav.path === "home" && !scroll ? "nav-link active" : ""
                     }`}
                   >

@@ -1,17 +1,20 @@
-"use client"
+"use client";
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import styles from "./styles.module.css"
-
+import styles from "./styles.module.css";
 
 interface SectionTitleProps {
   color: string;
   text: string;
-  lineBrak?: boolean
+  lineBrak?: boolean;
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = ({ color, text, lineBrak = false }) => {
+const SectionTitle: React.FC<SectionTitleProps> = ({
+  color,
+  text,
+  lineBrak = false,
+}) => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
@@ -28,8 +31,6 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ color, text, lineBrak = fal
     hidden: { opacity: 0, y: 50 },
   };
 
-
-
   return (
     <motion.div
       ref={ref}
@@ -40,9 +41,11 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ color, text, lineBrak = fal
       className=" relative"
     >
       <h2
-        className={`${
-          inView && `${styles.animation}`
-        } flex ${lineBrak  ? "flex-col" : ""} gap-2 ${styles.textAnimation} text-3xl md:text-5xl font-semibold font-outfit`}
+        className={`${inView && `${styles.animation}`} flex ${
+          lineBrak ? "flex-col" : ""
+        } gap-2 ${
+          styles.textAnimation
+        } text-3xl md:text-5xl font-semibold font-montserrat`}
       >
         <span>{color}</span> <span className="text-slate-300">{text}</span>
       </h2>
