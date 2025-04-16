@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { AnimatePresence, motion, useAnimation, useInView, Variants } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useInView,
+  Variants,
+} from "framer-motion";
 import React, { ReactNode, ReactElement, useRef, useEffect } from "react";
 
 interface GradualSpacingProps {
@@ -28,15 +34,11 @@ export function GradualSpacing({
 
   useEffect(() => {
     if (isInView) {
-
       mainControls.start("visible");
     } else {
-
       mainControls.start("hidden");
     }
   }, [isInView, mainControls]);
-
-
 
   const renderContent = (node: ReactNode, index: number): ReactNode => {
     if (typeof node === "string") {
@@ -56,13 +58,14 @@ export function GradualSpacing({
     }
 
     if (React.isValidElement(node)) {
-      return React.cloneElement(node as ReactElement, {
+      const element = node as ReactElement<any>; // <-- tell TS it has props
+
+      return React.cloneElement(element, {
         key: index,
-        children: React.Children.map(node.props.children, (child, i) =>
+        children: React.Children.map(element.props.children, (child, i) =>
           renderContent(child, index + i)
         ),
       });
-
     }
 
     return node;
@@ -70,7 +73,9 @@ export function GradualSpacing({
 
   return (
     <div ref={ref} className={cn("flex max-w-4xl flex-wrap", className)}>
-      <AnimatePresence>{React.Children.map(children, renderContent)}</AnimatePresence>
+      <AnimatePresence>
+        {React.Children.map(children, renderContent)}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ReactLenis } from "@/utils/lenis";
 
 export const metadata: Metadata = {
   title: "Sadid",
@@ -16,13 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <head>
+      <head>
         {/* Link to the favicon */}
         <link rel="icon" href="./favicon.png" type="image/png" />
       </head>
-      <body>
-        {children} 
-      </body>
+      <ReactLenis options={{ duration: 1.5 }} root>
+        <body>{children}</body>
+      </ReactLenis>
     </html>
   );
 }

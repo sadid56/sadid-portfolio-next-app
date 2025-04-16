@@ -3,168 +3,168 @@
     "id": 1,
     "name": "JavaScript",
     "side": "Frontend/backend",
-    "logo": "https://i.ibb.co/s3hStV0/Java-Script-logo.png",
-    "category": "Expertise"
-  },
-  {
-    "id": 134545,
-    "name": "TypeScript",
-    "side": "Frontend/backend",
-    "logo": "https://i.ibb.co/C5bh6Zr/typescript-icon-icon-1024x1024-vh3pfez8.png",
+    "logo": "/skills/Java-Script-logo.png",
     "category": "Expertise"
   },
   {
     "id": 2,
-    "name": "React.js",
-    "side": "Frontend",
-    "logo": "https://i.ibb.co/hd413Kq/science-15886932.png",
-    "category": "Expertise"
-  },
-  {
-    "id": 234545,
-    "name": "MUI",
-    "side": "UI",
-    "logo": "https://i.ibb.co/8NjKgpc/bb13aeb51c54421a7a5540a7132895dc.png",
+    "name": "TypeScript",
+    "side": "Frontend/backend",
+    "logo": "/skills/ts-icon.png",
     "category": "Expertise"
   },
   {
     "id": 3,
-    "name": "HTML5",
+    "name": "React.js",
     "side": "Frontend",
-    "logo": "https://i.ibb.co/rkYDGps/logo-2582748-960-720.webp",
+    "logo": "/skills/React-icon.png",
     "category": "Expertise"
   },
   {
     "id": 4,
-    "name": "CSS3",
-    "side": "Frontend",
-    "logo": "https://i.ibb.co/tDB9sPS/logo-2582747-1280.webp",
+    "name": "MUI",
+    "side": "UI",
+    "logo": "/skills/mui-icon.png",
     "category": "Expertise"
   },
   {
     "id": 5,
-    "name": "Tailwindcss",
+    "name": "HTML5",
     "side": "Frontend",
-    "logo": "https://i.ibb.co/hBmwFBs/tailwind-removebg-preview.png",
+    "logo": "/skills/html-icon.webp",
     "category": "Expertise"
   },
   {
     "id": 6,
-    "name": "Bootstrap5",
+    "name": "CSS3",
     "side": "Frontend",
-    "logo": "https://i.ibb.co/4Zk201T/bootstrap-logo.png",
+    "logo": "/skills/css-icon.webp",
     "category": "Expertise"
   },
   {
     "id": 7,
-    "name": "Node.js",
-    "side": "Backend",
-    "logo": "https://i.ibb.co/THgqjW5/nodejs-logo-FBE122-E377-seeklogo-com.png",
-    "category": "Familiar"
+    "name": "Tailwindcss",
+    "side": "Frontend",
+    "logo": "/skills/tailwindcss-icon.png",
+    "category": "Expertise"
   },
   {
     "id": 8,
-    "name": "Express.js",
-    "side": "Backend",
-    "logo": "https://i.ibb.co/61gsjw0/express-js.png",
-    "category": "Comfortable"
+    "name": "Bootstrap5",
+    "side": "Frontend",
+    "logo": "/skills/bootstrap-icon.png",
+    "category": "Expertise"
   },
   {
     "id": 9,
-    "name": "MongoDB",
-    "side": "DataBase",
-    "logo": "https://i.ibb.co/61S3y6y/erkxwhl1gd48xfhe2yld.webp",
-    "category": "Comfortable"
+    "name": "Node.js",
+    "side": "Backend",
+    "logo": "/skills/node-js-icon.png",
+    "category": "Familiar"
   },
   {
     "id": 10,
-    "name": "Next.js",
-    "side": "Frontend/backend",
-    "logo": "https://i.ibb.co/KLWYXRT/next-js-icon-logo-EE302-D5-DBD-seeklogo-com.png",
+    "name": "Express.js",
+    "side": "Backend",
+    "logo": "/skills/express-js-icon.png",
     "category": "Comfortable"
   },
   {
     "id": 11,
-    "name": "JWT",
-    "side": "Backend",
-    "logo": "https://i.ibb.co/2tbNLLp/177059352-fe91dcd5-e17b-4103-88ae-70d6d396cf85.png",
-    "category": "Familiar"
+    "name": "MongoDB",
+    "side": "DataBase",
+    "logo": "/skills/mongodb-icon.webp",
+    "category": "Comfortable"
   },
   {
     "id": 12,
-    "name": "GitHub",
-    "side": "Repositories,",
-    "logo": "https://i.ibb.co/VpgW0hn/unnamed.png",
-    "category": "Tools"
+    "name": "Next.js",
+    "side": "Frontend/backend",
+    "logo": "/skills/next-js-icon.png",
+    "category": "Comfortable"
   },
   {
     "id": 13,
-    "name": "Vercel",
-    "side": "Deploy",
-    "logo": "https://i.ibb.co/7GzV7cr/vercel.png",
-    "category": "Tools"
+    "name": "JWT",
+    "side": "Backend",
+    "logo": "/skills/jwt-icon.png",
+    "category": "Familiar"
   },
   {
     "id": 14,
-    "name": "Firebase",
-    "side": "Authentication",
-    "logo": "https://i.ibb.co/Rpxdr5t/ffd94de89eccc1f7b1e76c999f1adeec.png",
-    "category": "Comfortable"
+    "name": "GitHub",
+    "side": "Repositories,",
+    "logo": "/skills/github-icon.png",
+    "category": "Tools"
   },
   {
     "id": 15,
-    "name": "Mongoose",
-    "side": "Backend",
-    "logo": "https://i.ibb.co/W2cVpxd/download.png",
-    "category": "Comfortable"
+    "name": "Vercel",
+    "side": "Deploy",
+    "logo": "/skills/vercel-icon.png",
+    "category": "Tools"
   },
   {
     "id": 16,
-    "name": "Git",
-    "side": "VersionControl ",
-    "logo": "https://i.ibb.co/HVqkNds/code-branch-12221106.png",
-    "category": "Tools"
+    "name": "Firebase",
+    "side": "Authentication",
+    "logo": "/skills/firebase-icon.png",
+    "category": "Comfortable"
   },
   {
     "id": 17,
-    "name": "Figma",
-    "side": "Design",
-    "logo": "https://i.ibb.co/2F0tL6Z/figma-5968705.png",
-    "category": "Tools"
+    "name": "Mongoose",
+    "side": "Backend",
+    "logo": "/skills/mongoose-icon.png",
+    "category": "Comfortable"
   },
   {
     "id": 18,
-    "name": "Canva",
-    "side": "Design",
-    "logo": "https://i.ibb.co/ZNMwt29/download-1.png",
+    "name": "Git",
+    "side": "VersionControl ",
+    "logo": "/skills/git-icon.png",
     "category": "Tools"
   },
   {
-    "id": 18534,
-    "name": "AWS",
-    "side": "Web/file_Hosting",
-    "logo": "https://i.ibb.co/HHkt8Q0/AWS-logo-png.jpg",
+    "id": 19,
+    "name": "Figma",
+    "side": "Design",
+    "logo": "/skills/figma-icon.png",
     "category": "Tools"
   },
   {
     "id": 20,
-    "name": "Remix",
-    "side": "Frontend",
-    "logo": "https://i.ibb.co.com/NnSJD62/images.jpg",
-    "category": "Comfortable"
+    "name": "Canva",
+    "side": "Design",
+    "logo": "/skills/canva-icon.png",
+    "category": "Tools"
   },
   {
     "id": 21,
-    "name": "Redux",
-    "side": "Frontend/backend",
-    "logo": "https://i.ibb.co.com/tPqCLJv/logo.png",
-    "category": "Comfortable"
+    "name": "AWS",
+    "side": "Web/file_Hosting",
+    "logo": "/skills/aws-icon.jpg",
+    "category": "Tools"
   },
   {
     "id": 22,
+    "name": "Remix",
+    "side": "Frontend",
+    "logo": "/skills/remix-icon.jpg",
+    "category": "Comfortable"
+  },
+  {
+    "id": 23,
+    "name": "Redux",
+    "side": "Frontend/backend",
+    "logo": "/skills/redux-icon.png",
+    "category": "Comfortable"
+  },
+  {
+    "id": 24,
     "name": "React_Native",
     "side": "Mobile_app",
-    "logo": "https://i.ibb.co/hd413Kq/science-15886932.png",
+    "logo": "/skills/React-icon.png",
     "category": "Familiar"
   }
 ]

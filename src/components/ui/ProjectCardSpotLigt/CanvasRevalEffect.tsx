@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { cn } from "@/utils/cn";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import React, { useMemo, useRef } from "react";
@@ -188,7 +188,7 @@ const ShaderMaterial = ({
   uniforms: Uniforms;
 }) => {
   const { size } = useThree();
-  const ref = useRef<THREE.Mesh>();
+  const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
 
   useFrame(({ clock }) => {
@@ -275,8 +275,8 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [size.width, size.height, source,  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [size.width, size.height, source]);
 
   return (
     <mesh ref={ref as any}>

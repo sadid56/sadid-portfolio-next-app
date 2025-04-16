@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable react/no-unescaped-entities */
 import BoxReveal from "@/components/ui/BoxReveal/BoxReveal";
 import "./hero.css";
 import { FlipWords } from "@/components/ui/FlipWords/FlipWords";
@@ -16,9 +15,11 @@ import { CenterVideo } from "@/components/pages/Hero/HeroCenterVideo";
 import { HeroParallaxItem } from "@/components/pages/Hero/HeroParallaxItems";
 import { GradualSpacing } from "@/components/ui/GradualSpacing/GradualSpacing";
 import { motion } from "framer-motion";
+import useIsMobile from "@/hooks/useMobile";
 
 const Hero = () => {
   const SECTION_HEIGHT = 1600;
+  const isMobile = useIsMobile();
 
   return (
     <header id="home">
@@ -67,10 +68,11 @@ const HeroParallaxItems = () => {
     "Full stack web developer",
     "React developer",
   ];
+  const isMobile = useIsMobile();
   return (
     <div className="mx-auto max-w-5xl px-4 pt-[200px]">
       {/* intro  */}
-      <HeroParallaxItem start={-1600} end={-100} className="">
+      <HeroParallaxItem start={isMobile ? -100 : -1600} end={-100} className="">
         <BoxReveal boxColor={"#03e9f4"} duration={0.7}>
           <>
             <div className="relative">
@@ -83,7 +85,11 @@ const HeroParallaxItems = () => {
         </BoxReveal>
       </HeroParallaxItem>
       {/* name */}
-      <HeroParallaxItem start={-1500} end={300} className="">
+      <HeroParallaxItem
+        start={isMobile ? -40 : -1500}
+        end={isMobile ? -100 : 300}
+        className=""
+      >
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
           <h3 className="hero-text uppercase text-[100px] leading-[70px] md:leading-[160px] md:text-[180px] font-montserrat italic ">
             Sadid
@@ -92,7 +98,7 @@ const HeroParallaxItems = () => {
       </HeroParallaxItem>
       {/* personal info */}
       <HeroParallaxItem
-        start={-800}
+        start={isMobile ? 100 : -800}
         end={250}
         className="float-end w-[90%] md:w-2/3"
       >
@@ -130,11 +136,11 @@ const HeroParallaxItems = () => {
       >
         <BoxReveal boxColor={"#03e9f4"} duration={0.9}>
           <GradualSpacing className="text-slate-300 font-poppins font-normal text-start">
-            Hello, I'm Sadid, Full stack web developer. I specialize in crafting
-            efficient and user-friendly applications. I thrive on challenges,
-            continuously learn, and am committed to turning your ideas into
-            powerful online realities. Let's collaborate and build something
-            extraordinary.
+            Hello, I&apos;m Sadid, Full stack web developer. I specialize in
+            crafting efficient and user-friendly applications. I thrive on
+            challenges, continuously learn, and am committed to turning your
+            ideas into powerful online realities. Let&apos;s collaborate and
+            build something extraordinary.
           </GradualSpacing>
         </BoxReveal>
       </HeroParallaxItem>
@@ -149,7 +155,7 @@ const HeroParallaxItems = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Let's Explore
+          Let&apos;s Explore
           {/* Glowing gradient bottom border */}
           <span
             className="absolute left-1/2 bottom-[-6px] w-[90%] h-[3px] rounded-full

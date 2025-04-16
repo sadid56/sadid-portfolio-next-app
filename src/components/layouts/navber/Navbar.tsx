@@ -2,7 +2,6 @@
 
 "use client";
 
-import logo from "../../../assets/images/logo-name.png";
 import "./navber.css";
 import Image from "next/image";
 import AnimatedHamburgerButton from "@/components/ui/Button/AnimatedHumberButton";
@@ -46,7 +45,7 @@ const Navber = () => {
         >
           <div>
             <Image
-              src={logo.src}
+              src={"/images/logo-name.png"}
               alt="Logo"
               width={120}
               height={120}

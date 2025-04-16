@@ -1,7 +1,6 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import skillsArray from "../../../../public/skills.json";
 import "./Skills.css";
 import Image from "next/image";
@@ -19,13 +18,11 @@ const Skills = () => {
   );
 
   // Intersection Observer to trigger animations on scroll
-  const { ref: tabsRef, inView: tabsInView } = useInView({
-    threshold: 0.1,
-  });
+  const tabsRef = useRef(null);
+  const skillsRef = useRef(null);
 
-  const { ref: skillsRef, inView: skillsInView } = useInView({
-    threshold: 0.1,
-  });
+  const tabsInView = useInView(tabsRef, { once: true, amount: 0.1 });
+  const skillsInView = useInView(skillsRef, { once: false, amount: 0.1 });
 
   const handleSetTabs = (tab: string) => {
     setCurrentTab(tab);

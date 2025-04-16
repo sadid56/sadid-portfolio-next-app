@@ -1,7 +1,6 @@
 "use client";
-import { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import styles from "./styles.module.css";
 
 interface SectionTitleProps {
@@ -16,7 +15,8 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   lineBrak = false,
 }) => {
   const controls = useAnimation();
-  const [ref, inView] = useInView();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
 
   useEffect(() => {
     if (inView) {

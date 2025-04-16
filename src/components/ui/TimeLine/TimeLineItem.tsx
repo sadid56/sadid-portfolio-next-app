@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { motion, useAnimation, useInView } from "framer-motion";
 import useIsMobile from "@/hooks/useMobile";
 import { TimelineEntry } from "@/types/TimeLIneTypes";
 import { getTimelineVariants } from "@/components/animations/GetTimeLineVeriant";
-import { Info } from "lucide-react";
 
 interface TimelineItemProps {
   item: TimelineEntry;
@@ -15,19 +13,8 @@ interface TimelineItemProps {
 const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
   const controls = useAnimation();
   const isMobile = useIsMobile();
-  const [isNotification, setIsNotification] = useState(false);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return; // Ensure code runs on the client
-    const notificationDisabled = localStorage.getItem("notificationDisabled");
-    if (!notificationDisabled && inView) {
-      setIsNotification(true);
-    }
-  }, [inView]);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
 
   useEffect(() => {
     if (inView) {
@@ -36,13 +23,6 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       controls.start("hidden");
     }
   }, [inView, controls]);
-
-  const handleNotificationClose = () => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("notificationDisabled", "true");
-    }
-    setIsNotification(false);
-  };
 
   const isEven = index % 2 === 0;
 
@@ -64,23 +44,6 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
 
   return (
     <>
-      {isNotification && (
-        <div className="hidden fixed md:flex items-center gap-5 bg-indigo-500 font-montserrat px-4 py-3 rounded-md text-white shadow-lg right-1 md:right-5 bottom-5 z-[999]">
-          <div className="flex items-center gap-2">
-            <Info />
-            <p className="text-sm md:text-base">
-              You can drag and drop the cards for fun! Try it out.
-            </p>
-          </div>
-          <button
-            onClick={handleNotificationClose}
-            className="bg-white text-indigo-600 font-bold px-3 py-1 rounded-md hover:bg-indigo-100 transition-all"
-          >
-            OK
-          </button>
-        </div>
-      )}
-
       <motion.div
         ref={ref}
         initial="hidden"
@@ -124,6 +87,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
               <Image
                 width={60}
                 height={60}
+                priority
                 alt={item.service_name}
                 src={item.icon}
               />
