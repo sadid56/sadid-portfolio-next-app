@@ -89,7 +89,7 @@ const HeroParallaxItems = () => {
         className=""
       >
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
-          <h3 className="hero-text uppercase text-[100px] leading-[70px] md:leading-[160px] md:text-[180px] font-montserrat italic pr-5 py-2 md:py-0">
+          <h3 className="hero-text uppercase text-[80px] leading-[70px] md:leading-[160px] md:text-[140px] lg:text-[180px] font-montserrat italic pr-5 py-2 md:py-0">
             Sadid
           </h3>
         </BoxReveal>
@@ -99,7 +99,7 @@ const HeroParallaxItems = () => {
       <HeroParallaxItem
         start={isMobile ? 100 : -200}
         end={350}
-        translateX={150}
+        position="right"
         className="float-end w-[90%] md:w-2/3"
       >
         <BoxReveal boxColor={"#03e9f4"} duration={0.8}>
@@ -116,7 +116,7 @@ const HeroParallaxItems = () => {
       {/* about me description  */}
       <HeroParallaxItem
         start={150}
-        translateX={150}
+        position="right"
         end={370}
         className="float-end w-[90%] md:w-2/3"
       >
