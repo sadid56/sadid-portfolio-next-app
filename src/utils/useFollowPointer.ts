@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, RefObject } from "react";
-import { useMotionValue, useSpring, frame } from "framer-motion";
+import { useEffect, useRef, RefObject } from "react";
+import { useMotionValue, useSpring, frame } from "motion/react";
 
 const spring = { damping: 4, stiffness: 70, restDelta: 0.001 };
 
@@ -10,41 +9,35 @@ export function useFollowPointer(ref: RefObject<HTMLElement>) {
   const x = useSpring(xPoint, spring);
   const y = useSpring(yPoint, spring);
 
-  // Store the last known mouse position
-  let lastX = 0;
-  let lastY = 0;
+  // Store the last known mouse position using refs
+  const lastX = useRef(0);
+  const lastY = useRef(0);
 
   useEffect(() => {
     if (!ref.current) return;
 
-    // Function to update cursor position based on pointer movement
     const handlePointerMove = ({ pageX, pageY }: MouseEvent) => {
-      lastX = pageX; // Store the last X coordinate
-      lastY = pageY; // Store the last Y coordinate
+      lastX.current = pageX;
+      lastY.current = pageY;
 
       const element = ref.current!;
       frame.read(() => {
-        // Update cursor position
         xPoint.set(pageX - element.offsetWidth / 2);
         yPoint.set(pageY - element.offsetHeight / 2);
       });
     };
 
-    // Function to update cursor position when scrolling (keep it at the last known mouse position)
     const handleScroll = () => {
       const element = ref.current!;
       frame.read(() => {
-        // Set the cursor to the last known position even during scrolling
-        xPoint.set(lastX - element.offsetWidth / 2);
-        yPoint.set(lastY - element.offsetHeight / 2);
+        xPoint.set(lastX.current - element.offsetWidth / 2);
+        yPoint.set(lastY.current - element.offsetHeight / 2);
       });
     };
 
-    // Attach the event listeners
     window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listeners when component unmounts
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("scroll", handleScroll);

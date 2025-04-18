@@ -5,13 +5,13 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",  
+    "./src/shared/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
+        montserrat: ["var(--font-montserrat)"],
+        poppins: ["var(--font-poppins)"],
       },
       colors: {
         primary: "#03e9f4",

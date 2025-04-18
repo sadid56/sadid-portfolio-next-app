@@ -1,20 +1,20 @@
 import React from "react";
-import { AlertTriangle, Home, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { IconAlertTriangle, IconHome } from "@tabler/icons-react";
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-5">
       <div className="relative max-w-2xl w-full">
         {/* Animated background elements */}
-        <div className="absolute -top-16 -left-16 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute -top-16 -left-16 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl "></div>
         <div className="absolute -bottom-16 -right-16 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
 
         <div className="relative z-10 bg-gray-900/80 backdrop-blur-lg rounded-2xl p-12 shadow-2xl border border-gray-800">
           <div className="flex flex-col items-center text-center">
             {/* Icon */}
             <div className="mb-8 text-red-500 ">
-              <AlertTriangle size={80} strokeWidth={1.5} />
+              <IconAlertTriangle size={80} strokeWidth={1.5} />
             </div>
 
             {/* 404 Text */}
@@ -36,7 +36,7 @@ const NotFoundPage = () => {
                 href="/"
                 className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105"
               >
-                <Home size={20} />
+                <IconHome size={20} />
                 Back to Home
               </Link>
             </div>

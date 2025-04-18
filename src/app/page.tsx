@@ -1,32 +1,27 @@
 import React from "react";
-import Footer from "@/components/layouts/footer/Footer";
-import Navber from "@/components/layouts/navber/Navbar";
-import TopProgressBar from "@/components/ui/ExternalStyle/TopProgressBar";
-import GlowCursor from "@/components/ui/ExternalStyle/GlowCursor";
-import Hero from "@/components/pages/Hero/Hero";
-import Skills from "@/components/pages/skills/Skills";
-import Achievements from "@/components/pages/Achivement/Achivement";
-import Projects from "@/components/pages/project/Projects";
-import Services from "@/components/pages/services/Services";
-import ThanksComponent from "@/components/pages/ThanksComponent/ThanksComponent";
-import DynamicBackground from "@/components/Container/DynamicBackgournd";
+import Skills from "@/components/sections/Skills/Skills";
+import Achievements from "@/components/sections/Achivement/Achivement";
+import Projects from "@/components/sections/Project/Projects";
+import Services from "@/components/sections/Services/Services";
+import ThanksComponent from "@/components/sections/ThanksComponent/ThanksComponent";
+import dynamic from "next/dynamic";
+import Loading from "@/components/ui/Loading";
+import DynamicBackground from "@/components/global/DynamicBackground";
 // import BubbleCursor from "@/components/ui/ExternalStyle/BubbleCurson";
 
+const Hero = dynamic(() => import("@/components/sections/Hero/Hero"), {
+  loading: () => <Loading />,
+});
 
 export default function Home() {
   return (
     <DynamicBackground>
-      <TopProgressBar />
-      <GlowCursor />
-      <Navber />
       <Hero />
       <Skills />
-      <Achievements/>
+      <Achievements />
       <Projects />
       <Services />
-      <ThanksComponent/>
-      <Footer />
+      <ThanksComponent />
     </DynamicBackground>
   );
 }
-
