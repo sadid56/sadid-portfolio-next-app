@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -37,7 +37,7 @@ export const CenterVideo = () => {
       </motion.video>
 
       {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black bg-opacity-50" />
+      <div className="absolute inset-0 bg-black/50" />
     </motion.div>
   );
 };

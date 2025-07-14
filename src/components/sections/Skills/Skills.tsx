@@ -1,33 +1,17 @@
-"use client";
-import { useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
-import skillsArray from "../../../../public/skills.json";
+export const dynamic = "force-dynamic";
+
+import * as motion from "motion/react-client";
 import "./Skills.css";
 import Image from "next/image";
 import LargeTitle from "@/components/global/LargeTitle";
 import SectionTitle from "@/components/global/SectionTitle";
+import { getFilteredSkills } from "./filterdSkills";
+import Link from "next/link";
 
-const Skills = () => {
+const Skills = ({ skill = "Expertise" }: { skill: string }) => {
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
-  const [currentTab, setCurrentTab] = useState("Expertise");
-  const [isShowAnimation, setIsShowAnimation] = useState(false); // Track animation state
 
-  // Filter skills based on the current tab
-  const filteredSkills = skillsArray.filter(
-    (skill) => skill.category === currentTab
-  );
-
-  // Intersection Observer to trigger animations on scroll
-  const tabsRef = useRef(null);
-  const skillsRef = useRef(null);
-
-  const tabsInView = useInView(tabsRef, { once: true, amount: 0.1 });
-  const skillsInView = useInView(skillsRef, { once: false, amount: 0.1 });
-
-  const handleSetTabs = (tab: string) => {
-    setCurrentTab(tab);
-    setIsShowAnimation(!isShowAnimation); // Trigger animation on tab change
-  };
+  const filteredSkills = getFilteredSkills(skill);
 
   return (
     <div
@@ -39,42 +23,37 @@ const Skills = () => {
 
       {/* Skills tabs */}
       <motion.div
-        ref={tabsRef}
         className="tabs flex flex-wrap gap-5 items-center justify-center "
         initial={{ opacity: 0, y: 50 }}
-        animate={tabsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {tabsArray.map((tab) => (
-          <motion.button
-            onClick={() => handleSetTabs(tab)}
+          <Link
+            scroll={false}
             className={`tab-btn font-montserrat ${
-              currentTab === tab ? "tab-active" : ""
+              skill === tab ? "tab-active" : ""
             }`}
+            href={`?skill=${tab}`}
             key={tab}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
           >
             {tab}
-          </motion.button>
+          </Link>
         ))}
       </motion.div>
 
       {/* Skills container */}
       <motion.div
-        ref={skillsRef}
         className="skills-container flex flex-wrap items-center justify-center gap-10 mt-12"
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={
-          skillsInView || isShowAnimation
-            ? { opacity: 1, scale: 1 }
-            : { opacity: 0, scale: 0.8 }
-        }
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
       >
-        {filteredSkills.map((skill) => (
+        {filteredSkills.map((skill, i) => (
           <motion.div
-            key={skill.id}
+            key={i}
             className="tooltip-container"
             whileHover={{ scale: 1.1 }}
           >

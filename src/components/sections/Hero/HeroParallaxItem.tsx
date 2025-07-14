@@ -1,5 +1,3 @@
-"use client";
-import useIsMobile from "@/hooks/useMobile";
 import { cn } from "@/lib/cn";
 import {
   useMotionTemplate,

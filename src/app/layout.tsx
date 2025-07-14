@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ReactLenis } from "@/utils/lenis";
 import Navber from "@/components/shared/navbar/Navbar";
-import Footer from "@/components/shared/footer/Footer";
 import TopProgressBar from "@/components/ui/TopProgressBar";
 import GlowCursor from "@/components/ui/GlowCursor";
 import { Montserrat, Poppins } from "next/font/google";
@@ -34,17 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Link to the favicon */}
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <ReactLenis options={{ duration: 1.5 }} root>
-        <body className={cn(montserrat.variable, poppins.variable)}>
+        <body
+          className={cn(montserrat.variable, poppins.variable, "antialiased")}
+        >
           <Navber />
           <TopProgressBar />
           <GlowCursor />
           {children}
-          <Footer />
         </body>
       </ReactLenis>
     </html>

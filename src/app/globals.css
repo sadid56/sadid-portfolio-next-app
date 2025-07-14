@@ -1,8 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* just test  */
+@theme inline {
+  --font-montserrat: var(--font-montserrat);
+  --font-poppins: var(--font-poppins);
+
+  --color-primary: #03e9f4;
+  --color-secondary: #ffbe7b;
+  --color-mainBgColor: #010610;
+
+  --animation-shimmer: shimmer 5s linear infinite;
+
+  /* Keyframe variables aren't usually theme-driven; define them outside theme */
+}
+
+/* Define variables for animations and keyframes */
+@layer base {
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+/* custom style  */
 
 ::-webkit-scrollbar {
   width: 8px;

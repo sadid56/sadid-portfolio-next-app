@@ -1,22 +1,20 @@
- // Define animation variants as a function to access isEven and isMobile
- export const getTimelineVariants = (isEven: boolean, isMobile: boolean) => ({
+export const getTimelineVariants = (isEven: boolean, isMobile: boolean) => ({
   hidden: {
     opacity: 0,
-    x: isEven ? (isMobile ? 100 : -100) : 100, // Move left for even, right for odd
-    scale: 0.8,  // Start smaller
-    rotate: isEven ? (isMobile ? 0 : -10) : isMobile ? 0 : 10,  // Slight rotation to add complexity
+    x: isEven ? (isMobile ? 100 : -100) : 100,
+    scale: 0.8,
+    rotate: isEven ? (isMobile ? 0 : -10) : isMobile ? 0 : 10,
   },
   visible: {
     opacity: 1,
     x: 0,
-    scale: 1,  // Back to normal size
-    rotate: 0,  // No rotation on visible
+    scale: 1,
+    rotate: 0,
     transition: {
-      type: "spring",  // Use a spring animation for a natural feel
+      type: "spring",
       stiffness: 50,
       damping: 20,
-      duration: 0.8,
-      ease: "easeInOut",
+      duration: 0.8, // optional, not always needed for spring
     },
   },
 });

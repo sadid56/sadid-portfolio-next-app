@@ -4,20 +4,20 @@ import Achievements from "@/components/sections/Achivement/Achivement";
 import Projects from "@/components/sections/Project/Projects";
 import Services from "@/components/sections/Services/Services";
 import ThanksComponent from "@/components/sections/ThanksComponent/ThanksComponent";
-import dynamic from "next/dynamic";
-import Loading from "@/components/ui/Loading";
 import DynamicBackground from "@/components/global/DynamicBackground";
-// import BubbleCursor from "@/components/ui/ExternalStyle/BubbleCurson";
+import Hero from "@/components/sections/Hero/Hero";
 
-const Hero = dynamic(() => import("@/components/sections/Hero/Hero"), {
-  loading: () => <Loading />,
-});
+interface PageProps {
+  searchParams: Promise<{ skill: string }>;
+}
 
-export default function Home() {
+export default async function Home({ searchParams }: PageProps) {
+  const { skill } = await searchParams;
+
   return (
     <DynamicBackground>
       <Hero />
-      <Skills />
+      <Skills skill={skill} />
       <Achievements />
       <Projects />
       <Services />

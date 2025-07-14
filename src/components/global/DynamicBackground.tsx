@@ -15,11 +15,8 @@ export default function DynamicBackground({
   );
 
   return (
-    <motion.div
-      style={{ backgroundColor }}
-      className="min-h-screen border-[#040459e2]"
-    >
-      <>{children}</>
+    <motion.div style={{ backgroundColor }} className="min-h-screen">
+      {children}
     </motion.div>
   );
 }

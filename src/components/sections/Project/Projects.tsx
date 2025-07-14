@@ -73,12 +73,7 @@ const Card: React.FC<Props> = ({
   isVideoOpen,
 }: any) => {
   return (
-    <motion.div
-    // initial={{ opacity: 0, y: 100 }} // Start with opacity 0 and below view
-    // whileInView={{ opacity: 1, y: 0 }} // When in view, move it up to y: 0 and make it visible
-    // transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
-    // viewport={{ once: false }} // Trigger only once when it comes into view
-    >
+    <motion.div>
       <ShineBorder
         color={["#03e9f4", "#FE8FB5", "#094f52c8"]}
         key={project?.id}
@@ -87,12 +82,6 @@ const Card: React.FC<Props> = ({
         {/* project main card content with hover effect */}
         <ProjectCardSpotlight className="flex flex-col md:flex-row gap-4 md:gap-7 rounded-sm h-full">
           <div className="w-full md:w-[35%]  rounded-md relative">
-            {/* <Image
-              width={500}
-              height={1000}
-              alt=""
-              src={project?.project_thumnail}
-            /> */}
             <VideoDialog
               className="w-full h-full"
               animationStyle="from-center"
@@ -105,7 +94,7 @@ const Card: React.FC<Props> = ({
           </div>
           <div className="md:w-[60%] z-20">
             <h3 className="text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1 font-montserrat w-full pl-1">
-              <BoxReveal boxColor={"#108a91"} duration={0.8}>
+              <BoxReveal duration={0.8}>
                 <span>{project?.project_name}</span>
               </BoxReveal>
             </h3>
