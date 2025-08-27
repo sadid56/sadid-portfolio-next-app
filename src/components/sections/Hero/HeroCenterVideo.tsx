@@ -19,8 +19,6 @@ export const CenterVideo = () => {
   const clip2 = useTransform(scrollY, [0, 1000], [isMobile ? 100 : 90, 100]);
   const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
 
-  // Ensure video starts loading properly
-
   return (
     <motion.div ref={wrapperRef} className="sticky top-0 w-full h-screen">
       {/* Render video only when fully loaded */}

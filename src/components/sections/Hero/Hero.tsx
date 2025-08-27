@@ -42,7 +42,7 @@ const Hero = () => {
             <LinkPreview url="https://github.com/sadid56/">
               <Icon Icon={IconBrandGithub} widht={2} />
             </LinkPreview>
-            <LinkPreview url="https://www.facebook.com/sadidhasan.hasan.5">
+            <LinkPreview url="https://www.facebook.com/sadidhasanx">
               <Icon Icon={IconBrandFacebook} widht={2} />
             </LinkPreview>
             <LinkPreview url="https://discord.com/users/1151169623149002752/">

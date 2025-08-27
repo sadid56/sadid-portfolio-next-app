@@ -11,10 +11,10 @@ export const getTimelineVariants = (isEven: boolean, isMobile: boolean) => ({
     scale: 1,
     rotate: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 50,
       damping: 20,
-      duration: 0.8, // optional, not always needed for spring
+      duration: 0.8,
     },
   },
 });

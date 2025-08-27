@@ -80,7 +80,13 @@ export const Timeline: React.FC<Props> = ({ data }) => {
         {/* Centered Progress Line */}
         <div
           style={{ height: height + "px" }}
-          className="absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0 overflow-hidden w-[30px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-700/20 to-transparent to-[100%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] z-0"
+          className="
+    absolute left-0 lg:left-1/2 transform lg:-translate-x-1/2 top-0
+    overflow-hidden w-[30px]
+    bg-linear-to-b from-transparent via-slate-700/20 to-transparent
+    mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]
+    z-0
+  "
         >
           <motion.div>
             <motion.div
