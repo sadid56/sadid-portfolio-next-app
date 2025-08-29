@@ -82,15 +82,15 @@ export function VideoDialog({
   return (
     <div className={cn("relative", className)}>
       <div
-        className="relative cursor-pointer group"
+        className="relative cursor-pointer group h-full w-full"
         onClick={() => setIsVideoOpen(true)}
       >
         <Image
           src={thumbnailSrc}
           alt={thumbnailAlt}
-          width={1920}
-          height={1080}
-          className="w-full transition-all duration-200 group-hover:brightness-[0.8] ease-out rounded-md shadow-lg border border-slate-400 h-36 md:h-[300px] object-cover"
+          width={500}
+          height={500}
+          className="w-full transition-all duration-200 group-hover:brightness-[0.8] ease-out rounded-md shadow-lg h-36 md:h-full object-cover"
         />
         <div className="absolute inset-0 flex items-center justify-center group-hover:scale-100 scale-[0.9] transition-all duration-200 ease-out rounded-2xl">
           <div className="bg-primary/10 flex items-center justify-center rounded-full backdrop-blur-md size-28">

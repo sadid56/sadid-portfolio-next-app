@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import SectionTitle from "@/components/global/SectionTitle";
 import projects from "../../../../public/projects.json";
 import { LinkPreview } from "@/components/ui/LinkPreview";
@@ -11,17 +11,10 @@ import { VideoDialog } from "@/components/ui/VideoDialog";
 import Link from "next/link";
 import { UrlObject } from "url";
 
-interface Props {
-  project: Project;
-  isVideoOpen: boolean;
-  setIsVideoOpen: Dispatch<SetStateAction<boolean>>;
-}
-
 const Projects = () => {
   const targetRef = useRef(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const { scrollYProgress } = useScroll({
-    //@ts-ignore
     target: targetRef,
   });
 
@@ -37,13 +30,12 @@ const Projects = () => {
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <motion.div
             style={transform}
-            //@ts-ignore
-            initial={{ opacity: 0, y: 100 }} // Start with opacity 0 and below view
-            whileInView={{ opacity: 1, y: 0 }} // When in view, move it up to y: 0 and make it visible
-            transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
-            viewport={{ once: false }} // Trigger only once when it comes into view
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            // transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
             className="flex gap-8 snap-mandatory"
-            // transition={{ type: "spring", stiffness: 80, damping: 15 }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
           >
             {projects.map((card: Project, idx) => {
               return (
@@ -65,17 +57,19 @@ const Projects = () => {
 
 // project card
 
-const Card: React.FC<Props> = ({
-  project,
-  setIsVideoOpen,
-  isVideoOpen,
-}: any) => {
+const Card = ({ project, setIsVideoOpen, isVideoOpen }: any) => {
   return (
-    <motion.div>
-      <div className="h-[420px] md:h-[400px] w-[90vw] lg:w-[900px] snap-center">
-        {/* project main card content with hover effect */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-7 rounded-sm h-full">
-          <div className="w-full md:w-[35%]  rounded-md relative">
+    <motion.div
+    // whileHover={{ scale: 1.02 }}
+    // transition={{ type: "spring", stiffness: 150, damping: 15 }}
+    // className="relative"
+    >
+      {/* Outer shiny border */}
+      <div className=" h-[420px] md:h-[400px] w-[90vw] lg:w-[900px] snap-center rounded-2xl p-[2px] bg-gradient-to-r from-[#03e8f4] via-[#6a5acd] to-[#03e8f4] animate-border">
+        {/* Inner card */}
+        <div className="flex flex-col md:flex-row gap-4 md:gap-7 rounded-2xl h-full bg-black/90 border border-white/10 shadow-lg hover:shadow-[#03e8f480]/40 transition-all duration-500 p-4">
+          {/* Video */}
+          <div className="w-full md:w-[40%] rounded-xl overflow-hidden relative">
             <VideoDialog
               className="w-full h-full"
               animationStyle="from-center"
@@ -86,17 +80,19 @@ const Card: React.FC<Props> = ({
               thumbnailAlt="Hero Video"
             />
           </div>
+
+          {/* Text content */}
           <div className="md:w-[60%] z-20">
-            <h3 className="text-xl md:text-3xl font-semibold text-slate-300 bg-[#108a91] py-1 font-montserrat w-full pl-1">
+            <h3 className="text-xl md:text-3xl font-semibold text-white bg-gradient-to-r from-[#03e8f4] to-[#6a5acd] bg-clip-text font-montserrat py-1 w-full">
               <BoxReveal duration={0.8}>
                 <span>{project?.project_name}</span>
               </BoxReveal>
             </h3>
 
-            <p className="text-sm md:text-[16px] truncate text-slate-400 leading-6 font-poppins md:hidden mt-2">
+            <p className="text-sm md:text-[16px] text-slate-300 leading-6 font-poppins hidden md:block mt-3">
               {project?.description}
             </p>
-            <p className="text-sm md:text-[16px] text-slate-400 leading-6 font-poppins hidden md:block mt-3">
+            <p className="text-sm md:text-[16px] truncate text-slate-400 leading-6 font-poppins md:hidden mt-2">
               {project?.description}
             </p>
 
@@ -108,6 +104,7 @@ const Card: React.FC<Props> = ({
               </span>
             </h5>
 
+            {/* Contributors */}
             {project?.contributors && (
               <div className="mt-2 hidden md:block">
                 <p className="font-medium text-sm font-montserrat text-slate-300">
@@ -123,7 +120,7 @@ const Card: React.FC<Props> = ({
                         target="_blank"
                         key={i + 1}
                         href={item.fb}
-                        className="text-blue-500 text-[13px] font-medium font-poppins hover:underline"
+                        className="text-[#03e8f4] text-[13px] font-medium font-poppins hover:underline"
                       >{`@${item?.name}`}</Link>
                     )
                   )}
@@ -131,23 +128,23 @@ const Card: React.FC<Props> = ({
               </div>
             )}
 
-            {/* view all links */}
+            {/* Links */}
             <div className="flex gap-5 mt-3">
               <LinkPreview url={project?.live_link}>
-                <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full text-white">
+                <div className="hover:bg-[#03e8f4] shadow shadow-[#03e8f4] transition-all duration-500 border border-[#03e8f4] flex items-center justify-center w-10 h-10 rounded-full text-white">
                   <IconWorld />
                 </div>
-              </LinkPreview>{" "}
+              </LinkPreview>
               <LinkPreview url={project?.client_github_link}>
-                <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full text-white">
+                <div className="hover:bg-[#6a5acd] shadow shadow-[#6a5acd] transition-all duration-500 border border-[#6a5acd] flex items-center justify-center w-10 h-10 rounded-full text-white">
                   <IconBrandGithub />
                 </div>
-              </LinkPreview>{" "}
+              </LinkPreview>
               <LinkPreview url={project?.server_github_link}>
-                <div className="hover:bg-primary shadow shadow-primary transition-all duration-500 border border-primary flex items-center justify-center w-8 h-8 rounded-full text-white">
+                <div className="hover:bg-[#00ffaa] shadow shadow-[#00ffaa] transition-all duration-500 border border-[#00ffaa] flex items-center justify-center w-10 h-10 rounded-full text-white">
                   <IconServer />
                 </div>
-              </LinkPreview>{" "}
+              </LinkPreview>
             </div>
           </div>
         </div>

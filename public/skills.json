@@ -166,5 +166,12 @@
     "side": "Mobile_app",
     "logo": "/skills/React-icon.png",
     "category": "Familiar"
+  },
+  {
+    "id": 25,
+    "name": "Next-Auth",
+    "side": "Authentication",
+    "logo": "/skills/next-auth.png",
+    "category": "Comfortable"
   }
 ]

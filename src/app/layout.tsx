@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../styles/globals.css";
 import { ReactLenis } from "@/utils/lenis";
 import Navber from "@/components/shared/navbar/Navbar";
 import TopProgressBar from "@/components/ui/TopProgressBar";
