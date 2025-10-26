@@ -22,7 +22,12 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.ytimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
+    qualities: [75, 85, 95, 100],
   },
   devIndicators: false,
 };

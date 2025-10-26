@@ -2,11 +2,7 @@
 import { MagicCard } from "@/components/ui/MagicCard";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { cn } from "@/lib/cn";
-import {
-  IconAddressBook,
-  IconBook2,
-  IconCalendarEvent,
-} from "@tabler/icons-react";
+import { IconAddressBook, IconBook2, IconCalendarEvent } from "@tabler/icons-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
@@ -60,9 +56,7 @@ const Achievements = () => {
       title: "Year of Experience",
       value: 1,
       style: githubHasMaxRotate ? "" : "-mr-16 z-10",
-      icon: (
-        <IconCalendarEvent size={48} strokeWidth={1} className="text-primary" />
-      ),
+      icon: <IconCalendarEvent size={48} strokeWidth={1} className='text-primary' />,
     },
     {
       rotate: rotateCode,
@@ -70,9 +64,7 @@ const Achievements = () => {
       title: "Projects Completed",
       value: 10,
       style: codeHasMaxRotate ? "" : "z-0",
-      icon: (
-        <IconAddressBook size={48} strokeWidth={1} className="text-primary" />
-      ),
+      icon: <IconAddressBook size={48} strokeWidth={1} className='text-primary' />,
     },
     {
       rotate: rotateEarn,
@@ -80,35 +72,29 @@ const Achievements = () => {
       title: "Achievement",
       value: 5,
       style: earnHasMaxRotate ? "" : "-ml-16 z-10",
-      icon: <IconBook2 size={48} strokeWidth={1} className="text-primary" />,
+      icon: <IconBook2 size={48} strokeWidth={1} className='text-primary' />,
     },
   ];
 
   return (
-    <div
-      ref={ref}
-      className="flex justify-center gap-10 items-center flex-col md:flex-row pb-20 lg:pb-80 lg:mt-5"
-    >
+    <div ref={ref} className='flex justify-center gap-10 items-center flex-col md:flex-row pb-20 lg:pb-80 lg:mt-5'>
       {items.map((item, index) => (
         <MagicCard
           rotate={item.rotate}
           scale={item.scale}
           key={index}
-          className={cn(
-            `transition-all duration-150 ease-out rounded-lg p-px relative`,
-            item?.style
-          )}
+          className={cn(`transition-all duration-150 ease-out rounded-lg p-px relative`, item?.style)}
         >
           <motion.div
             className={`relative w-64 h-80 bg-gradient-to-b from-[#343840] to-[#0a0e14] flex justify-center items-center rounded-lg`}
           >
-            <div className="flex flex-col items-center gap-3">
+            <div className='flex flex-col items-center gap-3'>
               <div>{item.icon}</div>
-              <h2 className="text-slate-300 font-bold font-montserrat text-4xl">
+              <h2 className='text-slate-300 font-bold font-montserrat text-4xl'>
                 <NumberTicker value={item.value} />+
               </h2>
             </div>
-            <span className="absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins">
+            <span className='absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins'>
               {item.title}
             </span>
           </motion.div>

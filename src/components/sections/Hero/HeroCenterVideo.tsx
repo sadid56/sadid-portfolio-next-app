@@ -1,41 +1,57 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import useIsMobile from "@/hooks/useMobile";
+import LINKS from "@/constant/links";
 
-export const CenterVideo = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const CenterVideo = () => {
   const isMobile = useIsMobile();
-  const { scrollY } = useScroll();
-  const wrapperRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Scroll effect for clipping
-  const clip1 = useTransform(scrollY, [0, 1000], [isMobile ? 0 : 10, 0]);
-  const clip2 = useTransform(scrollY, [0, 1000], [isMobile ? 100 : 90, 100]);
-  const clipPath = useMotionTemplate`polygon(${clip1}% ${clip1}%, ${clip2}% ${clip1}%, ${clip2}% ${clip2}%, ${clip1}% ${clip2}%)`;
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    gsap.to(videoRef.current, {
+      clipPath: `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)`,
+      scrollTrigger: {
+        trigger: videoRef.current,
+        start: "top top",
+        end: "+=1000", // adjust scroll range
+        scrub: 1.2, // smooth scrubbing
+      },
+      ease: "power3.out",
+    });
+
+    return () => {
+      ScrollTrigger.killAll();
+    };
+  }, [isMobile]);
 
   return (
-    <motion.div ref={wrapperRef} className="sticky top-0 w-full h-screen">
-      {/* Render video only when fully loaded */}
-      <motion.video
+    <div className='sticky top-0 w-full h-screen '>
+      <video
+        ref={videoRef}
         muted
         autoPlay
         loop
         playsInline
-        preload="auto"
-        style={{ clipPath }}
-        className="w-full h-full object-cover"
+        preload='auto'
+        className='w-full h-full object-cover'
+        style={{
+          clipPath: isMobile ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" : "polygon(10% 10%, 90% 10%, 90% 90%, 10% 90%)",
+        }}
       >
-        <motion.source type="video/mp4" src="/video/itachi-uchiha.mp4" />
-      </motion.video>
+        <source type='video/mp4' src={LINKS.hero_video} />
+      </video>
 
       {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black/50" />
-    </motion.div>
+      <div className='absolute inset-0 bg-black/50' />
+    </div>
   );
 };
+
+export default CenterVideo;

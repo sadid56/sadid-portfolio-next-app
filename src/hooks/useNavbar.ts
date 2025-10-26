@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 export const useNavbar = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -41,10 +41,10 @@ export const useNavbar = () => {
   }, [isToggle]);
 
   // Handle link click to close menu
-  const handleLinkClick = () => {
-    setActive(false);
+  const handleLinkClick = useCallback(() => {
     setIsToggle(false);
-  };
+    setActive(false);
+  }, []);
 
   return {
     isToggle,

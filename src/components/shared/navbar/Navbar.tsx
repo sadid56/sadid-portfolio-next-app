@@ -11,16 +11,7 @@ import ContactInfo from "./ContactInfo";
 import { useNavbar } from "@/hooks/useNavbar";
 
 const Navber = () => {
-  const {
-    isToggle,
-    setIsToggle,
-    scroll,
-    navRef,
-    active,
-    setActive,
-    links,
-    handleLinkClick,
-  } = useNavbar();
+  const { isToggle, setIsToggle, scroll, navRef, active, setActive, links, handleLinkClick } = useNavbar();
 
   // Framer Motion animations for navbar items
   const navItemVariants = {
@@ -36,35 +27,21 @@ const Navber = () => {
 
   return (
     <>
-      <nav
-        className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 md:px-0`}
-      >
-        <div
-          className={`flex justify-between items-center md:container mx-auto`}
-          ref={navRef}
-        >
+      <nav className={`w-full fixed top-0 z-50 transition-all ease-in duration-300 md:px-0`}>
+        <div className={`flex justify-between items-center md:container mx-auto`} ref={navRef}>
           <div>
-            <Image
-              src={"/images/logo-name.png"}
-              alt="Logo"
-              width={120}
-              height={120}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
+            <Image src={"/logo-name.png"} alt='Logo' width={120} height={120} priority style={{ width: "auto", height: "auto" }} />
           </div>
           {/* item list */}
           <div
             className={`${
-              isToggle
-                ? "sidebar-open w-[100%] md:w-[60%]"
-                : "sidebar-closed w-[100%] md:w-[60%]"
+              isToggle ? "sidebar-open w-[100%] md:w-[60%]" : "sidebar-closed w-[100%] md:w-[60%]"
             } flex justify-center gap-10 lg:gap-28 pt-20`}
           >
             {/* navbar items */}
             <motion.ul
-              className="flex flex-col gap-10 uppercase cursor-pointer text-slate-300 text-sm md:text-lg font-medium"
-              initial="hidden"
+              className='flex flex-col gap-10 uppercase cursor-pointer text-slate-300 text-sm md:text-lg font-medium'
+              initial='hidden'
               animate={isToggle ? "visible" : "hidden"}
             >
               {/* <div className="-ml-5">
@@ -79,16 +56,14 @@ const Navber = () => {
                 >
                   {/* */}
                   <Link
-                    activeClass="active"
+                    activeClass='active'
                     to={nav?.path}
                     spy={true}
                     onClick={handleLinkClick}
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className={`nav-link font-montserrat ${
-                      nav.path === "home" && !scroll ? "nav-link active" : ""
-                    }`}
+                    className={`nav-link font-montserrat ${nav.path === "home" && !scroll ? "nav-link active" : ""}`}
                   >
                     {nav.label}
                   </Link>
@@ -101,12 +76,7 @@ const Navber = () => {
           </div>
 
           {/* condition bar in mobile device */}
-          <AnimatedHamburgerButton
-            setActive={setActive}
-            active={active}
-            setIsToggle={setIsToggle}
-            isToggle={isToggle}
-          />
+          <AnimatedHamburgerButton setActive={setActive} active={active} setIsToggle={setIsToggle} isToggle={isToggle} />
         </div>
       </nav>
     </>

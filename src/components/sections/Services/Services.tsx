@@ -1,11 +1,11 @@
 import Container from "@/components/global/Container";
-import servicesArray from "../../../../public/services.json";
 import { Timeline } from "@/components/sections/TimeLine/TimeLIne";
+import services from "@/data/services";
 
 const Services = () => {
   return (
-    <Container id="services" className=" relative">
-      <Timeline data={servicesArray} />
+    <Container id='services' className=' relative'>
+      <Timeline data={services} />
     </Container>
   );
 };

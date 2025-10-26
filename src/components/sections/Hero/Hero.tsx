@@ -8,7 +8,7 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
-import { CenterVideo } from "@/components/sections/Hero/HeroCenterVideo";
+import CenterVideo from "@/components/sections/Hero/HeroCenterVideo";
 import styles from "@/styles/helo.module.css";
 import { HeroParallaxItems } from "./HerroParallaxItems";
 import { Suspense } from "react";
