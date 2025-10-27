@@ -3,15 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/cn";
 
-export const FlipWords = ({
-  words,
-  duration = 3000,
-  className,
-}: {
-  words: string[];
-  duration?: number;
-  className?: string;
-}) => {
+export const FlipWords = ({ words, duration = 3000, className }: { words: string[]; duration?: number; className?: string }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [hasMounted, setHasMounted] = useState(false);
@@ -65,10 +57,7 @@ export const FlipWords = ({
           scale: 2,
           position: "absolute",
         }}
-        className={cn(
-          "z-10 inline-block relative text-left text-white font-bold font-montserrat px-2",
-          className
-        )}
+        className={cn("z-10 inline-block relative text-center text-white font-bold font-montserrat px-2 w-[190px]", className)}
         key={currentWord}
       >
         {currentWord.split(" ").map((word, wordIndex) => (
@@ -80,7 +69,7 @@ export const FlipWords = ({
               delay: wordIndex * 0.3,
               duration: 0.3,
             }}
-            className="inline-block whitespace-nowrap"
+            className='inline-block whitespace-nowrap'
           >
             {word.split("").map((letter, letterIndex) => (
               <motion.span
@@ -91,12 +80,12 @@ export const FlipWords = ({
                   delay: wordIndex * 0.3 + letterIndex * 0.05,
                   duration: 0.2,
                 }}
-                className="inline-block"
+                className='inline-block'
               >
                 {letter}
               </motion.span>
             ))}
-            <span className="inline-block">&nbsp;</span>
+            <span className='inline-block'>&nbsp;</span>
           </motion.span>
         ))}
       </motion.div>

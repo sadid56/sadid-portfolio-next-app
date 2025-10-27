@@ -9,11 +9,7 @@ interface SectionTitleProps {
   lineBrak?: boolean;
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = ({
-  color,
-  text,
-  lineBrak = false,
-}) => {
+const SectionTitle: React.FC<SectionTitleProps> = ({ color, text, lineBrak = false }) => {
   const controls = useAnimation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
@@ -32,22 +28,13 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
   };
 
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={variants}
-      transition={{ duration: 1 }}
-      className=" relative"
-    >
+    <motion.div ref={ref} initial='hidden' animate={controls} variants={variants} transition={{ duration: 1 }} className=' relative'>
       <h2
         className={`${inView && `${styles.animation}`} flex ${
           lineBrak ? "flex-col" : ""
-        } gap-2 ${
-          styles.textAnimation
-        } text-3xl md:text-5xl font-semibold font-montserrat`}
+        } gap-2 text-3xl md:text-5xl font-semibold font-montserrat bg-gradient-to-r from-white/50 via-slate-300 to-slate-600 bg-clip-text text-transparent`}
       >
-        <span>{color}</span> <span className="text-slate-300">{text}</span>
+        <span>{color}</span> <span className='text-slate-300'>{text}</span>
       </h2>
     </motion.div>
   );

@@ -1,13 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import {
-  AnimatePresence,
-  motion,
-  useAnimation,
-  useInView,
-  Variants,
-} from "motion/react";
+import { AnimatePresence, motion, useAnimation, useInView, Variants } from "motion/react";
 import React, { ReactNode, ReactElement, useRef, useEffect } from "react";
 
 interface GradualSpacingProps {
@@ -45,12 +39,12 @@ export function GradualSpacing({
       return node.split("").map((char, i) => (
         <motion.span
           key={`${index}-${i}`}
-          initial="hidden"
+          initial='hidden'
           animate={mainControls}
-          exit="hidden"
+          exit='hidden'
           variants={framerProps}
           transition={{ duration, delay: (index + i) * delayMultiple }}
-          className="inline-block"
+          className='inline-block'
         >
           {char === " " ? <span>&nbsp;</span> : char}
         </motion.span>
@@ -62,9 +56,7 @@ export function GradualSpacing({
 
       return React.cloneElement(element, {
         key: index,
-        children: React.Children.map(element.props.children, (child, i) =>
-          renderContent(child, index + i)
-        ),
+        children: React.Children.map(element.props.children, (child, i) => renderContent(child, index + i)),
       });
     }
 
@@ -72,10 +64,8 @@ export function GradualSpacing({
   };
 
   return (
-    <div ref={ref} className={cn("flex max-w-4xl flex-wrap", className)}>
-      <AnimatePresence>
-        {React.Children.map(children, renderContent)}
-      </AnimatePresence>
+    <div ref={ref} className={cn("flex max-w-4xl flex-wrap justify-center", className)}>
+      <AnimatePresence>{React.Children.map(children, renderContent)}</AnimatePresence>
     </div>
   );
 }

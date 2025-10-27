@@ -9,6 +9,9 @@ import { cn } from "@/lib/cn";
 import Link from "next/link";
 import socialLinks from "@/data/socialLinks";
 import usePageScroll from "@/hooks/usePageScroll";
+import useIsMobile from "@/hooks/useMobile";
+import { GradualSpacing } from "@/components/ui/GradualSpacing";
+import { FlipWords } from "@/components/ui/FlipWords";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -19,6 +22,7 @@ const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
   const handleScroll = usePageScroll();
+  const words = ["Software developer", "Web developer", "Full stack developer", "React developer"];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,12 +46,50 @@ const Hero = () => {
         // Hover interactive glow & 3D rotation
         nameLetters.forEach((letter: any) => {
           letter.addEventListener("mouseenter", () => {
-            gsap.to(letter, { scale: 1.2, rotationY: 20, color: "white", textShadow: "0px 0px 20px rgba(255,255,255,0.8)", duration: 0.3 });
+            gsap.to(letter, {
+              scale: 1.2,
+              rotationY: 20,
+              color: "white",
+              textShadow: "0px 0px 20px rgba(255,255,255,0.8)",
+              duration: 0.3,
+            });
           });
           letter.addEventListener("mouseleave", () => {
-            gsap.to(letter, { scale: 1, rotationY: 0, color: "", textShadow: "0px 0px 0px rgba(0,0,0,0)", duration: 0.3 });
+            gsap.to(letter, {
+              scale: 1,
+              rotationY: 0,
+              color: "",
+              textShadow: "0px 0px 0px rgba(0,0,0,0)",
+              duration: 0.3,
+            });
           });
         });
+      }
+
+      // ----- Description & CTA Buttons -----
+      // const description = containerRef.current?.querySelector("p");
+      const ctaButtons = containerRef.current?.querySelectorAll(".cta-btn");
+
+      if (ctaButtons) {
+        // gsap.fromTo(
+        //   description,
+        //   { y: 50, opacity: 0, filter: "blur(10px)" },
+        //   { y: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1.2, ease: "power3.out" }
+        // );
+
+        gsap.fromTo(
+          ctaButtons,
+          { y: 50, opacity: 0, filter: "blur(10px)" },
+          {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            delay: 1.4,
+            stagger: 0.15,
+            ease: "power3.out",
+          }
+        );
       }
     }, containerRef);
 
@@ -55,7 +97,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id='home' ref={containerRef} className='relative h-screen overflow-hidden'>
+    <section id='home' ref={containerRef} className='relative h-screen lg:h-[900px] overflow-hidden'>
       {/* Canvas Background */}
 
       <div className='absolute inset-0'>
@@ -67,10 +109,10 @@ const Hero = () => {
 
       <div className='absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,black_40%,transparent_100%)]'></div>
 
-      <Container className='relative z-10 h-full flex flex-col justify-center items-center'>
+      <Container className='relative z-10 h-full flex flex-col justify-center items-center text-center'>
         {/* Name */}
         <div ref={nameRef} className='mb-6'>
-          <h1 className='text-6xl md:text-8xl lg:text-[180px] font-montserrat uppercase font-extrabold select-none'>
+          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] font-montserrat uppercase font-extrabold select-none'>
             {"Sadid".split("").map((letter, idx) => (
               <span
                 key={idx}
@@ -86,10 +128,14 @@ const Hero = () => {
         </div>
 
         {/* Description */}
-        <p className='text-center text-lg text-slate-400 max-w-2xl mb-12'>
+        {/* <p className='text-center text-lg text-slate-400 max-w-2xl mb-12'>
           I craft digital experiences that blend innovative design with cutting-edge technology. Specializing in modern web applications and
           interactive interfaces.
-        </p>
+        </p> */}
+        <GradualSpacing className='text-slate-300 font-poppins font-normal max-w-[600px] mx-auto mb-6'>
+          Passionate {<FlipWords words={words} />} specializing in React, Next.js, and TypeScript. I craft seamless user experiences with
+          Tailwind CSS and Framer Motion. I love someone who loves programming and is eager to learn.
+        </GradualSpacing>
 
         {/* CTA Buttons */}
         <div className='flex gap-4'>
@@ -108,7 +154,11 @@ const Hero = () => {
         </div>
 
         {/* Social Links */}
-        <div className='flex flex-col gap-6 absolute right-0 top-1/2 transform -translate-y-1/2'>
+        <div
+          className={cn(
+            "absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-6 md:flex-col md:fixed md:right-4 md:top-1/2 md:-translate-y-1/2 md:left-auto md:translate-x-0"
+          )}
+        >
           {socialLinks.map(({ Icon, href, label, color }) => (
             <Link
               key={label}
