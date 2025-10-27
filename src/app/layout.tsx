@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <ReactLenis
         options={{
           duration: 1.1, // slightly faster scroll
@@ -42,9 +42,7 @@ export default function RootLayout({
         }}
         root
       >
-        <body
-          className={cn(montserrat.variable, poppins.variable, "antialiased")}
-        >
+        <body className={cn(montserrat.variable, poppins.variable, "antialiased")}>
           <Navber />
           <TopProgressBar />
           <GlowCursor />

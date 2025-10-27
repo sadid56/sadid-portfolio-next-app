@@ -48,9 +48,3 @@
   background: linear-gradient(transparent, white);
 }
 
-body {
-  background-color: var(--color-mainBgColor);
-  color: white;
-  font-family: var(--font-poppins);
-  scroll-behavior: smooth;
-}
