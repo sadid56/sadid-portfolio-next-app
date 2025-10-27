@@ -48,3 +48,41 @@
   background: linear-gradient(transparent, white);
 }
 
+@keyframes mouseWheel {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.animate-mouseWheel {
+  animation: mouseWheel 1.5s ease-in-out infinite;
+}
+
+
+@keyframes borderShine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.group:hover .animate-borderShine {
+  animation: borderShine 2s linear infinite;
+}
+
+.animate-borderShine {
+  animation: none;
+}
+
+

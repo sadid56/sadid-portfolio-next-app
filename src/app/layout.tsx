@@ -22,7 +22,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Sadid",
+  title: "Sadid - Let's Build Something Amazing Together!",
   description: "Let's code! 😊",
 };
 
@@ -35,10 +35,10 @@ export default function RootLayout({
     <html lang='en'>
       <ReactLenis
         options={{
-          duration: 1.1, // slightly faster scroll
-          lerp: 0.1, // lower = more responsive
-          wheelMultiplier: 1.5, // faster scrolling with mouse wheel
-          touchMultiplier: 2, // faster scrolling for touch devices
+          duration: 1.1,
+          lerp: 0.1,
+          wheelMultiplier: 1.5,
+          touchMultiplier: 2,
         }}
         root
       >

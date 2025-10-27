@@ -4,18 +4,24 @@ import * as motion from "motion/react-client";
 import "./Skills.css";
 import LargeTitle from "@/components/global/LargeTitle";
 import SectionTitle from "@/components/global/SectionTitle";
-import { getFilteredSkills } from "./filterdSkills";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import skills from "@/data/skills";
+import { useMemo } from "react";
 
-const Skills = ({ skill = "Expertise" }: { skill: string }) => {
+const Skills = () => {
+  const skillParam = useSearchParams();
+  const skill = skillParam.get("skill") || "Expertise";
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
 
-  const filteredSkills = getFilteredSkills(skill);
+  const filteredSkills = useMemo(() => {
+    return skills.filter((item) => item.category === skill);
+  }, [skill]);
 
   return (
     <div
       id='skills'
-      className='w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen parent-div px-4 md:px-0'
+      className='w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen parent-div px-4 md:px-0 z-40'
     >
       <SectionTitle color='Skills' text='_' />
       <LargeTitle title='Skills' />
