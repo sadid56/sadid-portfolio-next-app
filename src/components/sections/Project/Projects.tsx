@@ -89,7 +89,9 @@ const Card = ({ project }: any) => {
             </BoxReveal>
           </h3>
           <p className='text-sm md:text-[16px] text-slate-300 leading-6 font-poppins hidden md:block mt-3'>{project?.description}</p>
-          <p className='text-sm md:text-[16px] truncate text-slate-400 leading-6 font-poppins md:hidden mt-2'>{project?.description}</p>
+          <p className='text-sm md:text-[16px]  text-slate-400 leading-6 font-poppins md:hidden mt-2'>
+            {project?.description?.slice(0, 100)}...
+          </p>
           <h5 className='text-[12px] mt-3 md:text-sm text-slate-300 font-medium font-poppins'>
             Technologies: <span className='text-slate-400'>{project?.technology?.join(", ")}</span>
           </h5>

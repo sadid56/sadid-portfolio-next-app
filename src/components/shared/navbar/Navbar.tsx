@@ -14,8 +14,8 @@ const Navber = () => {
   const iconRef = useRef<HTMLDivElement>(null);
 
   const links = [
-    { path: "#home", label: "Home" },
-    { path: "#skills", label: "Skills" },
+    { path: "#experience", label: "Experience" },
+    // { path: "#skills", label: "Skills" },
     { path: "#projects", label: "Projects" },
     { path: "#services", label: "Services" },
   ];
@@ -74,8 +74,9 @@ const Navber = () => {
       <div className='flex items-center justify-between py-3 md:pr-5'>
         {/* Logo */}
         <button
-          onClick={(e) => {
-            handleScroll(e, "#home");
+          onClick={() => {
+            window.location.href = "/";
+            window.scrollTo({ top: 0, behavior: "smooth" });
             setMobileOpen(false);
           }}
           className='flex items-center cursor-pointer'

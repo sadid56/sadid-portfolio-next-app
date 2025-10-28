@@ -3,91 +3,71 @@ import { MagicCard } from "@/components/ui/MagicCard";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { cn } from "@/lib/cn";
 import { IconAddressBook, IconBook2, IconCalendarEvent } from "@tabler/icons-react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Achievements = () => {
-  const ref = useRef(null);
-
-  // Track the scroll progress for the specific div
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"], // Defines the start and end of animation trigger
-  });
-
-  // Animate rotation and scale based on scroll position
-  const rotateGithub = useTransform(scrollYProgress, [0, 0.5], [-30, 0]);
-  const rotateCode = useTransform(scrollYProgress, [0, 0.5], [0, 0]);
-  const rotateEarn = useTransform(scrollYProgress, [0, 0.5], [30, 0]);
-
-  const scaleGithub = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-  const scaleCode = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-  const scaleEarn = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
-
-  // States to toggle margin style
-  const [githubHasMaxRotate, setGithubHasMaxRotate] = useState(false);
-  const [codeHasMaxRotate, setCodeHasMaxRotate] = useState(false);
-  const [earnHasMaxRotate, setEarnHasMaxRotate] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const unsubscribeGithub = rotateGithub.on("change", (value) => {
-      setGithubHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
-    });
-
-    const unsubscribeCode = rotateCode.on("change", (value) => {
-      setCodeHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
-    });
-
-    const unsubscribeEarn = rotateEarn.on("change", (value) => {
-      setEarnHasMaxRotate(value === 0); // When rotate hits its max value (0 in this case)
-    });
-
-    return () => {
-      unsubscribeGithub();
-      unsubscribeCode();
-      unsubscribeEarn();
-    };
-  }, [rotateGithub, rotateCode, rotateEarn]);
+    gsap.registerPlugin(ScrollTrigger);
+  }, []);
 
   const items = [
     {
-      rotate: rotateGithub,
-      scale: scaleGithub,
       title: "Year of Experience",
       value: 1,
-      style: githubHasMaxRotate ? "" : "-mr-16 z-10",
+      initial: { rotate: -20, x: -30, scale: 0.9 },
       icon: <IconCalendarEvent size={48} strokeWidth={1} className='text-primary' />,
     },
     {
-      rotate: rotateCode,
-      scale: scaleCode,
       title: "Projects Completed",
       value: 10,
-      style: codeHasMaxRotate ? "" : "z-0",
+      initial: { rotate: 0, x: 0, scale: 0.9 },
       icon: <IconAddressBook size={48} strokeWidth={1} className='text-primary' />,
     },
     {
-      rotate: rotateEarn,
-      scale: scaleEarn,
       title: "Achievement",
       value: 5,
-      style: earnHasMaxRotate ? "" : "-ml-16 z-10",
+      initial: { rotate: 20, x: 30, scale: 0.9 },
       icon: <IconBook2 size={48} strokeWidth={1} className='text-primary' />,
     },
   ];
 
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(".achv-card");
+
+      cards.forEach((card, index) => {
+        const init = (items[index] as any)?.initial || { rotate: 0, x: 0, scale: 1 };
+        gsap.set(card, { ...init, opacity: 0 });
+
+        gsap.to(card, {
+          rotate: 0,
+          x: 0,
+          scale: 1,
+          opacity: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 40%",
+            scrub: 0.9,
+          },
+        });
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div ref={ref} className='flex justify-center gap-10 items-center flex-col md:flex-row pb-20 lg:pb-80 lg:mt-5'>
       {items.map((item, index) => (
-        <MagicCard
-          rotate={item.rotate}
-          scale={item.scale}
-          key={index}
-          className={cn(`transition-all duration-150 ease-out rounded-lg p-px relative`, item?.style)}
-        >
-          <motion.div
-            className={`relative w-64 h-80 bg-gradient-to-b from-[#343840] to-[#0a0e14] flex justify-center items-center rounded-lg`}
-          >
+        <MagicCard key={index} className={cn(`achv-card transition-all duration-150 ease-out rounded-lg p-px relative`)}>
+          <div className={`relative w-64 h-80 bg-gradient-to-b from-[#2d3138] to-[#04080e] flex justify-center items-center rounded-lg`}>
             <div className='flex flex-col items-center gap-3'>
               <div>{item.icon}</div>
               <h2 className='text-slate-300 font-bold font-montserrat text-4xl'>
@@ -97,7 +77,7 @@ const Achievements = () => {
             <span className='absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins'>
               {item.title}
             </span>
-          </motion.div>
+          </div>
         </MagicCard>
       ))}
     </div>
