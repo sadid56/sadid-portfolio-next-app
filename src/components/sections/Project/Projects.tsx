@@ -48,10 +48,14 @@ const Projects = () => {
     <div id='projects' className='max-w-[1300px] mx-auto relative'>
       <SectionTitle text='Projects_' color='My' />
       <div ref={containerRef} className='relative h-screen overflow-hidden'>
-        <div className='flex items-center h-full w-full gap-10'>
+        <div className='flex items-center h-full w-full gap-5 md:gap-10'>
           {projects.map((card, idx) => (
-            <div ref={addToRefs} key={idx} className='flex-shrink-0 w-full md:w-[900px] mx-auto h-[420px] md:h-[400px] snap-center'>
-              <Card project={card} isVideoOpen={isVideoOpen} setIsVideoOpen={setIsVideoOpen} />
+            <div
+              ref={addToRefs}
+              key={idx}
+              className='flex-shrink-0 w-[90vw] md:w-[900px] mx-auto h-[420px] md:h-[400px] snap-center ml-5 md:ml-0'
+            >
+              <Card project={card} />
             </div>
           ))}
         </div>

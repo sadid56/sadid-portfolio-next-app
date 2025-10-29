@@ -24,7 +24,8 @@ const Experience = () => {
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
 
-      media.add("(prefers-reduced-motion: no-preference)", () => {
+      // ✅ Only run for desktop
+      media.add("(min-width: 1024px)", () => {
         // Left side entrance animations
         if (leftRef.current) {
           const items = leftRef.current.querySelectorAll(".left-animate");
@@ -77,20 +78,15 @@ const Experience = () => {
             pin: true,
             anticipatePin: 1,
             snap: {
-              // Directional snapping: prefer advancing in scroll direction
               snapTo: (value, self) => {
                 const steps = Math.max(cards.length - 1, 1);
                 const raw = value * steps;
-                const velocity = typeof self?.getVelocity === "function" ? self.getVelocity() : 0;
-
-                // Fast flicks: force next/prev based on direction
+                const velocity = self?.getVelocity?.() ?? 0;
                 if (Math.abs(velocity) > 300) {
                   return (velocity > 0 ? Math.ceil(raw) : Math.floor(raw)) / steps;
                 }
-
-                // Slow stop: bias slightly toward the next step to avoid snapping back
                 const nearest = Math.round(raw);
-                const delta = raw - nearest; // [-0.5, 0.5]
+                const delta = raw - nearest;
                 if (delta > 0.12) return (nearest + 1) / steps;
                 if (delta < -0.12) return (nearest - 1) / steps;
                 return nearest / steps;
@@ -109,7 +105,6 @@ const Experience = () => {
           const nextGlow = next.querySelector(".active-glow");
 
           tl.addLabel(`step-${i}`)
-            // Current slides up, tilts away, and recedes
             .to(
               current,
               {
@@ -122,7 +117,6 @@ const Experience = () => {
               },
               ">"
             )
-            // Next card comes to center (always visible with the current one)
             .to(
               next,
               {
@@ -135,7 +129,6 @@ const Experience = () => {
               },
               "<"
             )
-            // Keep remaining cards below as a stack so the next one always peeks
             .to(
               rest,
               {
@@ -199,7 +192,8 @@ const Experience = () => {
 
           {/* Right: stacking cards */}
           <div ref={stackRef} className='lg:col-span-7 relative min-h-[40vh] self-center'>
-            <div className='pointer-events-none absolute -inset-x-10 -inset-y-8 bg-linear-to-r from-emerald-400/10 via-sky-400/10 to-fuchsia-500/10 blur-3xl rounded-[40px]'></div>
+            <div className='pointer-events-none absolute inset-0 overflow-hidden bg-linear-to-r from-emerald-400/10 via-sky-400/10 to-fuchsia-500/10 blur-3xl rounded-[40px]'></div>
+
             <div className='absolute inset-0 flex items-center justify-center'>
               <div className='w-full max-w-xl mx-auto relative min-h-[540px]' style={{ perspective: 1200, transformStyle: "preserve-3d" }}>
                 {EXPERIENCE.map((exp: TExperience, idx: number) => (

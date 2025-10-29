@@ -3,7 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { IconArrowDown, IconCode, IconCoffee, IconBrandReact, IconBrandNextjs, IconBrandTypescript } from "@tabler/icons-react";
+import { IconArrowDown, IconCoffee, IconBrandReact, IconBrandNextjs, IconBrandTypescript } from "@tabler/icons-react";
 import Container from "@/components/global/Container";
 import { cn } from "@/lib/cn";
 import Link from "next/link";

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import { ReactLenis } from "@/utils/lenis";
-import Navber from "@/components/shared/navbar/Navbar";
 import { Montserrat, Poppins } from "next/font/google";
 import { cn } from "@/lib/cn";
 
@@ -40,10 +39,7 @@ export default function RootLayout({
         }}
         root
       >
-        <body className={cn(montserrat.variable, poppins.variable, "antialiased")}>
-          <Navber />
-          {children}
-        </body>
+        <body className={cn(montserrat.variable, poppins.variable, "antialiased")}>{children}</body>
       </ReactLenis>
     </html>
   );
