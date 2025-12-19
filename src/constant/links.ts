@@ -10,6 +10,7 @@ const LINKS = {
   facebook: "https://www.facebook.com/sadidhasanx/",
   discord: "https://discord.com/users/1151169623149002752/",
   linkedIn: "https://www.linkedin.com/in/mr-sadid/",
+  blog: "https://nexg-lab.vercel.app/",
 };
 
 export default LINKS;

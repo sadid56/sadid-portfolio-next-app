@@ -8,6 +8,7 @@ import { IconMenu2 } from "@tabler/icons-react";
 import gsap from "gsap";
 import ShinnyButton from "@/components/ui/ShinnyButton";
 import Link from "next/link";
+import LINKS from "@/constant/links";
 
 const Navber = () => {
   const handleScroll = usePageScroll();
@@ -85,7 +86,7 @@ const Navber = () => {
                 </button>
               ))}
             </div>
-            <Link href={"/blogs"}>
+            <Link target='_blank' href={LINKS.blog}>
               <ShinnyButton>BLOGS</ShinnyButton>
             </Link>
           </div>
