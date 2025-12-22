@@ -8,17 +8,12 @@ import DockText from "../../ui/DockText";
 import animationRocket from "@/assets/animation/rocket.json";
 import useScrollTrigger from "@/hooks/useScrollTrigger";
 import dynamic from "next/dynamic";
+import { TExperience } from "@/types/experienceTypes";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
-interface TimelineEntry {
-  service_name: string;
-  description: string;
-  icon: string;
-}
-
 interface Props {
-  data: TimelineEntry[];
+  data: TExperience[];
 }
 
 export const Timeline: React.FC<Props> = ({ data }) => {
@@ -94,20 +89,21 @@ export const Timeline: React.FC<Props> = ({ data }) => {
       {/* Header Section */}
       <div className='px-4 lg:w-1/2 mx-auto text-center'>
         <BoxReveal duration={0.7}>
-          <DockText text=' Ultimate Support Tailored for You' />
+          <DockText text='My Professional Journey' />
         </BoxReveal>
+
         <BoxReveal duration={0.8}>
           <p className='max-w-2xl text-sm md:text-lg mt-5 text-slate-400 font-poppins'>
-            I create beautiful products with full-stack technologies, dedicated to turning your vision into innovative and reliable
-            solutions.
+            A snapshot of my hands-on experience working with modern full-stack technologies, solving real problems, and contributing to
+            impactful products across teams.
           </p>
         </BoxReveal>
       </div>
 
       {/* Timeline Section */}
       <div ref={ref} className='relative pb-20 pr-5 md:pr-0'>
-        {data.map((item: TimelineEntry, index: number) => (
-          <TimelineItem item={item} index={index} key={item.service_name + index} />
+        {data.map((item: TExperience, index: number) => (
+          <TimelineItem item={item} index={index} key={item.id + index} />
         ))}
 
         {/* Centered Progress Line */}

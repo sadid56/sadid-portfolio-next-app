@@ -16,8 +16,8 @@ const Achievements = () => {
 
   const items = [
     {
-      title: "Year of Experience",
-      value: 1,
+      title: "Years of Experience",
+      value: 1.5,
       initial: { rotate: -20, x: -30, scale: 0.9 },
       icon: <IconCalendarEvent size={48} strokeWidth={1} className='text-primary' />,
     },
@@ -66,7 +66,7 @@ const Achievements = () => {
   return (
     <div ref={ref} className='flex justify-center gap-10 items-center flex-col md:flex-row pb-20 lg:pb-80 lg:mt-5'>
       {items.map((item, index) => (
-        <MagicCard key={index} className={cn(`achv-card transition-all duration-150 ease-out rounded-lg p-px relative`)}>
+        <MagicCard key={index} className={cn(`achv-card transition-all cursor-pointer duration-150 ease-out rounded-lg p-px relative`)}>
           <div className={`relative w-64 h-80 bg-gradient-to-b from-[#2d3138] to-[#04080e] flex justify-center items-center rounded-lg`}>
             <div className='flex flex-col items-center gap-3'>
               <div>{item.icon}</div>
@@ -74,7 +74,7 @@ const Achievements = () => {
                 <NumberTicker value={item.value} />+
               </h2>
             </div>
-            <span className='absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-white font-poppins'>
+            <span className='absolute bottom-0 w-full h-10 bg-white/5 flex justify-center items-center text-gray-400 font-poppins'>
               {item.title}
             </span>
           </div>

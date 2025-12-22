@@ -60,33 +60,5 @@ const projects = [
 
     live_link: "https://assignment-12-6812f.web.app/",
   },
-  {
-    id: 3,
-    project_name: "Worker",
-    description:
-      "This is a worker MERN website, You have a bide now this project and see total jobs , post your jobs and see other post job. You can check Yor bide requeste and admin accept and cencel your requests.",
-    project_thumnail: "https://i.ibb.co/tc5CCqB/assignment-11-96d26-web-app-2.png",
-    technology: ["React", "Tailwindcss", "Jwt", "MongoDB", "ExpressJs"],
-
-    client_github_link: "https://github.com/Porgramming-Hero-web-course/b8a11-client-side-sadid56",
-
-    server_github_link: "https://github.com/Porgramming-Hero-web-course/b8a11-server-side-sadid56",
-
-    live_link: "https://assignment-11-96d26.web.app/",
-  },
-  {
-    id: 3,
-    project_name: "Brand Shop",
-    description:
-      "This a brand shop website and its a normal MERN website.Any user click a brand name to show this brands products and any user delete any product and update any products. User can add a product and this user see add products.",
-    project_thumnail: "https://i.ibb.co/LCwBbd4/assignment-10-ac88b-firebaseapp-com.png",
-    technology: ["React", "Tailwindcss", "MongoDB", "ExpressJs"],
-
-    client_github_link: "https://github.com/programming-hero-web-course-4/b8a10-brandshop-client-side-sadid56",
-
-    server_github_link: "https://github.com/programming-hero-web-course-4/b8a10-brandshop-server-side-sadid56",
-
-    live_link: "https://assignment-10-ac88b.firebaseapp.com/",
-  },
 ];
 export default projects;

@@ -17,7 +17,6 @@ const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   cardsRef.current = [];
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const addToRefs = (el: HTMLDivElement) => {
     if (el && !cardsRef.current.includes(el)) cardsRef.current.push(el);

@@ -5,6 +5,6 @@ export type TExperience = {
   location: string;
   period: string;
   tech: string[];
-  website: string;
+  website?: string;
   highlights: string[];
 };

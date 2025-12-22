@@ -223,7 +223,7 @@ const Hero = () => {
       <Container className='relative z-30 h-full flex flex-col justify-center items-center text-center'>
         {/* Name */}
         <div ref={nameRef} className='mb-6'>
-          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] font-montserrat uppercase font-extrabold select-none'>
+          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] xl:text-[210px] font-montserrat uppercase font-extrabold select-none'>
             {"Sadid".split("").map((letter, idx) => (
               <span
                 key={idx}

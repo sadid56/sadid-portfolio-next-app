@@ -11,7 +11,7 @@ import { useMemo } from "react";
 
 const Skills = () => {
   const skillParam = useSearchParams();
-  const skill = skillParam.get("skill") || "Expertise";
+  const skill = skillParam.get("skills") || "Expertise";
   const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
 
   const filteredSkills = useMemo(() => {
@@ -32,7 +32,7 @@ const Skills = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {tabsArray.map((tab) => (
-          <Link scroll={false} className={`tab-btn font-montserrat ${skill === tab ? "tab-active" : ""}`} href={`?skill=${tab}`} key={tab}>
+          <Link scroll={false} className={`tab-btn font-montserrat ${skill === tab ? "tab-active" : ""}`} href={`?skills=${tab}`} key={tab}>
             {tab}
           </Link>
         ))}

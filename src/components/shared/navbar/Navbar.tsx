@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import usePageScroll from "@/hooks/usePageScroll";
-import { IconMenu2 } from "@tabler/icons-react";
 import gsap from "gsap";
 import ShinnyButton from "@/components/ui/ShinnyButton";
 import Link from "next/link";
@@ -17,13 +16,11 @@ const Navber = () => {
   const closeRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const linkRefs = useRef<HTMLAnchorElement[]>([]);
-  const menuIconRef = useRef<HTMLDivElement>(null);
   const tl = useRef<gsap.core.Timeline>(null);
 
   const links = [
     { path: "#experience", label: "Experience" },
     { path: "#projects", label: "Projects" },
-    { path: "#services", label: "Services" },
   ];
 
   useEffect(() => {
