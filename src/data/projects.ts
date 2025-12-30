@@ -1,15 +1,71 @@
+import LINKS from "@/constant/links";
+
 const projects = [
   {
     id: 1,
+    project_name: "MockupHive | OlynexLLC",
+    description:
+      "MockupHive is a premium platform by OlynexLLC where users can download professional mockup files for Photoshop. It features an innovative online editor for browser-based customization, along with dedicated plugins for Figma and Adobe tools. The platform includes a robust admin dashboard for comprehensive management.",
+    project_thumnail: LINKS.mockuphive_thumnail,
+    technology: [
+      "Next.js",
+      "TypeScript",
+      "Tailwindcss",
+      "Framer Motion",
+      "Shadcn/ui",
+      "NodeJS",
+      "ExpressJS",
+      "Mongoose",
+      "NextAuth",
+      "Figma API",
+      "Adobe API",
+      "JWT",
+      "Stripe",
+    ],
+    live_link: LINKS.mockuphive_live,
+    video_url: LINKS.mockuphive_video,
+    company: {
+      name: "OlynexLLC",
+      url: LINKS.olynex,
+    },
+  },
+  {
+    id: 2,
+    project_name: "Iconiex | OlynexLLC",
+    description:
+      "Iconiex is an extensive icon ecosystem by OlynexLLC, featuring Adobe and Figma plugins. Users can seamlessly download and integrate high-quality icons into their designs, as well as contribute to the growing library. Built for professional designers and developers.",
+    project_thumnail: LINKS.iconiex_thumnail,
+    technology: [
+      "Next.js",
+      "TypeScript",
+      "Tailwindcss",
+      "Prime React",
+      "Node.js",
+      "ExpressJS",
+      "Mongoose",
+      "Figma API",
+      "JWT",
+      "Stripe",
+      "Firebase",
+    ],
+    live_link: LINKS.iconiex,
+    video_url: LINKS.iconiex_video,
+    company: {
+      name: "OlynexLLC",
+      url: LINKS.olynex,
+    },
+  },
+  {
+    id: 3,
     project_name: "DrivePulse | Team",
     description:
       "A TEAM project, this is a online file sharing website user can upload file and share this file in real-time, impliment a real-time chat function because users can callabration in another users.",
-    project_thumnail: "https://i.ibb.co/mFNMhCR/drive-pulse-client-vercel-app-1.png",
-    technology: ["Next.js", "TypeScript", "Tailwindcss", "Jwt", "Mongoose", "ExpressJs", "Node.js", "socket.io"],
-
+    project_thumnail: LINKS.drivepulse_thumnail,
+    technology: ["Next.js", "TypeScript", "Tailwindcss", "Jwt", "Mongoose", "ExpressJs", "Node.js", "socket.io", "Firebase"],
     client_github_link: "https://github.com/Binary-Masters/DrivePulse-Client",
     server_github_link: "https://github.com/Binary-Masters/DrivePulse-Server",
-    live_link: "https://drive-pulse-client.vercel.app/",
+    live_link: LINKS.drivepulse,
+    video_url: LINKS.drivepulse_video,
     contributors: [
       {
         name: "Shahidul Islam",
@@ -34,31 +90,15 @@ const projects = [
     ],
   },
   {
-    id: 2,
-    project_name: "Free Time",
+    id: 4,
+    project_name: "NexgLab",
     description:
-      "This is a social media platform, User can share his/her feelings with post and reels and like/unlike, comment, share any post and reels. And User can add conversation then real-time chat with another user.",
-    project_thumnail: "https://i.ibb.co/QM5qFf1/Screenshot-2024-03-29-110846.png",
-    technology: ["React.js", "Tailwindcss", "Mongoose", "MongoDB", "ExpressJs", "Node.js", "socket.io", "React hook form"],
-    client_github_link: "https://github.com/sadid56/free-time-client-side",
-
-    server_github_link: "https://github.com/sadid56/free_time_server_side",
-
-    live_link: "https://free-time-56230.web.app/",
-  },
-  {
-    id: 3,
-    project_name: "Strong",
-    description:
-      "This is a Fitness & tracker website, It was a three variants role user, trainer, and admin. After login, user then book a trainer slot and join the trainer plan Admin can pay trainer monthly salary, after pay salary then disabled pay button and next month enabled pay button.",
-    project_thumnail: "https://i.ibb.co/f2Z6x21/assignment-12-6812f-web-app.png",
-    technology: ["React", "Tailwindcss", "Jwt", "MongoDB", "ExpressJs", "Stripe"],
-
-    client_github_link: "https://github.com/sadid56/fitness-tracker_client_side",
-
-    server_github_link: "https://github.com/sadid56/fitness-tracker_server_side",
-
-    live_link: "https://assignment-12-6812f.web.app/",
+      "NexgLab is my personal blog website where I share my experiences, thoughts, and learnings. I built it to have a clean and simple space to showcase my personal journey, projects, and insights. The platform is designed with a modern interface, making it easy for me to manage and present my content.",
+    project_thumnail: LINKS.nexg_lab_thumnail,
+    technology: ["Next.js", "TypeScript", "Tailwindcss", "BetterAuth", "PostgreSQL", "Prisma", "NeonDB", "Shadcn/ui"],
+    client_github_link: LINKS.nexg_github,
+    live_link: LINKS.nexg_lab,
+    video_url: LINKS.nexg_lab_video,
   },
 ];
 export default projects;

@@ -3,7 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { IconArrowDown, IconCoffee, IconBrandReact, IconBrandNextjs, IconBrandTypescript } from "@tabler/icons-react";
+import { IconCoffee, IconBrandReact, IconBrandNextjs, IconBrandTypescript, IconRocket } from "@tabler/icons-react";
 import Container from "@/components/global/Container";
 import { cn } from "@/lib/cn";
 import Link from "next/link";
@@ -11,7 +11,6 @@ import socialLinks from "@/data/socialLinks";
 import usePageScroll from "@/hooks/usePageScroll";
 import { FlipWords } from "@/components/ui/FlipWords";
 import Skills from "../Skills/Skills";
-import Button from "@/components/ui/Button";
 import LINKS from "@/constant/links";
 import styles from "@/styles/hero.module.css";
 
@@ -255,15 +254,21 @@ const Hero = () => {
         </div>
 
         {/* CTA Buttons */}
-        <div className='flex gap-4'>
+        <div className='flex flex-wrap gap-4 justify-center cta-btn'>
           <button
             onClick={(e) => handleScroll(e, "#projects")}
-            className='h-12 px-8 bg-white outline-none cursor-pointer font-montserrat rounded-[10px] font-semibold hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] tracking-wide transition-all duration-300 hover:-translate-y-[2px] flex items-center gap-2'
+            className='group relative h-12 px-8 bg-slate-800/40 backdrop-blur-xl border border-sky-500/20 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950'
           >
-            Projects <IconArrowDown />
+            <span className='absolute inset-0 bg-linear-to-r from-transparent via-sky-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700'></span>
+            <span className='relative z-10'>Projects</span>
+            <IconRocket className='relative z-10 w-5 h-5 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110' />
           </button>
-          <Link target='_blank' href={LINKS.resume}>
-            <Button>Resume</Button>
+          <Link
+            target='_blank'
+            href={LINKS.resume}
+            className='group relative h-12 px-8 bg-sky-500/20 backdrop-blur-xl border border-sky-400/30 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:bg-sky-500/30 hover:border-sky-400/50 hover:shadow-[0_0_25px_rgba(56,189,248,0.3)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950'
+          >
+            <span className='relative z-10'>Resume</span>
           </Link>
         </div>
       </Container>
@@ -291,7 +296,7 @@ const Hero = () => {
         <p className='text-slate-400 text-xs rotate-90 font-poppins tracking-widest pr-4'>
           <small>Scroll</small>
         </p>
-        <div className={styles?.arrow}></div>
+        <div className={cn(styles.arrow, "mr-px")}></div>
       </div>
     </section>
   );

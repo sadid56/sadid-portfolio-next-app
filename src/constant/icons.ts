@@ -26,6 +26,8 @@ const ICONS = {
   tailwind: `${cloudinaryImageApi}/v1761505216/portfolio/skills/tailwindcss-icon_pmjgde.png`,
   typescript: `${cloudinaryImageApi}/v1761505230/portfolio/skills/ts-icon_amxui9.png`,
   vercel: `${cloudinaryImageApi}/v1761505238/portfolio/skills/vercel-icon_ujh9xv.png`,
+  postgresql: `${cloudinaryImageApi}/v1767099152/portfolio/skills/Postgresql_elephant.svg_ytughn.png`,
+  prisma: `${cloudinaryImageApi}/v1767099239/portfolio/skills/prismaHD_q5pmkl.png`,
 
   // services
   services_icon_1: `${cloudinaryImageApi}/v1761506128/portfolio/services/icon-1_uyl5jp.png`,

@@ -6,17 +6,14 @@ import LargeTitle from "@/components/global/LargeTitle";
 import SectionTitle from "@/components/global/SectionTitle";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import skills from "@/data/skills";
+import skills, { TABS } from "@/data/skills";
 import { useMemo } from "react";
 
 const Skills = () => {
   const skillParam = useSearchParams();
-  const skill = skillParam.get("skills") || "Expertise";
-  const tabsArray = ["Expertise", "Comfortable", "Familiar", "Tools"];
+  const skill = skillParam.get("skills") || TABS[0].value;
 
-  const filteredSkills = useMemo(() => {
-    return skills.filter((item) => item.category === skill);
-  }, [skill]);
+  const filteredSkills = useMemo(() => skills.filter((item) => item.category === skill), [skill]);
 
   return (
     <div className='w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen parent-div px-4 md:px-0 z-40'>
@@ -31,9 +28,14 @@ const Skills = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {tabsArray.map((tab) => (
-          <Link scroll={false} className={`tab-btn font-montserrat ${skill === tab ? "tab-active" : ""}`} href={`?skills=${tab}`} key={tab}>
-            {tab}
+        {TABS.map((tab) => (
+          <Link
+            scroll={false}
+            className={`tab-btn font-montserrat ${skill === tab.value ? "tab-active" : ""}`}
+            href={`?skills=${tab.value}`}
+            key={tab.value}
+          >
+            {tab.label}
           </Link>
         ))}
       </motion.div>
@@ -49,7 +51,7 @@ const Skills = () => {
         {filteredSkills.map((skill, i) => (
           <motion.div key={i} className='tooltip-container' whileHover={{ scale: 1.1 }}>
             <motion.div transition={{ duration: 1, delay: 2 }} className='tooltip'>
-              <div className='side'>
+              <div className='side whitespace-nowrap text-xs'>
                 <div className='about font-montserrat'>{skill.side}</div>
               </div>
             </motion.div>

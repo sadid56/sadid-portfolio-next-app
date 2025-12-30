@@ -1,180 +1,208 @@
 import ICONS from "@/constant/icons";
 
-const skills = [
+/* ================= Tabs ================= */
+export const TABS = [
+  { label: "Frontend", value: "frontend" },
+  { label: "Backend", value: "backend" },
+  { label: "Databases & APIs", value: "databases" },
+  { label: "DevOps & Tools", value: "devops" },
+] as const;
+
+export type SkillCategory = (typeof TABS)[number]["value"];
+
+/* ================= Skill Interface ================= */
+export interface Skill {
+  id: number;
+  name: string;
+  side: string;
+  logo: string;
+  category: SkillCategory;
+}
+
+/* ================= Skills Data ================= */
+const skills: Skill[] = [
+  /* ===== Frontend ===== */
   {
     id: 1,
     name: "JavaScript",
-    side: "Frontend/backend",
+    side: "Frontend / Backend",
     logo: ICONS.javascript,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 2,
     name: "TypeScript",
-    side: "Frontend/backend",
+    side: "Frontend / Backend",
     logo: ICONS.typescript,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 3,
     name: "React.js",
     side: "Frontend",
     logo: ICONS.react,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 4,
-    name: "MUI",
-    side: "UI",
-    logo: ICONS.mui,
-    category: "Expertise",
+    name: "Next.js",
+    side: "Full Stack",
+    logo: ICONS.nextjs,
+    category: "frontend",
   },
   {
     id: 5,
     name: "HTML5",
     side: "Frontend",
     logo: ICONS.html,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 6,
     name: "CSS3",
     side: "Frontend",
     logo: ICONS.css,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 7,
-    name: "Tailwindcss",
-    side: "Frontend",
+    name: "Tailwind CSS",
+    side: "Styling",
     logo: ICONS.tailwind,
-    category: "Expertise",
+    category: "frontend",
   },
   {
     id: 8,
-    name: "Bootstrap5",
-    side: "Frontend",
-    logo: ICONS.bootstrap,
-    category: "Expertise",
+    name: "MUI",
+    side: "UI Components",
+    logo: ICONS.mui,
+    category: "frontend",
   },
   {
     id: 9,
-    name: "Node.js",
-    side: "Backend",
-    logo: ICONS.nodejs,
-    category: "Familiar",
+    name: "Redux",
+    side: "State Management",
+    logo: ICONS.redux,
+    category: "frontend",
   },
   {
     id: 10,
-    name: "Express.js",
-    side: "Backend",
-    logo: ICONS.express,
-    category: "Comfortable",
+    name: "Remix",
+    side: "Frontend",
+    logo: ICONS.remix,
+    category: "frontend",
   },
+
+  /* ===== Backend ===== */
   {
     id: 11,
-    name: "MongoDB",
-    side: "DataBase",
-    logo: ICONS.mongodb,
-    category: "Comfortable",
+    name: "Node.js",
+    side: "JavaScript Runtime",
+    logo: ICONS.nodejs,
+    category: "backend",
   },
   {
     id: 12,
-    name: "Next.js",
-    side: "Frontend/backend",
-    logo: ICONS.nextjs,
-    category: "Comfortable",
+    name: "Express.js",
+    side: "Node.js Framework",
+    logo: ICONS.express,
+    category: "backend",
   },
   {
     id: 13,
     name: "JWT",
-    side: "Backend",
+    side: "Authentication & Secure",
     logo: ICONS.jwt,
-    category: "Familiar",
+    category: "backend",
   },
   {
     id: 14,
-    name: "GitHub",
-    side: "Repositories,",
-    logo: ICONS.github,
-    category: "Tools",
+    name: "Auth.js",
+    side: "Authentication",
+    logo: ICONS.next_auth,
+    category: "backend",
   },
   {
     id: 15,
-    name: "Vercel",
-    side: "Deploy",
-    logo: ICONS.vercel,
-    category: "Tools",
+    name: "Firebase Auth",
+    side: "Authentication & Storage",
+    logo: ICONS.firebase,
+    category: "backend",
   },
+
+  /* ===== Databases & APIs ===== */
   {
     id: 16,
-    name: "Firebase",
-    side: "Authentication",
-    logo: ICONS.firebase,
-    category: "Comfortable",
+    name: "MongoDB",
+    side: "NoSQL Database",
+    logo: ICONS.mongodb,
+    category: "databases",
   },
   {
     id: 17,
     name: "Mongoose",
-    side: "Backend",
+    side: "ODM",
     logo: ICONS.mongoose,
-    category: "Comfortable",
+    category: "databases",
   },
+  {
+    id: 24,
+    name: "PostgreSQL",
+    side: "Relational Database",
+    logo: ICONS.postgresql,
+    category: "databases",
+  },
+  {
+    id: 25,
+    name: "Prisma ORM",
+    side: "Database ORM",
+    logo: ICONS.prisma,
+    category: "databases",
+  },
+
+  /* ===== DevOps & Tools ===== */
   {
     id: 18,
     name: "Git",
-    side: "VersionControl ",
+    side: "Version Control",
     logo: ICONS.git,
-    category: "Tools",
+    category: "devops",
   },
   {
     id: 19,
-    name: "Figma",
-    side: "Design",
-    logo: ICONS.figma,
-    category: "Tools",
+    name: "GitHub",
+    side: "Code Hosting",
+    logo: ICONS.github,
+    category: "devops",
   },
   {
     id: 20,
-    name: "Canva",
-    side: "Design",
-    logo: ICONS.canva,
-    category: "Tools",
+    name: "Vercel",
+    side: "Deployment",
+    logo: ICONS.vercel,
+    category: "devops",
   },
   {
     id: 21,
     name: "AWS",
-    side: "Web/file_Hosting",
+    side: "Cloud Services",
     logo: ICONS.aws,
-    category: "Tools",
+    category: "devops",
   },
   {
     id: 22,
-    name: "Remix",
-    side: "Frontend",
-    logo: ICONS.remix,
-    category: "Comfortable",
+    name: "Figma",
+    side: "UI/UX Design",
+    logo: ICONS.figma,
+    category: "devops",
   },
   {
     id: 23,
-    name: "Redux",
-    side: "Frontend/backend",
-    logo: ICONS.redux,
-    category: "Comfortable",
-  },
-  {
-    id: 24,
-    name: "React_Native",
-    side: "Mobile_app",
-    logo: ICONS.react,
-    category: "Familiar",
-  },
-  {
-    id: 25,
-    name: "Next-Auth",
-    side: "Authentication",
-    logo: ICONS.next_auth,
-    category: "Comfortable",
+    name: "Canva",
+    side: "Design Tool",
+    logo: ICONS.canva,
+    category: "devops",
   },
 ];
+
 export default skills;

@@ -26,15 +26,17 @@ const Navber = () => {
   useEffect(() => {
     if (!navRef.current) return;
 
-    // GSAP Timeline setup (paused initially)
+    // Filter out null links
+    const linksArray = linkRefs.current.filter(Boolean);
+
     tl.current = gsap.timeline({ defaults: { duration: 0.8, ease: "expo.inOut" }, paused: true });
 
     tl.current
       .to(navRef.current, { right: 0 })
       .to(navRef.current, { height: "95vh" }, "-=0.1")
-      .to(linkRefs.current, { opacity: 1, pointerEvents: "auto", stagger: 0.15 }, "-=0.6")
-      .to(closeRef.current, { opacity: 1, pointerEvents: "auto" }, "-=0.7")
-      .to(titleRef.current, { opacity: 1 }, "-=1");
+      .to(linksArray, { opacity: 1, pointerEvents: "auto", stagger: 0.15 }, "-=0.6")
+      .to(closeRef.current || {}, { opacity: 1, pointerEvents: "auto" }, "-=0.7") // fallback if null
+      .to(titleRef.current || {}, { opacity: 1 }, "-=1");
   }, []);
 
   // Handle open/close animation
@@ -139,7 +141,7 @@ const Navber = () => {
             </li>
           ))}
         </ul>
-        <Link href={"/blogs"}>
+        <Link href={LINKS.blog}>
           <ShinnyButton>BLOGS</ShinnyButton>
         </Link>
       </div>
