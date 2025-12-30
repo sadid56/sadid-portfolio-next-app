@@ -13,6 +13,7 @@ import { FlipWords } from "@/components/ui/FlipWords";
 import Skills from "../Skills/Skills";
 import LINKS from "@/constant/links";
 import styles from "@/styles/hero.module.css";
+import useScrollTrigger from "@/hooks/useScrollTrigger";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -25,6 +26,7 @@ const Hero = () => {
   const dLetterRef = useRef<HTMLSpanElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
   const handleScroll = usePageScroll();
+  const isScroll = useScrollTrigger();
   const words = ["Software developer", "Web developer", "Full stack developer", "React developer"];
 
   useLayoutEffect(() => {
@@ -70,28 +72,6 @@ const Hero = () => {
           },
         },
       });
-
-      // Hover interactive glow & 3D rotation
-      // nameLetters.forEach((letter: any) => {
-      //   letter.addEventListener("mouseenter", () => {
-      //     gsap.to(letter, {
-      //       scale: 1.2,
-      //       rotationY: 20,
-      //       color: "white",
-      //       textShadow: "0px 0px 20px rgba(255,255,255,0.8)",
-      //       duration: 0.3,
-      //     });
-      //   });
-      //   letter.addEventListener("mouseleave", () => {
-      //     gsap.to(letter, {
-      //       scale: 1,
-      //       rotationY: 0,
-      //       color: "",
-      //       textShadow: "0px 0px 0px rgba(0,0,0,0)",
-      //       duration: 0.3,
-      //     });
-      //   });
-      // });
 
       // Identify specific letters for motion
       const letters = Array.from(nameRef.current?.querySelectorAll("span") ?? []);
@@ -257,7 +237,10 @@ const Hero = () => {
         <div className='flex flex-wrap gap-4 justify-center cta-btn'>
           <button
             onClick={(e) => handleScroll(e, "#projects")}
-            className='group relative h-12 px-8 bg-slate-800/40 backdrop-blur-xl border border-sky-500/20 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950'
+            className={cn(
+              "group relative h-12 px-8 bg-slate-800/40 backdrop-blur-xl border border-sky-500/20 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:border-sky-400/50 hover:shadow-[0_0_30px_rgba(56,189,248,0.25)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950",
+              isScroll ? "z-[-1]" : "z-1"
+            )}
           >
             <span className='absolute inset-0 bg-linear-to-r from-transparent via-sky-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700'></span>
             <span className='relative z-10'>Projects</span>
@@ -266,9 +249,12 @@ const Hero = () => {
           <Link
             target='_blank'
             href={LINKS.resume}
-            className='group relative h-12 px-8 bg-sky-500/20 backdrop-blur-xl border border-sky-400/30 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:bg-sky-500/30 hover:border-sky-400/50 hover:shadow-[0_0_25px_rgba(56,189,248,0.3)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950'
+            className={cn(
+              "group relative h-12 px-8 bg-sky-500/20 backdrop-blur-xl border border-sky-400/30 outline-none cursor-pointer font-montserrat rounded-xl font-semibold tracking-wide transition-all duration-500 hover:bg-sky-500/30 hover:border-sky-400/50 hover:shadow-[0_0_25px_rgba(56,189,248,0.3)] hover:-translate-y-1 flex items-center gap-2 text-sky-100 overflow-hidden focus:outline-none focus:ring-2 focus:ring-sky-400/50 focus:ring-offset-2 focus:ring-offset-slate-950",
+              isScroll ? "z-[-1]" : "z-1"
+            )}
           >
-            <span className='relative z-10'>Resume</span>
+            <span>Resume</span>
           </Link>
         </div>
       </Container>

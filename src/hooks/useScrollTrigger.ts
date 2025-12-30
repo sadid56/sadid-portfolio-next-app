@@ -1,30 +1,28 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-const useScrollTrigger = () => {
+const useScrollTrigger = (threshold: number = 50) => {
   const [scrollingDown, setScrollingDown] = useState<boolean>(false);
   const lastScrollTopRef = useRef<number>(0);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const handleScroll = () => {
       const currentScrollTop = window.pageYOffset;
+      const scrollDiff = currentScrollTop - lastScrollTopRef.current;
 
-      if (currentScrollTop > lastScrollTopRef.current) {
-        setScrollingDown(true);
-      } else {
-        setScrollingDown(false);
+      if (Math.abs(scrollDiff) >= threshold) {
+        setScrollingDown(scrollDiff > 0);
+        lastScrollTopRef.current = currentScrollTop;
       }
-
-      lastScrollTopRef.current = Math.max(0, currentScrollTop);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [threshold]);
 
   return scrollingDown;
 };
