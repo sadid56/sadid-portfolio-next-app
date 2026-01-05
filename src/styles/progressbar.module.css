@@ -3,9 +3,16 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 2px;
   border-radius: 8px;
-  background: linear-gradient(to right, transparent, #e81cff, #40c9ff);
+    background: linear-gradient(
+    to right,
+    rgba(10, 208, 142, 0) 0%,
+    #0ad08e 25%,
+    #40c9ff 50%,
+    #0ad08e 75%,
+    rgba(64, 201, 255, 0) 100%
+  );
   transform-origin: 0%;
   z-index: 999;
 }

@@ -3,7 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { IconCoffee, IconBrandReact, IconBrandNextjs, IconBrandTypescript, IconRocket } from "@tabler/icons-react";
+import { IconBrandReact, IconBrandNextjs, IconBrandTypescript, IconRocket } from "@tabler/icons-react";
 import Container from "@/components/global/Container";
 import { cn } from "@/lib/cn";
 import Link from "next/link";
@@ -25,6 +25,7 @@ const Hero = () => {
   const nameRef = useRef<HTMLDivElement>(null);
   const dLetterRef = useRef<HTMLSpanElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
   const handleScroll = usePageScroll();
   const isScroll = useScrollTrigger();
   const words = ["Software developer", "Web developer", "Full stack developer", "React developer"];
@@ -33,20 +34,10 @@ const Hero = () => {
     ScrollTrigger.getAll().forEach((t) => t.kill());
 
     const ctx = gsap.context(() => {
-      const nameLetters = nameRef.current?.querySelectorAll("span") ?? [];
       const ctaButtons = containerRef.current?.querySelectorAll(".cta-btn") ?? [];
       const gradualEls = containerRef.current?.querySelectorAll(".GradualSpacing") ?? [];
       const socialEls = containerRef.current?.querySelectorAll(".social-links-container") ?? [];
-
-      // Build a single array of real DOM targets (no selector strings)
-      const otherLetters = Array.from(nameLetters).filter((el) => el !== dLetterRef.current);
-      const otherContentTargets: (Element | HTMLElement)[] = [
-        ...otherLetters,
-        ...Array.from(gradualEls),
-        ...Array.from(ctaButtons),
-        ...Array.from(socialEls),
-      ];
-
+      const blurTargets = containerRef.current?.querySelectorAll(".blur-target") ?? [];
       // make sure reveal and D initial states are correct
       if (revealRef.current) gsap.set(revealRef.current, { clipPath: "circle(0% at 50% 50%)" });
       if (dLetterRef.current)
@@ -56,36 +47,160 @@ const Hero = () => {
           transformOrigin: "50% 50%",
         });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=2000",
-          scrub: 1,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          onLeaveBack: () => {
-            gsap.to(otherContentTargets, { opacity: 1, y: 0, x: 0, filter: "none", duration: 0.35, clearProps: "all" });
-            gsap.to(dLetterRef.current, { scale: 1, opacity: 1, duration: 0.35, clearProps: "all" });
-            gsap.to(revealRef.current, { clipPath: "circle(0% at 50% 50%)", duration: 0.35, clearProps: "all" });
-          },
-        },
-      });
-
-      // Identify specific letters for motion
       const letters = Array.from(nameRef.current?.querySelectorAll("span") ?? []);
       const leftLetters = letters.slice(0, 2); // S, A
       const rightLetters = letters.slice(3, 5); // I, D
       const dLetter = dLetterRef.current;
+      const description = containerRef.current?.querySelector(".GradualSpacing");
+      const cta = containerRef.current?.querySelector(".cta-btn");
+      const social = containerRef.current?.querySelector(".social-links-container");
 
+      const otherContentTargets: (Element | HTMLElement)[] = [
+        ...Array.from(gradualEls),
+        ...Array.from(ctaButtons),
+        ...Array.from(socialEls),
+        ...Array.from(blurTargets),
+      ];
+      if (portraitRef.current) otherContentTargets.push(portraitRef.current);
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=3500",
+          scrub: 1.5,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onLeaveBack: () => {
+            gsap.to(otherContentTargets, {
+              opacity: 1,
+              filter: "blur(0px)",
+              scale: 1,
+              duration: 0.5,
+              clearProps: "all",
+            });
+            gsap.to([nameRef.current, description, cta, dLetter, social, ...leftLetters, ...rightLetters], {
+              x: 0,
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 0.5,
+              clearProps: "all",
+            });
+            gsap.to(revealRef.current, {
+              clipPath: "circle(0% at 50% 50%)",
+              duration: 0.5,
+              clearProps: "all",
+            });
+          },
+        },
+      });
+
+      gsap.set(otherContentTargets, {
+        filter: "blur(0px)",
+        opacity: 1,
+        scale: 1,
+      });
+      gsap.set([...leftLetters, ...rightLetters], {
+        filter: "blur(0px)",
+        opacity: 1,
+        x: 0,
+      });
+
+      tl.to(
+        otherContentTargets,
+        {
+          filter: "blur(3px)",
+          opacity: 0.8,
+          scale: 0.98,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        0
+      );
+
+      tl.to(
+        otherContentTargets,
+        {
+          filter: "blur(8px)",
+          opacity: 0.5,
+          scale: 0.96,
+          duration: 0.7,
+          ease: "power2.inOut",
+        },
+        0.8
+      );
+
+      // Final blur stage
+      tl.to(
+        otherContentTargets,
+        {
+          filter: "blur(12px)",
+          opacity: 0.2,
+          scale: 0.95,
+          duration: 0.8,
+          ease: "power2.in",
+        },
+        1.5
+      );
+
+      tl.to(
+        dLetter,
+        {
+          x: () => {
+            if (!dLetter) return 0;
+            const dRect = dLetter.getBoundingClientRect();
+            const dCenterX = dRect.left + dRect.width / 2;
+            return window.innerWidth / 2 - dCenterX;
+          },
+          y: () => {
+            if (!dLetter) return 0;
+            const dRect = dLetter.getBoundingClientRect();
+            const dCenterY = dRect.top + dRect.height / 2;
+            return window.innerHeight / 2 - dCenterY;
+          },
+          duration: 1.5,
+          ease: "power2.inOut",
+        },
+        0
+      );
+
+      if (socialEls.length > 0) {
+        tl.to(
+          socialEls,
+          {
+            y: -350,
+            opacity: 0.1,
+            duration: 1.2,
+            ease: "power3.inOut",
+          },
+          0.5
+        );
+      }
+
+      tl.to(
+        [description, cta],
+        {
+          y: 100,
+          opacity: 0.1,
+          duration: 1.2,
+          ease: "power3.inOut",
+        },
+        0.5
+      );
+
+      // Combine movement with blur so they don't look stuck
       tl.to(
         leftLetters,
         {
-          x: -250,
-          opacity: 0.6,
-          duration: 1.2,
-          ease: "power3.inOut",
+          x: -300,
+          opacity: 0,
+          filter: "blur(12px)",
+          duration: 2,
+          ease: "power2.inOut",
         },
         0
       );
@@ -93,19 +208,21 @@ const Hero = () => {
       tl.to(
         rightLetters,
         {
-          x: 250,
-          opacity: 0.6,
-          duration: 1.2,
-          ease: "power3.inOut",
+          x: 300,
+          opacity: 0,
+          filter: "blur(12px)",
+          duration: 2,
+          ease: "power2.inOut",
         },
         0
       );
 
-      // Phase 2: Center D zooms in
       tl.to(
         dLetter,
         {
-          scale: 20,
+          scale: 30,
+          fontWeight: 900,
+          textShadow: "0 0 80px rgba(56, 189, 248, 0.6)",
           ease: "power3.inOut",
           duration: 1.5,
           force3D: false,
@@ -113,17 +230,16 @@ const Hero = () => {
           onStart: () => {
             if (!dLetterRef.current) return;
             gsap.set(dLetterRef.current, {
-              backgroundImage: "linear-gradient(to right, white, #cbd5e1, #94a3b8)",
+              backgroundImage: "linear-gradient(to right, #ffffff, #e2e8f0, #f8fafc)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               color: "transparent",
             });
           },
         },
-        0.2
+        2.3
       );
 
-      // Phase 3: Reveal new section
       tl.to(
         revealRef.current,
         {
@@ -131,15 +247,16 @@ const Hero = () => {
           ease: "power2.in",
           duration: 1.5,
         },
-        0.8
+        3.2
       );
+
       tl.to(
-        dLetter,
+        dLetterRef.current,
         {
           opacity: 0,
           duration: 1,
         },
-        1
+        3.4
       );
 
       // Floating icons gentle animation
@@ -169,7 +286,7 @@ const Hero = () => {
       };
       containerRef.current?.addEventListener("mousemove", onMouseMove);
 
-      // Cleanup for mouse listener in context
+      // Cleanup
       return () => {
         containerRef.current?.removeEventListener("mousemove", onMouseMove);
         gsap.killTweensOf(floatingIcons);
@@ -184,29 +301,42 @@ const Hero = () => {
 
   return (
     <section id='home' ref={containerRef} className='relative h-screen overflow-hidden'>
-      {/* Floating decorative icons */}
-      <div className='pointer-events-none absolute inset-0 z-20'>
-        <IconCoffee className='floating-icon absolute bottom-24 right-[20%] w-9 h-9 text-slate-300/70 drop-shadow-[0_0_10px_rgba(203,213,225,0.25)]' />
-        <IconBrandReact className='floating-icon absolute top-[25%] left-[15%] w-10 h-10 text-cyan-300/70' />
-        <IconBrandNextjs className='floating-icon absolute bottom-32 left-1/4 w-10 h-10 text-slate-200/70' />
-        <IconBrandTypescript className='floating-icon absolute top-[15%] md:top-1/2 right-[15%] w-9 h-9 text-blue-300/70' />
+      <div className='pointer-events-none hidden lg:block absolute inset-0 z-20 blur-target'>
+        <IconBrandReact className='floating-icon absolute top-[20%] right-[30%] w-9 h-9 text-blue-300/70 drop-shadow-[0_0_10px_rgba(203,213,225,0.25)]' />
+
+        <IconBrandNextjs className='floating-icon absolute bottom-32 left-[35%] w-10 h-10 text-slate-200/70' />
+        <IconBrandTypescript className='floating-icon absolute top-[15%] md:top-1/2 right-[10%] w-9 h-9 text-blue-300/70' />
       </div>
       <div ref={revealRef} className='absolute inset-0 z-50 bg-mainBgColor' style={{ clipPath: "circle(0% at 50% 50%)" }}>
         <Skills />
       </div>
-      <div className='absolute inset-0 z-0'>
-        <div className='absolute top-1/3 -right-20 w-96 h-96 bg-linear-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl float-slow'></div>
-        <div className='absolute bottom-1/4 -left-20 w-80 h-80 bg-linear-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl float-fast'></div>
+      <div className='absolute inset-0 z-0 blur-target'>
+        <div className='absolute top-1/3 -right-20 w-96 h-96 bg-linear-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl float-slow'></div>
       </div>
-      <div className='absolute inset-0 z-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[48px_48px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,black_40%,transparent_100%)]'></div>
-      <Container className='relative z-30 h-full flex flex-col justify-center items-center text-center'>
+      <div className='absolute inset-0 z-0 blur-target bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[48px_48px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,black_20%,transparent_100%)]'></div>
+
+      {/* Background Portrait Overlay */}
+      <div ref={portraitRef} className='absolute inset-0 z-0 pointer-events-none overflow-hidden'>
+        <div
+          className='absolute right-[10%] md:right-[30%] 2xl:right-[47%]  bottom-[40%] md:-bottom-[20%] w-full h-[130%] bg-no-repeat bg-bottom-right bg-contain opacity-[0.08]'
+          style={{
+            backgroundImage: "url('/images/v3.png')",
+            maskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 20%, transparent 80%)",
+            WebkitMaskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 60%, transparent 100%)",
+            maskComposite: "intersect",
+            WebkitMaskComposite: "source-in",
+            filter: "grayscale(100%) brightness(1.5) contrast(1.1)",
+          }}
+        />
+      </div>
+      <Container className='relative z-30 pb-20 pr-4 lg:pr-28 2xl:pr-10 h-full flex flex-col justify-end items-end text-right'>
         {/* Name */}
         <div ref={nameRef} className='mb-6'>
-          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] xl:text-[210px] font-montserrat uppercase font-extrabold select-none'>
+          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] xl:text-[210px] font-montserrat uppercase font-black select-none'>
             {"Sadid".split("").map((letter, idx) => (
               <span
                 key={idx}
-                ref={idx === 2 ? dLetterRef : null} // Assign ref to 'D'
+                ref={idx === 2 ? dLetterRef : null}
                 className={cn(
                   "inline-block mx-1 bg-linear-to-r from-white via-slate-300 to-slate-400 bg-clip-text text-transparent",
                   "cursor-default"
@@ -228,13 +358,13 @@ const Hero = () => {
         </div>
 
         {/* Description */}
-        <div className='text-slate-300 font-poppins font-normal max-w-[600px] mx-auto mb-6 GradualSpacing'>
+        <div className='text-slate-300 font-poppins font-normal max-w-[700px] mb-6 GradualSpacing'>
           Passionate {<FlipWords words={words} />} specializing in React, Next.js, Node.js, PostgreSQL and TypeScript. I love someone who
           loves programming and is eager to learn.
         </div>
 
         {/* CTA Buttons */}
-        <div className='flex flex-wrap gap-4 justify-center cta-btn'>
+        <div className='flex flex-wrap gap-4 justify-end cta-btn'>
           <button
             onClick={(e) => handleScroll(e, "#projects")}
             className={cn(
@@ -261,7 +391,7 @@ const Hero = () => {
       {/* Social Links */}
       <div
         className={cn(
-          "absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-6 md:flex-col md:fixed md:right-4 md:top-1/2 md:-translate-y-1/2 md:left-auto md:translate-x-0 h-fit"
+          "social-links-container hidden absolute bottom-4 left-1/2 -translate-x-1/2 lg:flex gap-6 md:flex-col md:fixed md:right-4 md:top-1/2 md:-translate-y-1/2 md:left-auto md:translate-x-0 h-fit"
         )}
       >
         {socialLinks.map(({ Icon, href, label, color }) => (
