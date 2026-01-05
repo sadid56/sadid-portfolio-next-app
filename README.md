@@ -20,10 +20,10 @@ This portfolio is built using modern web technologies:
 
 ##  🧑‍💻 About Me
 
-💼 Full-Stack Web Developer
-⚛️ React, Next.js, Node.js
-🗄 MongoDB, PostgreSQL
-🎯 Focused on clean UI, performance & scalability
+- 💼 Full-Stack Web Developer
+- ⚛️ React, Next.js, Node.js
+- 🗄 MongoDB, PostgreSQL
+- 🎯 Focused on clean UI, performance & scalability
 
 I love building real-world products and continuously improving my skills.
 
@@ -31,5 +31,5 @@ I love building real-world products and continuously improving my skills.
 
 If you want to collaborate or have any questions, feel free to reach out:
 
-📧 Email: sadidhasan56@gmail.com
-💼 LinkedIn: https://www.linkedin.com/in/mr-sadid/
+- 📧 Email: sadidhasan56@gmail.com
+- 💼 LinkedIn: https://www.linkedin.com/in/mr-sadid/
