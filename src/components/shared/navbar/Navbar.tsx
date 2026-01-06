@@ -80,6 +80,7 @@ const Navber = () => {
                 <Drawer.Overlay className='fixed inset-0 bg-black/20 backdrop-blur-[10px] z-[999]' />
                 <Drawer.Content className='fixed bottom-0 left-0 right-0 z-[1000] mt-4 flex h-auto flex-col rounded-t-[30px] bg-mainBgColor border-t border-white/10'>
                   {/* Handle */}
+                  <Drawer.Title className='sr-only' />
                   <div className='mx-auto mt-4 h-1.5 w-12 flex-shrink-0 rounded-full bg-gray-300/50' />
 
                   {/* Close Button */}

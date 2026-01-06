@@ -33,269 +33,275 @@ const Hero = () => {
   useLayoutEffect(() => {
     ScrollTrigger.getAll().forEach((t) => t.kill());
 
-    const ctx = gsap.context(() => {
-      const ctaButtons = containerRef.current?.querySelectorAll(".cta-btn") ?? [];
-      const gradualEls = containerRef.current?.querySelectorAll(".GradualSpacing") ?? [];
-      const socialEls = containerRef.current?.querySelectorAll(".social-links-container") ?? [];
-      const blurTargets = containerRef.current?.querySelectorAll(".blur-target") ?? [];
-      // make sure reveal and D initial states are correct
-      if (revealRef.current) gsap.set(revealRef.current, { clipPath: "circle(0% at 50% 50%)" });
-      if (dLetterRef.current)
-        gsap.set(dLetterRef.current, {
-          scale: 1,
-          opacity: 1,
-          transformOrigin: "50% 50%",
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      "(min-width: 1024px)",
+      () => {
+        const ctaButtons = containerRef.current?.querySelectorAll(".cta-btn") ?? [];
+        const gradualEls = containerRef.current?.querySelectorAll(".GradualSpacing") ?? [];
+        const socialEls = containerRef.current?.querySelectorAll(".social-links-container") ?? [];
+        const blurTargets = containerRef.current?.querySelectorAll(".blur-target") ?? [];
+
+        // Initial states
+        if (revealRef.current) gsap.set(revealRef.current, { clipPath: "circle(0% at 50% 50%)" });
+        if (dLetterRef.current) {
+          gsap.set(dLetterRef.current, {
+            scale: 1,
+            opacity: 1,
+            transformOrigin: "50% 50%",
+          });
+        }
+
+        const letters = Array.from(nameRef.current?.querySelectorAll("span") ?? []);
+        const leftLetters = letters.slice(0, 2); // S, A
+        const rightLetters = letters.slice(3, 5); // I, D
+        const dLetter = dLetterRef.current;
+        const description = containerRef.current?.querySelector(".GradualSpacing");
+        const cta = containerRef.current?.querySelector(".cta-btn");
+        const social = containerRef.current?.querySelector(".social-links-container");
+
+        const otherContentTargets: (Element | HTMLElement)[] = [
+          ...Array.from(gradualEls),
+          ...Array.from(ctaButtons),
+          ...Array.from(socialEls),
+          ...Array.from(blurTargets),
+        ];
+        if (portraitRef.current) otherContentTargets.push(portraitRef.current);
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "+=3500",
+            scrub: 1.5,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onLeaveBack: () => {
+              gsap.to(otherContentTargets, {
+                opacity: 1,
+                filter: "blur(0px)",
+                scale: 1,
+                duration: 0.5,
+                clearProps: "all",
+              });
+              gsap.to([nameRef.current, description, cta, dLetter, social, ...leftLetters, ...rightLetters], {
+                x: 0,
+                y: 0,
+                scale: 1,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 0.5,
+                clearProps: "all",
+              });
+              gsap.to(revealRef.current, {
+                clipPath: "circle(0% at 50% 50%)",
+                duration: 0.5,
+                clearProps: "all",
+              });
+            },
+          },
         });
 
-      const letters = Array.from(nameRef.current?.querySelectorAll("span") ?? []);
-      const leftLetters = letters.slice(0, 2); // S, A
-      const rightLetters = letters.slice(3, 5); // I, D
-      const dLetter = dLetterRef.current;
-      const description = containerRef.current?.querySelector(".GradualSpacing");
-      const cta = containerRef.current?.querySelector(".cta-btn");
-      const social = containerRef.current?.querySelector(".social-links-container");
+        gsap.set(otherContentTargets, {
+          filter: "blur(0px)",
+          opacity: 1,
+          scale: 1,
+        });
+        gsap.set([...leftLetters, ...rightLetters], {
+          filter: "blur(0px)",
+          opacity: 1,
+          x: 0,
+        });
 
-      const otherContentTargets: (Element | HTMLElement)[] = [
-        ...Array.from(gradualEls),
-        ...Array.from(ctaButtons),
-        ...Array.from(socialEls),
-        ...Array.from(blurTargets),
-      ];
-      if (portraitRef.current) otherContentTargets.push(portraitRef.current);
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=3500",
-          scrub: 1.5,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onLeaveBack: () => {
-            gsap.to(otherContentTargets, {
-              opacity: 1,
-              filter: "blur(0px)",
-              scale: 1,
-              duration: 0.5,
-              clearProps: "all",
-            });
-            gsap.to([nameRef.current, description, cta, dLetter, social, ...leftLetters, ...rightLetters], {
-              x: 0,
-              y: 0,
-              scale: 1,
-              opacity: 1,
-              filter: "blur(0px)",
-              duration: 0.5,
-              clearProps: "all",
-            });
-            gsap.to(revealRef.current, {
-              clipPath: "circle(0% at 50% 50%)",
-              duration: 0.5,
-              clearProps: "all",
-            });
-          },
-        },
-      });
-
-      gsap.set(otherContentTargets, {
-        filter: "blur(0px)",
-        opacity: 1,
-        scale: 1,
-      });
-      gsap.set([...leftLetters, ...rightLetters], {
-        filter: "blur(0px)",
-        opacity: 1,
-        x: 0,
-      });
-
-      tl.to(
-        otherContentTargets,
-        {
-          filter: "blur(3px)",
-          opacity: 0.8,
-          scale: 0.98,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        0
-      );
-
-      tl.to(
-        otherContentTargets,
-        {
-          filter: "blur(8px)",
-          opacity: 0.5,
-          scale: 0.96,
-          duration: 0.7,
-          ease: "power2.inOut",
-        },
-        0.8
-      );
-
-      // Final blur stage
-      tl.to(
-        otherContentTargets,
-        {
-          filter: "blur(12px)",
-          opacity: 0.2,
-          scale: 0.95,
-          duration: 0.8,
-          ease: "power2.in",
-        },
-        1.5
-      );
-
-      tl.to(
-        dLetter,
-        {
-          x: () => {
-            if (!dLetter) return 0;
-            const dRect = dLetter.getBoundingClientRect();
-            const dCenterX = dRect.left + dRect.width / 2;
-            return window.innerWidth / 2 - dCenterX;
-          },
-          y: () => {
-            if (!dLetter) return 0;
-            const dRect = dLetter.getBoundingClientRect();
-            const dCenterY = dRect.top + dRect.height / 2;
-            return window.innerHeight / 2 - dCenterY;
-          },
-          duration: 1.5,
-          ease: "power2.inOut",
-        },
-        0
-      );
-
-      if (socialEls.length > 0) {
         tl.to(
-          socialEls,
+          otherContentTargets,
           {
-            y: -350,
+            filter: "blur(3px)",
+            opacity: 0.8,
+            scale: 0.98,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          0
+        );
+
+        tl.to(
+          otherContentTargets,
+          {
+            filter: "blur(8px)",
+            opacity: 0.5,
+            scale: 0.96,
+            duration: 0.7,
+            ease: "power2.inOut",
+          },
+          0.8
+        );
+
+        // Final blur stage
+        tl.to(
+          otherContentTargets,
+          {
+            filter: "blur(12px)",
+            opacity: 0.2,
+            scale: 0.95,
+            duration: 0.8,
+            ease: "power2.in",
+          },
+          1.5
+        );
+
+        tl.to(
+          dLetter,
+          {
+            x: () => {
+              if (!dLetter) return 0;
+              const dRect = dLetter.getBoundingClientRect();
+              const dCenterX = dRect.left + dRect.width / 2;
+              return window.innerWidth / 2 - dCenterX;
+            },
+            y: () => {
+              if (!dLetter) return 0;
+              const dRect = dLetter.getBoundingClientRect();
+              const dCenterY = dRect.top + dRect.height / 2;
+              return window.innerHeight / 2 - dCenterY;
+            },
+            duration: 1.5,
+            ease: "power2.inOut",
+          },
+          0
+        );
+
+        if (socialEls.length > 0) {
+          tl.to(
+            socialEls,
+            {
+              y: -350,
+              opacity: 0.1,
+              duration: 1.2,
+              ease: "power3.inOut",
+            },
+            0.5
+          );
+        }
+
+        tl.to(
+          [description, cta],
+          {
+            y: 100,
             opacity: 0.1,
             duration: 1.2,
             ease: "power3.inOut",
           },
           0.5
         );
-      }
 
-      tl.to(
-        [description, cta],
-        {
-          y: 100,
-          opacity: 0.1,
-          duration: 1.2,
-          ease: "power3.inOut",
-        },
-        0.5
-      );
-
-      // Combine movement with blur so they don't look stuck
-      tl.to(
-        leftLetters,
-        {
-          x: -300,
-          opacity: 0,
-          filter: "blur(12px)",
-          duration: 2,
-          ease: "power2.inOut",
-        },
-        0
-      );
-
-      tl.to(
-        rightLetters,
-        {
-          x: 300,
-          opacity: 0,
-          filter: "blur(12px)",
-          duration: 2,
-          ease: "power2.inOut",
-        },
-        0
-      );
-
-      tl.to(
-        dLetter,
-        {
-          scale: 30,
-          fontWeight: 900,
-          textShadow: "0 0 80px rgba(56, 189, 248, 0.6)",
-          ease: "power3.inOut",
-          duration: 1.5,
-          force3D: false,
-          lazy: false,
-          onStart: () => {
-            if (!dLetterRef.current) return;
-            gsap.set(dLetterRef.current, {
-              backgroundImage: "linear-gradient(to right, #ffffff, #e2e8f0, #f8fafc)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            });
+        // Combine movement with blur so they don't look stuck
+        tl.to(
+          leftLetters,
+          {
+            x: -300,
+            opacity: 0,
+            filter: "blur(12px)",
+            duration: 2,
+            ease: "power2.inOut",
           },
-        },
-        2.3
-      );
+          0
+        );
 
-      tl.to(
-        revealRef.current,
-        {
-          clipPath: "circle(150% at 50% 50%)",
-          ease: "power2.in",
-          duration: 1.5,
-        },
-        3.2
-      );
+        tl.to(
+          rightLetters,
+          {
+            x: 300,
+            opacity: 0,
+            filter: "blur(12px)",
+            duration: 2,
+            ease: "power2.inOut",
+          },
+          0
+        );
 
-      tl.to(
-        dLetterRef.current,
-        {
-          opacity: 0,
-          duration: 1,
-        },
-        3.4
-      );
+        tl.to(
+          dLetter,
+          {
+            scale: 30,
+            fontWeight: 900,
+            textShadow: "0 0 80px rgba(56, 189, 248, 0.6)",
+            ease: "power3.inOut",
+            duration: 1.5,
+            force3D: false,
+            lazy: false,
+            onStart: () => {
+              if (!dLetterRef.current) return;
+              gsap.set(dLetterRef.current, {
+                backgroundImage: "linear-gradient(to right, #ffffff, #e2e8f0, #f8fafc)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                color: "transparent",
+              });
+            },
+          },
+          2.3
+        );
 
-      // Floating icons gentle animation
-      const floatingIcons = Array.from(containerRef.current?.querySelectorAll(".floating-icon") ?? []);
-      floatingIcons.forEach((el, idx) => {
-        const baseDuration = 3 + (idx % 3) * 0.6;
-        gsap.to(el, {
-          y: "+=18",
-          rotate: idx % 2 === 0 ? 6 : -6,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          duration: baseDuration,
-        });
-      });
+        tl.to(
+          revealRef.current,
+          {
+            clipPath: "circle(150% at 50% 50%)",
+            ease: "power2.in",
+            duration: 1.5,
+          },
+          3.2
+        );
 
-      // Parallax with mouse move
-      const onMouseMove = (e: MouseEvent) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const mx = (e.clientX - rect.left) / rect.width - 0.5; // -0.5..0.5
-        const my = (e.clientY - rect.top) / rect.height - 0.5;
+        tl.to(
+          dLetterRef.current,
+          {
+            opacity: 0,
+            duration: 1,
+          },
+          3.4
+        );
+
+        // Floating icons gentle animation
+        const floatingIcons = Array.from(containerRef.current?.querySelectorAll(".floating-icon") ?? []);
         floatingIcons.forEach((el, idx) => {
-          const speed = 10 + (idx % 4) * 5;
-          gsap.to(el, { x: mx * speed, yPercent: my * 2, duration: 0.3, ease: "power2.out" });
+          const baseDuration = 3 + (idx % 3) * 0.6;
+          gsap.to(el, {
+            y: "+=18",
+            rotate: idx % 2 === 0 ? 6 : -6,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            duration: baseDuration,
+          });
         });
-      };
-      containerRef.current?.addEventListener("mousemove", onMouseMove);
 
-      // Cleanup
-      return () => {
-        containerRef.current?.removeEventListener("mousemove", onMouseMove);
-        gsap.killTweensOf(floatingIcons);
-      };
-    }, containerRef);
+        // Parallax with mouse move
+        const onMouseMove = (e: MouseEvent) => {
+          if (!containerRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const mx = (e.clientX - rect.left) / rect.width - 0.5; // -0.5..0.5
+          const my = (e.clientY - rect.top) / rect.height - 0.5;
+          floatingIcons.forEach((el, idx) => {
+            const speed = 10 + (idx % 4) * 5;
+            gsap.to(el, { x: mx * speed, yPercent: my * 2, duration: 0.3, ease: "power2.out" });
+          });
+        };
+        containerRef.current?.addEventListener("mousemove", onMouseMove);
+
+        return () => {
+          containerRef.current?.removeEventListener("mousemove", onMouseMove);
+          gsap.killTweensOf(floatingIcons);
+        };
+      },
+      containerRef
+    );
 
     return () => {
-      ctx.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      mm.revert();
     };
   }, []);
 
@@ -318,7 +324,7 @@ const Hero = () => {
       {/* Background Portrait Overlay */}
       <div ref={portraitRef} className='absolute inset-0 z-0 pointer-events-none overflow-hidden'>
         <div
-          className='absolute right-[10%] md:right-[30%] 2xl:right-[47%]  bottom-[40%] md:-bottom-[20%] w-full h-[130%] bg-no-repeat bg-bottom-right bg-contain opacity-[0.08]'
+          className='absolute right-[10%] md:right-[40%] bottom-[40%] md:-bottom-[20%] w-full h-[130%] bg-no-repeat bg-bottom-right bg-contain opacity-[0.08]'
           style={{
             backgroundImage: "url('/images/v3.png')",
             maskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 20%, transparent 80%)",
@@ -332,7 +338,7 @@ const Hero = () => {
       <Container className='relative z-30 pb-20 pr-4 lg:pr-28 2xl:pr-10 h-full flex flex-col justify-end items-end text-right'>
         {/* Name */}
         <div ref={nameRef} className='mb-6'>
-          <h1 className='text-[90px] leading-[90%] md:text-8xl lg:text-[180px] xl:text-[210px] font-montserrat uppercase font-black select-none'>
+          <h1 className='text-[90px] leading-[90%] md:text-[130px] lg:text-[150px] xl:text-[210px] font-montserrat uppercase font-black select-none'>
             {"Sadid".split("").map((letter, idx) => (
               <span
                 key={idx}

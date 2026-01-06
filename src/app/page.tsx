@@ -6,6 +6,8 @@ import Navber from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import TopProgressBar from "@/components/ui/TopProgressBar";
 import Experience from "@/components/sections/Experience/Experience";
+import Skills from "@/components/sections/Skills/Skills";
+import { Suspense } from "react";
 
 export default async function Home() {
   return (
@@ -13,6 +15,11 @@ export default async function Home() {
       <TopProgressBar />
       <Navber />
       <Hero />
+      <div className='block lg:hidden'>
+        <Suspense>
+          <Skills />
+        </Suspense>
+      </div>
       <Experience />
       <Achievements />
       <Projects />
