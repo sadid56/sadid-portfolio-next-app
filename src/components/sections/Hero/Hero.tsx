@@ -73,7 +73,7 @@ const Hero = () => {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=3500",
+            end: "+=2000",
             scrub: 1.5,
             pin: true,
             pinSpacing: true,
@@ -328,14 +328,14 @@ const Hero = () => {
           style={{
             backgroundImage: "url('/images/v3.png')",
             maskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 20%, transparent 80%)",
-            WebkitMaskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 60%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to left, black 20%, transparent 80%), linear-gradient(to top, black 100%, transparent 100%)",
             maskComposite: "intersect",
             WebkitMaskComposite: "source-in",
             filter: "grayscale(100%) brightness(1.5) contrast(1.1)",
           }}
         />
       </div>
-      <Container className='relative z-30 pb-20 pr-4 lg:pr-28 2xl:pr-10 h-full flex flex-col justify-end items-end text-right'>
+      <Container className='relative z-30 pb-20 pr-4 lg:pr-28 2xl:pr-0 h-full flex flex-col justify-end items-end text-right'>
         {/* Name */}
         <div ref={nameRef} className='mb-6'>
           <h1 className='text-[90px] leading-[90%] md:text-[130px] lg:text-[150px] xl:text-[210px] font-montserrat uppercase font-black select-none'>

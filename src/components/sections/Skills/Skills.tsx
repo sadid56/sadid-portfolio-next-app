@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import skills, { TABS } from "@/data/skills";
 import { useMemo } from "react";
+import Container from "@/components/global/Container";
 
 const Skills = () => {
   const skillParam = useSearchParams();
@@ -18,7 +19,7 @@ const Skills = () => {
   const filteredSkills = useMemo(() => skills.filter((item) => item.category === skill), [skill]);
 
   return (
-    <div className='w-full container mx-auto  flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen parent-div px-4 md:px-0 z-40'>
+    <Container className='w-full flex flex-col items-center justify-center gap-16 overflow-hidden relative min-h-screen z-40'>
       <SectionTitle color='Skills' text='_' />
       <LargeTitle title='Skills' />
 
@@ -85,7 +86,7 @@ const Skills = () => {
           </motion.div>
         ))}
       </motion.div>
-    </div>
+    </Container>
   );
 };
 

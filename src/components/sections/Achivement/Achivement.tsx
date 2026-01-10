@@ -64,7 +64,7 @@ const Achievements = () => {
   }, []);
 
   return (
-    <div ref={ref} className='flex justify-center gap-10 items-center flex-col md:flex-row pb-20 lg:pb-80 lg:mt-5'>
+    <div ref={ref} className='flex justify-center gap-10 items-center flex-col lg:flex-row pb-20 lg:pb-80 lg:mt-5'>
       {items.map((item, index) => (
         <MagicCard key={index} className={cn(`achv-card transition-all cursor-pointer duration-150 ease-out rounded-lg p-px relative`)}>
           <div className={`relative w-64 h-80 bg-gradient-to-b from-[#2d3138] to-[#04080e] flex justify-center items-center rounded-lg`}>

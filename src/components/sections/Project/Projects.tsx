@@ -4,8 +4,9 @@ import SectionTitle from "@/components/global/SectionTitle";
 import projects from "@/data/projects";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Card from "./components/Card";
-import VideoModal from "./components/VideoModal";
+import Container from "@/components/global/Container";
+import Card from "./Card";
+import VideoModal from "./VideoModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,35 +23,37 @@ const Projects = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const totalCards = cardsRef.current.length;
+    const mm = gsap.matchMedia();
 
-    gsap.to(cardsRef.current, {
-      xPercent: -100 * (totalCards - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: () => `+=${totalCards * 600}`,
-        pin: true,
-        scrub: 1,
-        snap: 1 / (totalCards - 0.5),
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
+    mm.add("(min-width: 768px)", () => {
+      const totalCards = cardsRef.current.length;
+
+      gsap.to(cardsRef.current, {
+        xPercent: -100 * (totalCards - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: () => `+=${totalCards * 600}`,
+          pin: true,
+          scrub: 1,
+          snap: 1 / (totalCards - 0.5),
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
     });
+
+    return () => mm.revert();
   }, []);
 
   return (
-    <div id='projects' className='max-w-[1300px] mx-auto relative'>
+    <Container id='projects' className='relative'>
       <SectionTitle text='Projects_' color='My' />
-      <div ref={containerRef} className='relative h-screen overflow-hidden'>
-        <div className='flex items-center h-full w-full gap-5 md:gap-10'>
+      <div ref={containerRef} className='relative h-auto md:h-screen overflow-visible md:overflow-hidden pt-10'>
+        <div className='flex flex-col md:flex-row items-center h-full w-full gap-10 md:gap-10 pb-20 md:pb-0'>
           {projects.map((card, idx) => (
-            <div
-              ref={addToRefs}
-              key={idx}
-              className='flex-shrink-0 w-[90vw] md:w-[850px] mx-auto h-[320px] md:h-[350px] snap-center ml-5 md:ml-0'
-            >
+            <div ref={addToRefs} key={idx} className='w-full md:w-[850px] mx-auto h-[350px] md:h-[350px] flex-shrink-0 snap-center md:ml-0'>
               <Card project={card} onPlayVideo={() => setActiveVideo(card.video_url)} />
             </div>
           ))}
@@ -58,7 +61,7 @@ const Projects = () => {
       </div>
 
       <VideoModal videoKey={activeVideo} onClose={() => setActiveVideo(null)} />
-    </div>
+    </Container>
   );
 };
 

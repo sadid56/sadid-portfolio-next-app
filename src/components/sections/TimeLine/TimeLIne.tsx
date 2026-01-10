@@ -101,7 +101,7 @@ export const Timeline: React.FC<Props> = ({ data }) => {
       </div>
 
       {/* Timeline Section */}
-      <div ref={ref} className='relative pb-20 pr-5 md:pr-0'>
+      <div ref={ref} className='relative pb-20'>
         {data.map((item: TExperience, index: number) => (
           <TimelineItem item={item} index={index} key={item.id + index} />
         ))}

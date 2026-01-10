@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import usePageScroll from "@/hooks/usePageScroll";
@@ -11,9 +11,18 @@ import socialLinks from "@/data/socialLinks";
 import { Drawer } from "vaul";
 import { IconX } from "@tabler/icons-react";
 
-const Navber = () => {
+const Navbar = () => {
   const handleScroll = usePageScroll();
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScrollState = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScrollState);
+    return () => window.removeEventListener("scroll", handleScrollState);
+  }, []);
 
   const links = [
     { path: "#experience", label: "Experience" },
@@ -23,44 +32,56 @@ const Navber = () => {
   return (
     <nav
       className={cn(
-        "fixed top-6 left-1/2 -translate-x-1/2 z-[60]",
-        "backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl",
-        "transition-all duration-300 w-[90%] md:w-[70%] lg:w-[55%]"
+        "fixed transition-all -translate-x-1/2 left-1/2 top-4 duration-500 z-[60]",
+        isScrolled
+          ? "w-[90%] md:w-[70%] lg:w-[64%] backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-2xl"
+          : " bg-transparent border-transparent md:py-2 w-[90%] md:w-[70%] lg:w-[68%]"
       )}
     >
-      <div className='flex items-center justify-between py-3 md:pr-5'>
+      <div className={cn("flex items-center justify-between transition-all duration-500 p-1 md:p-3")}>
         {/* Logo */}
         <button
           onClick={() => {
             window.location.href = "/";
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className='flex items-center cursor-pointer'
+          className='flex items-center cursor-pointer group'
         >
-          <Image src='/logo-name.png' alt='Logo' width={120} height={120} priority style={{ width: "auto", height: "auto" }} />
+          <div className='relative overflow-hidden'>
+            <Image
+              src='/logo-name.png'
+              alt='Logo'
+              width={100}
+              height={100}
+              priority
+              className='transition-all duration-500 group-hover:scale-105'
+              style={{ width: "auto", height: "auto" }}
+            />
+          </div>
         </button>
 
         {/* Desktop Links */}
         <div>
-          <div className='hidden md:flex items-center gap-6'>
-            <div className='flex gap-8 items-center'>
+          <div className='hidden md:flex items-center gap-8'>
+            <div className='flex gap-10 items-center'>
               {links.map((link, idx) => (
                 <button
                   key={idx}
                   onClick={(e) => handleScroll(e, link.path)}
-                  className='cursor-pointer relative font-medium text-slate-300 transition-colors duration-200 hover:text-white uppercase font-montserrat'
+                  className='cursor-pointer relative font-semibold text-slate-300 transition-all duration-300 hover:text-white uppercase font-montserrat tracking-wider text-sm group'
                 >
                   {link.label}
+                  <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-400 transition-all duration-300 group-hover:w-full'></span>
                 </button>
               ))}
             </div>
             <Link target='_blank' href={LINKS.blog}>
-              <ShinnyButton>BLOGS</ShinnyButton>
+              <ShinnyButton className={cn("transition-all duration-300", isScrolled ? "scale-90" : "scale-100")}>BLOGS</ShinnyButton>
             </Link>
           </div>
 
           {/* Mobile Menu */}
-          <div className='md:hidden text-white pr-5 z-[70] relative'>
+          <div className='md:hidden text-white pr-2 z-[70] relative'>
             <Drawer.Root open={open} onOpenChange={setOpen} direction='bottom' shouldScaleBackground>
               <Drawer.Trigger asChild>
                 <div className='md:hidden text-white z-[70] relative'>
@@ -77,34 +98,44 @@ const Navber = () => {
               </Drawer.Trigger>
 
               <Drawer.Portal>
-                <Drawer.Overlay className='fixed inset-0 bg-black/20 backdrop-blur-[10px] z-[999]' />
-                <Drawer.Content className='fixed bottom-0 left-0 right-0 z-[1000] mt-4 flex h-auto flex-col rounded-t-[30px] bg-mainBgColor border-t border-white/10'>
+                <Drawer.Overlay className='fixed inset-0 bg-black/40 backdrop-blur-md z-[999]' />
+                <Drawer.Content className='fixed bottom-0 left-0 right-0 z-[1000] mt-4 flex h-auto flex-col rounded-t-[40px] bg-[#0a0f1d] border-t border-white/10 shadow-2xl'>
                   {/* Handle */}
                   <Drawer.Title className='sr-only' />
-                  <div className='mx-auto mt-4 h-1.5 w-12 flex-shrink-0 rounded-full bg-gray-300/50' />
+                  <div className='mx-auto mt-4 h-1.5 w-12 flex-shrink-0 rounded-full bg-white/20' />
 
                   {/* Close Button */}
                   <button
                     onClick={() => setOpen(false)}
-                    className='absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors'
+                    className='absolute top-6 right-6 p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-all active:scale-95'
                     aria-label='Close menu'
                   >
-                    <IconX className='w-5 h-5 text-white' />
+                    <IconX className='w-6 h-6 text-white' />
                   </button>
 
-                  <div className='p-6 pt-8'>
+                  <div className='p-8 pt-12'>
                     {/* Mobile Logo */}
-                    <div className='flex justify-center'>
-                      <Image src='/logo-name.png' alt='Logo' width={140} height={140} priority style={{ width: "auto", height: "auto" }} />
-                    </div>
+                    <button
+                      onClick={() => {
+                        window.location.href = "/";
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        setOpen(false);
+                      }}
+                      className='flex justify-center mb-12 mx-auto'
+                    >
+                      <Image src='/logo-name.png' alt='Logo' width={160} height={160} priority style={{ width: "auto", height: "auto" }} />
+                    </button>
 
                     {/* Links */}
-                    <div className='flex flex-col items-center gap-2 my-20'>
+                    <div className='flex flex-col items-center mb-16'>
                       {links.map((link, idx) => (
                         <Drawer.Close key={idx} asChild>
                           <button
-                            onClick={(e) => handleScroll(e, link.path)}
-                            className=' font-semibold text-white uppercase font-montserrat tracking-wide py-2 px-4 hover:text-cyan-300 transition-colors'
+                            onClick={(e) => {
+                              handleScroll(e, link.path);
+                              setOpen(false);
+                            }}
+                            className='font-semibold text-white uppercase font-montserrat tracking-widest py-3 px-6 hover:text-sky-400 transition-all active:scale-95'
                           >
                             {link.label}
                           </button>
@@ -112,24 +143,24 @@ const Navber = () => {
                       ))}
 
                       <Drawer.Close asChild>
-                        <Link href={LINKS.blog} className='mt-2'>
+                        <Link href={LINKS.blog} className='mt-6'>
                           <ShinnyButton>BLOGS</ShinnyButton>
                         </Link>
                       </Drawer.Close>
                     </div>
 
                     {/* Social Links */}
-                    <div className='flex justify-center gap-4 mt-8 pt-8 border-t border-white/10'>
+                    <div className='flex justify-center gap-6 mt-8 pt-10 border-t border-white/5'>
                       {socialLinks.map(({ Icon, href, label, color }) => (
                         <Drawer.Close key={label} asChild>
                           <Link
                             href={href}
                             target='_blank'
                             rel='noopener noreferrer'
-                            className='p-3 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-600/80 transition-all duration-300 hover:scale-110 hover:bg-slate-800/50 hover:border-slate-600 hover:shadow-lg hover:shadow-slate-500/10'
+                            className='p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:scale-110 hover:bg-white/10 hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-500/10'
                             aria-label={label}
                           >
-                            <Icon className={cn("w-6 h-6 text-slate-300 transition-colors", color)} />
+                            <Icon className={cn("w-7 h-7 text-slate-300 transition-colors", color)} />
                           </Link>
                         </Drawer.Close>
                       ))}
@@ -137,7 +168,7 @@ const Navber = () => {
                   </div>
 
                   {/* Safe area for mobile devices */}
-                  <div className='h-8' />
+                  <div className='h-10' />
                 </Drawer.Content>
               </Drawer.Portal>
             </Drawer.Root>
@@ -148,4 +179,4 @@ const Navber = () => {
   );
 };
 
-export default Navber;
+export default Navbar;

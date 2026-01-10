@@ -62,7 +62,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index }) => {
       }`}
     >
       <div
-        className={`group p-8 md:p-10 w-full lg:w-[50%] relative rounded-3xl
+        className={`group p-5 md:p-10 w-full lg:w-[50%] relative rounded-3xl
         border border-white/10 bg-slate-700/30 backdrop-blur-2xl
         shadow-xl hover:shadow-2xl transition-shadow duration-500 ${isEven ? "text-left lg:text-right" : "text-left"}`}
       >

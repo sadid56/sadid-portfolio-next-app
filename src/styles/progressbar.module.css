@@ -9,9 +9,9 @@
     to right,
     rgba(10, 208, 142, 0) 0%,
     #0ad08e 25%,
-    #40c9ff 50%,
+    #0ad08e 50%,
     #0ad08e 75%,
-    rgba(64, 201, 255, 0) 100%
+    transparent 100%
   );
   transform-origin: 0%;
   z-index: 999;
